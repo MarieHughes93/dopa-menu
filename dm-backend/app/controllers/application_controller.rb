@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    before_action: :authorized
+    before_action :authorized
     def scramble_tok(payload)
       JWT.encode(payload, 's3cr3t')
     end
