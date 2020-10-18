@@ -15,10 +15,10 @@ class NavBar extends Component{
         }
       }
 
-      handleClick(i) {
+      handleClick(e) {
         const links = this.state.links.slice(); 
         for (const j in links) {
-          links[j].isActive = i === j ;
+          links[j].isActive = e === j ;
         }
         this.setState({links: links});
       }
@@ -28,15 +28,15 @@ class NavBar extends Component{
         return (
           <div>
             <nav className="navbar navbar-expand-lg navbar-light  bg-light">
-              <Link className="navbar-brand" to="/">Home</Link>
+              <Link className="navbar-brand" to="/">Dopa-Menu</Link>
               <ul className="navbar-nav">
-                {this.state.links.map((link, i) => 
+                {this.state.links.map((link, e) => 
                   <NavLink 
                     path={link.path} 
                     text={link.text} 
                     isActive={link.isActive}
                     key={link.path} 
-                    onClick={() => this.handleClick(i)}
+                    onClick={() => this.handleClick(e)}
                   /> 
                   )}
               </ul>
