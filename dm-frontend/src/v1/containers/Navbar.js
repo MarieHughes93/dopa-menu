@@ -1,16 +1,17 @@
-import {Link} from 'react-router-dom'
 import React, { Component } from "react";
-import NavLink from '../components/NavLink'
+import ActiveLink from '../components/activeLink'
+import {Nav,Navbar } from 'react-bootstrap'
 
-class NavBar extends Component{
+class NavHeader extends Component{
 
     constructor(props) {
         super(props);
         this.state = {
           links: [
-            {path: "/signup", text: "Join", isActive: false},
-            {path: "/menu", text: "Dashboard", isActive: false},
-            {path: "/profile", text: "Profile", isActive: false},
+            {path: "/", text: "Home"},
+            {path: "/signup", text: "Join"},
+            {path: "/menu", text: "Dashboard"},
+            {path: "/profile", text: "Profile"},
           ]
         }
       }
@@ -26,24 +27,21 @@ class NavBar extends Component{
     
       render() {
         return (
-          <div>
-            <nav className="navbar navbar-expand-lg navbar-light  bg-light">
-              <Link className="navbar-brand" to="/">Dopa-Menu</Link>
-              <ul className="navbar-nav">
-                {this.state.links.map((link, e) => 
-                  <NavLink 
-                    path={link.path} 
-                    text={link.text} 
-                    isActive={link.isActive}
-                    key={link.path} 
-                    onClick={() => this.handleClick(e)}
-                  /> 
-                  )}
-              </ul>
-            </nav>
-          </div>
+          <Navbar bg="dark" variant="dark">
+          <Navbar.Brand href="/">Dopa-Menu</Navbar.Brand>
+          <Nav className="routes">
+          {this.state.links.map((link,e) => 
+            <ActiveLink
+              path={link.path}
+              text={link.text}
+              isActive={link.isActive}
+              key={link.path} 
+              onClick={() => this.handleClick(e)}
+          />)}
+					</Nav>
+          </Navbar>
         );
       }
     }
 
-export default NavBar;
+export default NavHeader;

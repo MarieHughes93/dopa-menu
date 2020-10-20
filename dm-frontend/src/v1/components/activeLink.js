@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 
 
-class NavLink extends Component {
+class ActiveLink extends Component {
     render() {
         return (
           <li className={"nav-item " + (this.props.isActive ? "active": "")}>
@@ -17,4 +17,4 @@ class NavLink extends Component {
         );
     }
   }
-  export default NavLink
+  export default ActiveLink
