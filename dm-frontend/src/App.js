@@ -1,6 +1,10 @@
-import React, { Component } from "react";
-import { Switch, Route} from 'react-router-dom'
 import './App.css';
+
+import React, { Component } from 'react';
+import { Switch, Route} from 'react-router-dom'
+
+
+
 import NavBar from './v1/containers/Navbar'
 import Home from './v1/containers/Home'
 import Dashboard from './v1/containers/Dashboard'
