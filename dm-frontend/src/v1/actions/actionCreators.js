@@ -33,11 +33,9 @@ const user = {
     REGISTER_FAILURE: 'REGISTER_FAILURE'
 }
 
-const creator = {
+export const actionCreator = {
        app,
        auth,
        menu,
        user
 }
-
-export default creator

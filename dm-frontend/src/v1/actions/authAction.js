@@ -1,2 +1,2 @@
-export const authAct = {
+export const authAction = {
 }

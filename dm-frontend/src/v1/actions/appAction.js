@@ -1,2 +1,2 @@
-export const appAct = {
+export const appAction = {
 }

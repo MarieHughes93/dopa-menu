@@ -1,2 +1,2 @@
-export const  menuAct = {
+export const  menuAction = {
 }

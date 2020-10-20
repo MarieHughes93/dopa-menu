@@ -1,7 +1,7 @@
-import creator from './actionCreators'
-import {appAct as app } from './appAction'
-import {menuAct as menu} from './menuAction'
-import {userAct as user} from './userAction'
+import {actionCreator as creator} from './actionCreators'
+import {appAction as app } from './appAction'
+import {menuAction as menu} from './menuAction'
+import {userAction as user} from './userAction'
 
 export const action ={
     creator,
