@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux'
+import {action} from '../actions/_index'
 
 class SignUpForm extends Component {
 
@@ -19,7 +21,7 @@ class SignUpForm extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault()
-        console.log("test" + this.state)
+        this.props.signUp(this.state)
         this.setState({
             name: "",
             email: "",
@@ -55,4 +57,9 @@ class SignUpForm extends Component {
         )
     }
 }
-export default SignUpForm
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (userInfo) => dispatch(action.user.signUp(userInfo))
+    }
+}
+export default connect(null, mapDispatchToProps)(SignUpForm)
