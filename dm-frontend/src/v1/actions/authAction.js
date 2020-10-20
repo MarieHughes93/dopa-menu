@@ -1,3 +1,2 @@
-const authAct = {
+export const authAct = {
 }
-export default authAct

@@ -1,3 +1,2 @@
-const menuAct = {
+export const  menuAct = {
 }
-export default menuAct

@@ -1,3 +1,8 @@
-const userAct = {
+const signUp=()=>{
+
 }
-export default userAct
+
+
+export const userAct = {
+    signUp
+}

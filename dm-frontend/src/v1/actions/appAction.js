@@ -1,3 +1,2 @@
-const appAct = {
+export const appAct = {
 }
-export default appAct
