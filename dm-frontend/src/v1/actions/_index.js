@@ -1,11 +1,13 @@
 import {actionCreator as creator} from './actionCreators'
 import {appAction as app } from './appAction'
-import {menuAction as menu} from './menuAction'
+import {authAction as auth} from './authAction'
+import {menuItemAction as menu} from './menuItemAction'
 import {userAction as user} from './userAction'
 
 export const action ={
     creator,
     app,
+    auth,
     menu,
     user
 }

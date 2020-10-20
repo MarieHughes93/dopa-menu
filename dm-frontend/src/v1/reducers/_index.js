@@ -1,14 +1,14 @@
 import {combineReducers} from 'redux'
-import appReducer from './appReducer'
-import authReducer from './authReducer'
-import menuReducer from './menuReducer'
-import usersReducer from './usersReducer'
+import {appReducer  as app} from './appReducer'
+import {authReducer as auth } from './authReducer'
+import {menuItemReducer as menuItem} from './menuItemReducer'
+import {usersReducer as user} from './usersReducer'
 
-const reducers = combineReducers({
-    appReducer,
-    authReducer,
-    menuReducer,
-    usersReducer
+const reducer = combineReducers({
+    app,
+    auth,
+    menuItem,
+    user
 })
 
-export default reducers
+export default reducer
