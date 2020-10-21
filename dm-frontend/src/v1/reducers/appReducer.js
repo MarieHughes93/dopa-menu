@@ -1,6 +1,5 @@
-const defaultState = {
-}
-export const appReducer = (state = defaultState, action) => {
+
+export const appReducer = (state = {}, action) => {
     switch(action.type){
         default: 
             return state

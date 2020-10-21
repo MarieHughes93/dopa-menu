@@ -1,6 +1,5 @@
-const defaultState = {
-}    
-export const menuItemReducer = (state = defaultState, action) => {
+
+export const menuItemReducer = (state = {}, action) => {
     switch(action.type){
         default: 
             return state
