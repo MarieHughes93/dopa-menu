@@ -1,6 +1,7 @@
-const apiUrl = 'http://localhost:4000/users/'
+const apiUrl = 'http://localhost:4000'
 
 const errorCheck=(data) =>{
+    const user = JSON.parse(data)
     // when error is thrown it will come in string.
     return data.text().then(text => {
         // convert to text first. Then to json 
@@ -11,16 +12,11 @@ const errorCheck=(data) =>{
             return Promise.reject(error);
         }
         // else give back object for us to follow sign up with
-        return object;
+        return user;
     });
 }
-const signUp=( name,email,password)=> {
-    const user = {
-        name: name,
-        email: email,
-        password: password
-    }
-    return fetch(`${apiUrl}`,{
+const register = ( user) => {
+    return fetch(`${apiUrl}/signup`,{
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
@@ -28,8 +24,20 @@ const signUp=( name,email,password)=> {
         body: JSON.stringify({user}),
     }).then(errorCheck)  
 }
-const apiRequest = {
+
+
+// function register(user) {
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(user)
+//     };
+
+//     return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
+// }
+
+export const apiRequest = {
     apiUrl,
     errorCheck,
-    signUp
+    register
 }

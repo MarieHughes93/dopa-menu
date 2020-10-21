@@ -21,7 +21,7 @@ class SignUpForm extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault()
-        this.props.signUp(this.state)
+        this.props.register(this.state)
         this.setState({
             name: "",
             email: "",
@@ -51,7 +51,7 @@ class SignUpForm extends Component {
                     placeholder="Password"
                    />
                    <br/>
-                   <input type="submit" value="Submit" />
+                   <input type="submit" value="Submit"/>
                </form>
             </div>
         )
@@ -59,7 +59,7 @@ class SignUpForm extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        signUp: (userInfo) => dispatch(actions.user.signUp(userInfo))
+        register: (userInfo) => dispatch(actions.user.signUp(userInfo))
     }
 }
 export default connect(null, mapDispatchToProps)(SignUpForm)
