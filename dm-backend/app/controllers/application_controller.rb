@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-    before_action :authorized
     def scramble_tok(payload)
       JWT.encode(payload, 's3cr3t')
     end
@@ -8,7 +7,7 @@ class ApplicationController < ActionController::API
       request.headers['Authorization']
     end
   
-    def token_reader
+    def tokenizer
       if auth_header
         tok = auth_header.split(' ')[1]
         begin
@@ -20,8 +19,8 @@ class ApplicationController < ActionController::API
     end
   
     def current_user
-      if token_reader
-        user_id = token_reader[0]['user_id']
+      if tokenizer
+        user_id = tokenizer[0]['user_id']
         @user = User.find_by(id: user_id)
       end
     end

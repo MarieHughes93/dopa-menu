@@ -1,5 +1,6 @@
 class Api::V1::UsersController < ApplicationController
     before_action :find_user, only: [:update, :destroy]
+    
     def show
       if @user = User.find_by(id: params[:id])
         render json: @user
@@ -11,7 +12,7 @@ class Api::V1::UsersController < ApplicationController
     def create
       @user = User.create(user_params)
       if @user.valid?
-        token = encode_token({user_id: @user.id})
+        token = scramble_tok({user_id: @user.id})
         render json: {user: @user, token: token}
         
       else
