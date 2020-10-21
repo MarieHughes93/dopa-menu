@@ -4,11 +4,11 @@ import {authReducer as auth } from './authReducer'
 import {menuItemReducer as menuItem} from './menuItemReducer'
 import {usersReducer as user} from './usersReducer'
 
-const reducer = combineReducers({
+const reducers = combineReducers({
     app,
     auth,
     menuItem,
     user
 })
 
-export default reducer
+export default reducers

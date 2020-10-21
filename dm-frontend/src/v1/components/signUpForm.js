@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux'
-import {action} from '../actions/_index'
+import {actions} from '../actions/_index'
 
 class SignUpForm extends Component {
 
@@ -59,7 +59,7 @@ class SignUpForm extends Component {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        signUp: (userInfo) => dispatch(action.user.signUp(userInfo))
+        signUp: (userInfo) => dispatch(actions.user.signUp(userInfo))
     }
 }
 export default connect(null, mapDispatchToProps)(SignUpForm)

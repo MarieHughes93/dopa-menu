@@ -1,5 +1,5 @@
 import {apiRequest as fetch} from './apiRequest'
 
-export const helper = {
+export const helpers = {
     fetch
 }
