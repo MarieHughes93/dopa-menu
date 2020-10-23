@@ -1,22 +1,20 @@
 const apiUrl = 'http://localhost:4000'
 
-const errorCheck=(data) =>{
-    const user = JSON.parse(data)
+const errorCheck=(res) =>{
     // when error is thrown it will come in string.
-    return data.text().then(text => {
+    res.text().then(text => {
         // convert to text first. Then to json 
-        const object = text && JSON.parse(text);
+        const data = text && JSON.parse(text)
         // if issue becoming json, stop promis
-        if (!object.ok) {
-            const error = (object && object.message) || data.statusText;
-            return Promise.reject(error);
+        if (!data.ok) {
+            return Promise.reject(((data && data.message) || res.statusText))
         }
-        // else give back object for us to follow sign up with
-        return user;
-    });
+        // else give back data for us to follow sign up with
+        return data
+    })
 }
 const register = ( user) => {
-    return fetch(`${apiUrl}/signup`,{
+    fetch(`${apiUrl}/register`,{
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json',
@@ -24,17 +22,6 @@ const register = ( user) => {
         body: JSON.stringify({user}),
     }).then(errorCheck)  
 }
-
-
-// function register(user) {
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(user)
-//     };
-
-//     return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
-// }
 
 export const apiRequest = {
     apiUrl,
