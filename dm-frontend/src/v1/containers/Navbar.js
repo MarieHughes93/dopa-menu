@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import ActiveLink from '../components/activeLink'
 import {Nav,Navbar } from 'react-bootstrap'
 
 class NavHeader extends Component{
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
           links: [
             {path: "/", text: "Home"},
@@ -17,11 +17,11 @@ class NavHeader extends Component{
       }
 
       handleClick(e) {
-        const links = this.state.links.slice(); 
+        const links = this.state.links.slice()
         for (const j in links) {
-          links[j].isActive = e === j ;
+          links[j].isActive = e === j 
         }
-        this.setState({links: links});
+        this.setState({links: links})
       }
     
     
@@ -40,8 +40,8 @@ class NavHeader extends Component{
           />)}
 					</Nav>
           </Navbar>
-        );
+        )
       }
     }
 
-export default NavHeader;
+export default NavHeader

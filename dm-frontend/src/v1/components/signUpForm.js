@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import {connect} from 'react-redux'
 import {actions} from '../actions/_index'
 
@@ -16,8 +16,8 @@ class SignUpForm extends Component {
     }
 
     onChange = (e) => {
-        e.persist();
-        this.setState({[e.target.name]: e.target.value});
+        e.persist()
+        this.setState({[e.target.name]: e.target.value})
     }
     onSubmit = (e) => {
         e.preventDefault()
@@ -26,7 +26,7 @@ class SignUpForm extends Component {
             name: "",
             email: "",
             password: ""
-        });
+        })
     }
     
     render(){

@@ -6,15 +6,18 @@ const registerSuccess = (payload) => ({type: actionCreator.user.REGISTER_SUCCESS
 const registerFailure = (payload) => ({type: actionCreator.user.REGISTER_FAILURE, payload})
 
 const signUp = (user) => dispatch => {
-        dispatch(registerRequest(user));
+        dispatch(registerRequest(user))
         helpers.fetch.register(user)
             .then(
                 user => { 
-                    dispatch(registerSuccess())},
+                    dispatch(registerSuccess())
+                    //  push to login
+                },
                 error => {
-                    dispatch(registerFailure(error.toString()))}
-            );
-};
+                    dispatch(registerFailure(error.toString()))
+                }
+            )
+}
 
 export const userAction = {
     signUp
