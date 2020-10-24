@@ -10,15 +10,14 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def create
-      @user = User.create(user_params)
-      if @user.valid?
-        token = scramble_tok({user_id: @user.id})
-        render json: {user: @user, token: token}
-        
-      else
-        render json: {error: "Invalid email or password"}
-      end
+    @user = User.create(user_params)
+    if @user.valid?
+      token = scramble_tok({user_id: @user.id})
+      render json: {user: @user, token: token}
+    else
+      render json: {error: "Invalid email or password"}
     end
+  end
 
     def update
       if @user.update(user_params)
@@ -40,6 +39,6 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name,:email, :password)
+      params.require(:user).permit(:name,:email, :password_digest)
     end
 end
