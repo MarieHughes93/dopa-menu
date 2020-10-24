@@ -16,7 +16,7 @@ item_types = ['Appetizer','Entree','Side','Dessert','Special']
     User.create do |u|
         u.name = Faker::GreekPhilosophers.name
         u.email = Faker::Internet.unique.email
-        u.password_digest = Faker::Internet.password
+        u.password = Faker::Internet.password
         users << u
     end
 end
@@ -29,5 +29,5 @@ end
     end
 end
 
-tester = User.create(name: "Test", email: "test@test.com",  password_digest: "test")
+tester = User.create(name: "Test", email: "test@test.com",  password: "test")
 test_item1 = MenuItem.create(title: "Test Menu", category: item_types.sample,description: " test test test test test test test", user: tester)
