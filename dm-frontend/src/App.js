@@ -8,6 +8,8 @@ import Dashboard from './v1/containers/Dashboard'
 import Profile from './v1/containers/Profile'
 import SignUp from './v1/containers/SignUp'
 import LogIn from './v1/containers/LogIn'
+import {withRouter} from 'react-router-dom'
+
 
 class App extends Component{
   
@@ -29,4 +31,4 @@ class App extends Component{
     )
   }
 }
-export default App
+export default withRouter(App)

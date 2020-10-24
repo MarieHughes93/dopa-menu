@@ -1,5 +1,6 @@
 import {actionCreator} from './actionCreators'
 import {helpers} from '../helpers/_index'
+import history from '../helpers/history'
 
 
 const registerRequest = (payload) => ({type: actionCreator.user.REGISTER_REQUEST, payload})
@@ -17,7 +18,7 @@ const register = (user) => dispatch => {
                 data => { 
                     localStorage.setItem("sessionID", data.token)
                     dispatch(registerSuccess(data))
-                    
+                    history.push('/login')
                 },
                 error => {
                     dispatch(registerFailure(error.toString()))
@@ -31,6 +32,7 @@ const logIn = (user) => dispatch => {
         data => { 
             localStorage.setItem("sessionID", data.token)
             dispatch(loginSuccess(data))
+            history.push('/dashboard')
         },
         error => {
             dispatch(loginFailure(error.toString()))
