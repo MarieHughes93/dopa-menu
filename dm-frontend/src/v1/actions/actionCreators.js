@@ -1,10 +1,8 @@
 const app ={
-    PAGE_SET: 'PAGE_SET',
-    PAGE_CLEAR: 'PAGE_CLEAR',
-    PAGE_REGUEST: 'PAGE_REQUEST',
-    PAGE_FAILURE: 'PAGE_FAILURE'
-} 
-const auth ={
+    ROUTE_SET: 'ROUTE_SET',
+    ROUTE_CLEAR: 'ROUTE_CLEAR',
+    ROUTE_REGUEST: 'ROUTE_REQUEST',
+    ROUTE_FAILURE: 'ROUTE_FAILURE',
     SESSION_REQUEST: 'SESSION_REQUEST',
     SESSION_FAILURE: 'SESSION_FAILURE',
     SESSION_START: 'SESSION_LOGGED',
@@ -35,7 +33,6 @@ const user = {
 
 export const actionCreator = {
        app,
-       auth,
        menu,
        user
 }
