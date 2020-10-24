@@ -9,8 +9,9 @@ class NavHeader extends Component{
         this.state = {
           links: [
             {path: "/", text: "Home"},
+            {path:'/login', text: 'LogIn'},
             {path: "/signup", text: "Join"},
-            {path: "/menu", text: "Dashboard"},
+            {path: "/dashboard", text: "Dashboard"},
             {path: "/profile", text: "Profile"},
           ]
         }

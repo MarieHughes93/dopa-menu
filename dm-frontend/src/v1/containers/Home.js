@@ -1,12 +1,11 @@
 import React, { Component } from "react"
-import LoginForm from '../components/loginForm'
 
 class Home extends Component{
   render(){
   return (
     <div >
-        Home
-        <LoginForm/>
+        Home-
+        Welcome The dopa MEnu!
     </div>
   )
 }

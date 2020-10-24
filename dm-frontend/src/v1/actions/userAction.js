@@ -1,13 +1,14 @@
 import {actionCreator} from './actionCreators'
 import {helpers} from '../helpers/_index'
 
+
 const registerRequest = (payload) => ({type: actionCreator.user.REGISTER_REQUEST, payload})
 const registerSuccess = (payload) => ({type: actionCreator.user.REGISTER_SUCCESS, payload})
 const registerFailure = (payload) => ({type: actionCreator.user.REGISTER_FAILURE, payload})
-const loginRequest = (payload) => ({type: actionCreator.auth.SESSION_REQUEST, payload})
-const loginSuccess = (payload) => ({type: actionCreator.auth.SESSION_START, payload})
-const loginFailure =( payload) => ({type: actionCreator.auth.SESSION_FAILURE, payload})
-const logOutSuccess = (payload) => ({type: actionCreator.auth.SESSION_END, payload})
+const loginRequest = (payload) => ({type: actionCreator.app.SESSION_REQUEST, payload})
+const loginSuccess = (payload) => ({type: actionCreator.app.SESSION_START, payload})
+const loginFailure =( payload) => ({type: actionCreator.app.SESSION_FAILURE, payload})
+const logOutSuccess = (payload) => ({type: actionCreator.app.SESSION_END, payload})
 
 const register = (user) => dispatch => {
     dispatch(registerRequest(user))
@@ -15,7 +16,6 @@ const register = (user) => dispatch => {
             .then(
                 data => { 
                     localStorage.setItem("sessionID", data.token)
-                    localStorage.setItem("userID", data.user.id)
                     dispatch(registerSuccess(data))
                     
                 },
@@ -30,7 +30,6 @@ const logIn = (user) => dispatch => {
     .then(
         data => { 
             localStorage.setItem("sessionID", data.token)
-            localStorage.setItem("userID", data.user.id)
             dispatch(loginSuccess(data))
         },
         error => {
