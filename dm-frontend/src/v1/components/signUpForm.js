@@ -3,21 +3,22 @@ import {connect} from 'react-redux'
 import {actions} from '../actions/_index'
 
 class SignUpForm extends Component {
-
     constructor(props){
         super(props)
         this.state = {
             name: '',
             email: '',
-            password: ''
+            password_digest: ''
         }
-        this.handleChange = this.onChange.bind(this)
-        this.handleSubmit = this.onSubmit.bind(this)
+        this.handleOnChange = this.handleOnChange.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
-
-    onChange = (e) => {
+    
+    handleOnChange = (e) => {
         e.persist()
-        this.setState({[e.target.name]: e.target.value})
+        this.setState(() => ({
+            [e.target.name]: e.target.value 
+        }))
     }
     onSubmit = (e) => {
         e.preventDefault()
@@ -25,41 +26,52 @@ class SignUpForm extends Component {
         this.setState({
             name: "",
             email: "",
-            password: ""
+            password_digest: ""
         })
     }
-    
+
     render(){
         return(
             <div>
-               <form onSubmit={this.onSubmit}>
-                   <input
-                    type="text" name="name"
-                    value={this.state.name} onChange={this.handleChange}
-                    placeholder="Preferred Name"
-                   />
-                   <br/>
-                   <input
-                    type="text" name="email"
-                    value={this.state.email} onChange={this.handleChange}
-                    placeholder="Email"
-                   />
-                   <br/>
-                   <input
-                    type="password" name="password"
-                    value={this.state.password} onChange={this.handleChange}
-                    placeholder="Password"
-                   />
-                   <br/>
-                   <input type="submit" value="Submit"/>
-               </form>
+                <form onSubmit={this.onSubmit}>
+                    <input
+                        type="text" 
+                        name="name" 
+                        value={this.state.name}
+                        onChange={this.handleOnChange}
+                        placeholder="Name"
+                    />
+                    <br/>
+                    <input 
+                        type="text" 
+                        name="email" 
+                        value={this.state.email}
+                        onChange={this.handleOnChange}
+                        placeholder="Email" 
+                    />
+                    <br/>
+                    <input
+                        type="password"
+                        name="password_digest"
+                        value={this.state.password_digest}
+                        onChange={this.handleOnChange}
+                        placeholder="Password"
+                    />
+                    <br/>
+                    <input
+                        type="submit"
+                        value="SignUp"
+                    />
+                </form>
             </div>
         )
     }
 }
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        register: (userInfo) => dispatch(actions.user.signUp(userInfo))
+        register: (userInfo) => dispatch(actions.user.register(userInfo))
     }
 }
+
 export default connect(null, mapDispatchToProps)(SignUpForm)
