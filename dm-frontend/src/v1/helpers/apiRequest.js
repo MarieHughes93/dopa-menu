@@ -2,28 +2,28 @@ const apiUrl = 'http://localhost:4000'
 
 const errorCheck=(res) =>{
     // when error is thrown it will come in string.
-   return res.text().then(text => {
+    return res.text().then(text => {
         // convert to text first. Then to json 
         const data = text && JSON.parse(text)
         // if issue becoming json, stop promise
-        if (!data.ok) {
+        if ( data.ok && data.ok === "false") {
             return Promise.reject(((data && data.message) || res.statusText))
         }
         // else give back data for us to follow sign up with
-        return res
+        return data
     })
 }
 
 const apilogout=()=> {
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
+    localStorage.clear();
 }
 const apiRegister = ( user) => {
-    fetch(`${apiUrl}/register`,{
+    return fetch(`${apiUrl}/register`,{
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({user})
-    }).then(errorCheck)  
+    }).then(res=> errorCheck(res))
 }
 
 const apiLogin=(userInfo)=> {
@@ -34,11 +34,8 @@ const apiLogin=(userInfo)=> {
             "Accept": "application/json"
         },
         body: JSON.stringify(userInfo)
-    })
-    .then(errorCheck)
-}
-
-    
+    }).then(res=> errorCheck(res))
+}  
 
 export const apiRequest = {
     apiUrl,

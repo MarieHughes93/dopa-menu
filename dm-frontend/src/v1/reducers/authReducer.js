@@ -1,15 +1,20 @@
 // import {actions} from '../actions/_index'
 
+let sessionID = localStorage.getItem("sessionID")
+let userID  = localStorage.getItem("userID")
 
-export const authReducer = (state ={}, action) => {
+const initialState = userID ? 
+{ loggedIn: true, userID ,sessionID} : {}
+
+export const authReducer = (state = initialState, action) => {
     switch(action.type){
         case 'SESSION_REQUEST':
             return {
-                
+                loggingIn: true,
+        user: action.user
             }
         case 'SESSION_FAILURE':
-            return {
-            }
+            return {}
         case 'SESSION_LOGGED':
             return {
                 loggedIn: true,
@@ -17,10 +22,7 @@ export const authReducer = (state ={}, action) => {
             }
         case 'SESSION_LOGOUT':
             localStorage.clear()
-            return {
-                loggedIn: false,
-                user: {}
-            }
+            return {}
         default: return state
     }
 }
