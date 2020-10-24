@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  
     def scramble_tok(payload)
       JWT.encode(payload, 's3cr3t')
     end
