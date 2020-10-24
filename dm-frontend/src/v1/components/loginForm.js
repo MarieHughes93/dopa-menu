@@ -7,7 +7,7 @@ class LoginForm extends Component {
         super(props)
         this.state = {
             email: '',
-            password_digest: ''
+            password: ''
         }
         this.handleOnChange = this.handleOnChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -24,7 +24,7 @@ class LoginForm extends Component {
         this.props.login(this.state)
         this.setState({
             email: "",
-            password_digest: ""
+            password: ""
         })
     }
 
@@ -42,8 +42,8 @@ class LoginForm extends Component {
                     <br/>
                     <input
                         type="password"
-                        name="password_digest"
-                        value={this.state.password_digest}
+                        name="password"
+                        value={this.state.password}
                         onChange={this.handleOnChange}
                         placeholder="Password"
                     />
