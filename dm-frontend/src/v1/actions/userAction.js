@@ -5,11 +5,10 @@ const registerRequest = (payload) => ({type: actionCreator.user.REGISTER_REQUEST
 const registerSuccess = (payload) => ({type: actionCreator.user.REGISTER_SUCCESS, payload})
 const registerFailure = (payload) => ({type: actionCreator.user.REGISTER_FAILURE, payload})
 const loginRequest = (payload) => ({type: actionCreator.auth.SESSION_REQUEST, payload})
-const loginSuccess = (payload) => ({type: actionCreator.auth.SESSION_LOGGED, payload})
-const loginFailure =( payload) => ({type: actionCreator.auth.SESSION_FAILURE, payload})
+// const loginSuccess = (payload) => ({type: actionCreator.auth.SESSION_LOGGED, payload})
+// const loginFailure =( payload) => ({type: actionCreator.auth.SESSION_FAILURE, payload})
 
-const register = (user) => dispatch => {
-        dispatch(registerRequest(user))
+const register = (user) => dispatch => {(registerRequest(user))
         helpers.fetch.apiRegister(user)
             .then(
                 user => { 
@@ -19,6 +18,14 @@ const register = (user) => dispatch => {
                     dispatch(registerFailure(error.toString()))
                 }
             )
+}
+const logIn = (userInfo) => dispatch => {
+    dispatch(loginRequest(userInfo))
+    helpers.fetch.apiLogin(userInfo)
+    .then(data => {
+        localStorage.setItem("sessionID", data.token)
+        dispatch(loginRequest(data.user))
+    })
 }
 export const userAction = {
     register,
