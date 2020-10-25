@@ -1,45 +1,32 @@
+import {actions} from '../actions/_index'
 let sessionToken = localStorage.getItem("sessionID")
 
 const defaultState = sessionToken ? 
 { loggedIn: true, 
     user: {sessionToken}
-    // page: '/'} 
  }:{
     loggedIn: false,
     user: {},
-    // page: ''
 }
 
 
 export const appReducer = (state = defaultState, action) => {
     switch(action.type){
-                // case 'PAGE_SET':
-                //         return {
-                //             page: action.url
-                //     }
-                // case 'PAGE_CLEAR':
-                //         return{
-                //             page: null
-                //         }
-                // case 'PAGE_REGUEST':
-                //         return{}
-                // case 'PAGE_FAILURE':
-                //     return{}
-                case 'SESSION_REQUEST':
+                case actions.app.SESSION_REQUEST:
                     return {
                         loggingIn: true,
                         user: action.sessionToken
                     }
-                case 'SESSION_FAILURE':
+                case actions.app.SESSION_FAILURE:
                     return {}
-                case 'SESSION_LOGGED':
+                case actions.app.SESSION_START:
                     return {
                         loggedIn: true,
                         user: {...action.sessionToken}
                     }
-                case 'SESSION_LOGOUT':
+                case actions.app.SESSION_END:
                     localStorage.clear()
-                    return {}
+                    return {loggedIn: false }
                 default: return state
             }
         }
