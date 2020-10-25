@@ -16,7 +16,6 @@ const register = (user) => dispatch => {
         helpers.fetch.apiRegister(user)
             .then(
                 data => { 
-                    localStorage.setItem("sessionID", data.token)
                     dispatch(registerSuccess(data))
                     history.push('/login')
                 },
@@ -39,9 +38,8 @@ const logIn = (user) => dispatch => {
         }
     )
 }
-const logOut = (user) => dispatch =>{
-    dispatch(logOutSuccess(user))
-    helpers.fetch.apiLogout(user)
+const logOut = () => dispatch =>{
+    dispatch(logOutSuccess())
 }
         
 export const userAction = {

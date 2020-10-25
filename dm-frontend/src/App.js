@@ -9,9 +9,21 @@ import Profile from './v1/containers/Profile'
 import SignUp from './v1/containers/SignUp'
 import LogIn from './v1/containers/LogIn'
 import {withRouter} from 'react-router-dom'
+import { sessionCheck } from './v1/actions/appAction'
+import {userAction} from './v1/actions/userAction'
 
 
 class App extends Component{
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      loggedIn: sessionCheck()
+    }
+}
+handleLogout = () => {
+  userAction.logOut()
+}
   
   render(){
     return (

@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import ActiveLink from '../components/activeLink'
-import {Nav,Navbar } from 'react-bootstrap'
+import {Nav,Navbar, Button } from 'react-bootstrap'
+import {userAction} from '../actions/userAction'
 
 class NavHeader extends Component{
 
@@ -24,6 +25,9 @@ class NavHeader extends Component{
         }
         this.setState({links: links})
       }
+      handleLogOut = () => {
+        return userAction.logOut()
+      }
     
     
       render() {
@@ -40,6 +44,7 @@ class NavHeader extends Component{
               onClick={() => this.handleClick(e)}
           />)}
 					</Nav>
+          <Button type="button" variant="outline-light" size="sm" onClick={this.handleLogOut()}>LogOut</Button>
           </Navbar>
         )
       }
