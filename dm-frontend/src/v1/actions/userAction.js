@@ -3,13 +3,20 @@ import {helpers} from '../helpers/_index'
 import history from '../helpers/history'
 
 
+// user
 const registerRequest = (payload) => ({type: actionCreator.user.REGISTER_REQUEST, payload})
-const registerSuccess = (payload) => ({type: actionCreator.user.REGISTER_SUCCESS, payload})
 const registerFailure = (payload) => ({type: actionCreator.user.REGISTER_FAILURE, payload})
-const loginRequest = (payload) => ({type: actionCreator.app.SESSION_REQUEST, payload})
-const loginSuccess = (payload) => ({type: actionCreator.app.SESSION_START, payload})
-const loginFailure =( payload) => ({type: actionCreator.app.SESSION_FAILURE, payload})
-const logOutSuccess = (payload) => ({type: actionCreator.app.SESSION_END, payload})
+const registerSuccess = (payload) => ({type: actionCreator.user.REGISTER_SUCCESS, payload})
+
+// app
+const logInRequest = (payload) => ({type: actionCreator.app.SESSION_REQUEST, payload})
+const logInFailure =( payload) => ({type: actionCreator.app.SESSION_FAILURE, payload})
+const logInSuccess = (payload) => ({type: actionCreator.app.SESSION_SUCCESS, payload})
+
+
+const logOutRequest = (payload) => ({type: actionCreator.app.SESSION_END_REQUEST,payload})
+const logOutFailure = (payload) => ({type: actionCreator.app.SESSION_END_FAILURE,payload})
+const logOutSuccess = (payload) => ({type: actionCreator.app.SESSION_END_SUCCESS,payload})
 
 const register = (user) => dispatch => {
     dispatch(registerRequest(user))
@@ -25,21 +32,21 @@ const register = (user) => dispatch => {
             )
 }
 const logIn = (user) => dispatch => {
-    dispatch(loginRequest(user))
+    dispatch(logInRequest(user))
     helpers.fetch.apiLogin(user)
     .then(
         data => { 
             localStorage.setItem("sessionID", data.token)
-            dispatch(loginSuccess(data))
+            dispatch(logInSuccess(data))
             history.push('/dashboard')
         },
         error => {
-            dispatch(loginFailure(error.toString()))
+            dispatch(logInFailure(error.toString()))
         }
     )
 }
-const logOut = () => dispatch =>{
-    dispatch(logOutSuccess())
+const logOut = () => {
+    helpers.fetch.apilogout()
 }
         
 export const userAction = {

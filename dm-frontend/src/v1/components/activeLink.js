@@ -10,7 +10,7 @@ class ActiveLink extends Component {
                     <Link 
                       className="nav-link" 
                       to={this.props.path}
-                      onClick={() => this.props.onClick()}
+                      // onClick={() => this.props.onClick()}
                     >
                 {this.props.text}</Link>
           </li>

@@ -13,7 +13,7 @@ export const usersReducer = (state = {}, action) => {
             return {
                 registerRequest: "complete"
             }
-        case actions.creator.user.REGISTER_FAILUER:
+        case actions.creator.user.REGISTER_FAILURE:
             // register fail
             return {
                 registerRequest: false,

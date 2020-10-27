@@ -16,7 +16,7 @@ const errorCheck=(res) =>{
 
 const apilogout=()=> {
     // remove user from local storage to log user out
-    localStorage.clear()
+    return localStorage.clear()
 }
 const apiRegister = ( user) => {
     return fetch(`${apiUrl}/register`,{

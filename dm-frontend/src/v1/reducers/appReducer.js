@@ -1,9 +1,9 @@
 import {actions} from '../actions/_index'
-let sessionToken = localStorage.getItem("sessionID")
+let sessionID = localStorage.getItem("sessionID")
 
-const defaultState = sessionToken ? 
+const defaultState = sessionID ? 
 { loggedIn: true, 
-    user: {sessionToken}
+    user: {sessionID}
  }:{
     loggedIn: false,
     user: {},
@@ -15,18 +15,23 @@ export const appReducer = (state = defaultState, action) => {
                 case actions.app.SESSION_REQUEST:
                     return {
                         loggingIn: true,
-                        user: action.sessionToken
+                        user: action.sessionID
                     }
                 case actions.app.SESSION_FAILURE:
                     return {}
-                case actions.app.SESSION_START:
+                case actions.app.SESSION_SUCCESS:
                     return {
                         loggedIn: true,
-                        user: {...action.sessionToken}
+                        user: {...action.sessionID}
                     }
-                case actions.app.SESSION_END:
-                    localStorage.clear()
-                    return {loggedIn: false }
+                case actions.app.SESSION_END_REQUEST:
+                    return{}
+                case actions.app.SESSION_END_SUCCESS:
+                    return {
+                        loggedIn: false 
+                    }
+                case actions.app.SESSION_END_FAILURE:
+                    return{}
                 default: return state
             }
         }

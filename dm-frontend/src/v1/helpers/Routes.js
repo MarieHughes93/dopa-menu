@@ -1,27 +1,41 @@
-  import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { isLogin } from '../utils';
-const Public = ({component: Component, restricted, ...rest}) => {
+import React from 'react'
+import { Route, Redirect} from 'react-router-dom';
+import { sessionCheck } from '../actions/appAction'
+
+const PubRoute = ({component: Component, restricted, ...rest}) => {
     return (
         <Route {...rest} render={props => (
-            isLogin() && restricted ?
+            sessionCheck() && restricted ?
                 <Redirect to="/dashboard" />
             : <Component {...props} />
         )} />
     );
 };
 
-const Private = ({component: Component, ...rest}) => {
+const PrivRoute = ({component: Component, ...rest}) => {
     return (
         <Route {...rest} render={props => (
-            isLogin() ?
+            sessionCheck() ?
                 <Component {...props} />
-            : <Redirect to="/signin" />
+            : <Redirect to="/login" />
         )} />
     )
 }
 
-const route ={
-    Public,
-    Private
+const PubUrls =[
+    {path: "/", text: "Home",isActive: "",},
+    {path: "/signup", text: "Join",isActive: ""},
+
+]
+const PrivUrls =[
+    {path: "/", text: "Home", isActive: ""},
+    {path: "/dashboard", text: "Dashboard", isActive: ""},
+    {path: "/profile", text: "Profile", isActive: ""},
+]
+
+export const Navi ={
+    PubRoute,
+    PubUrls,
+    PrivRoute,
+    PrivUrls
 }
