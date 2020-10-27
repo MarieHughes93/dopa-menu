@@ -11,7 +11,7 @@ class NavHeader extends Component{
   handleLogOutButton = () => {
     this.props.logOut()
   }
-  handleLoginButton = () => {
+  handleLogInButton = () => {
     history.push('/login')
   }
  
@@ -30,8 +30,11 @@ class NavHeader extends Component{
               isActive={route.isActive}
               key={route.path} 
             />)}
-           <Button type="button" variant="outline-light" size="sm" onClick={() => this.handleLogOutButton()}>LogOut</Button>          
-      </Nav>
+            <Button type="button" variant="outline-light" size="sm" onClick={() => this.handleLogOutButton()}>LogOut</Button>
+            
+            <Button type="button" variant="outline-light" size="sm" onClick={() => this.handleLogInButton()}>Login</Button>
+           
+        </Nav>
       </Navbar>
     )
   }
