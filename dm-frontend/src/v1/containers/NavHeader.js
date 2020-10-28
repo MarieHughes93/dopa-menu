@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 import {Nav,Navbar, Button} from 'react-bootstrap'
 import {connect} from 'react-redux'
+
 import ActiveLink from '../components/activeLink'
+
 import {actions} from '../actions/_index'
 import history from '../helpers/history'
-// import NavLink from '../components/navlink'
 
 class NavHeader extends Component{
   
@@ -32,7 +33,7 @@ class NavHeader extends Component{
     )
   }
 }
-const mapStateToProps=function(state) {
+const mapStateToProps=(state)=> {
   return {
     isLoggedIn: state.app.loggedIn
   }
