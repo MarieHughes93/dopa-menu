@@ -6,18 +6,17 @@ export const usersReducer = (state = {}, action) => {
         case actions.creator.user.REGISTER_REQUEST:
             // register signup
             return {
-                registerRequest: true
+                loading: true
             }
         case actions.creator.user.REGISTER_SUCCESS:
             // register success
             return {
-                registerRequest: "complete"
+                registered: true
             }
         case actions.creator.user.REGISTER_FAILURE:
             // register fail
             return {
-                registerRequest: false,
-                error: action.error
+                registered: false
             }
         default: 
             return state
