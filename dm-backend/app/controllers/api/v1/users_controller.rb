@@ -1,34 +1,38 @@
 class Api::V1::UsersController < ApplicationController
-    before_action :find_user, only: [:update, :destroy]
+    before_action :find_user, only: [:update, :destroy,:show]
+    before_action :authorized, only: [:update, :destroy,:show]
     
-    def show
-      if @user = User.find_by(id: params[:id])
-        render json: @user
-      else 
-        render json: {error: 'We ran into an error loading this profile. This profile does not exist or you entered the wrong profile address.'}
+    def create
+      @user = User.create(user_params)
+      if @user.valid?
+        render json: {user: @user}
+      else
+        render json: {error: true, message: "Invalid email or password"}
       end
     end
 
-    def create
-    @user = User.create(user_params)
-    if @user.valid?
-      render json: {user: @user}
-    else
-      render json: {error: "Invalid email or password"}
+    def show
+      if @user = User.find_by(id: params[:id])
+        render json: {user: @user}
+      else 
+        render json: {error: true, message: 'We ran into an error loading this profile. Pleease try again.'}
+      end
     end
-  end
 
     def update
       if @user.update(user_params)
-        render json: @user
+        render json: {user: @user}
       else
-        render json: {error: 'There was an issue updating your account. Please try again.'}
+        render json: {error: true, message: 'There was an issue updating your account. Please try again.'}
       end
     end
 
     def destroy
-      @user.destroy
-      render json: {userId: @user.id, userToken: @user.token}
+      if @user.destroy
+        render json: {user: @user}
+      else
+        render json: {error: true, message: 'We ran into an error deleting this profile. Please try again'}
+      end
     end
       
     private

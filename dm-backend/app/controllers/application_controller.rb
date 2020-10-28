@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  
+  before_action :authorized
     def scramble_tok(payload)
       JWT.encode(payload, 's3cr3t')
     end
@@ -31,6 +31,6 @@ class ApplicationController < ActionController::API
     end
   
     def authorized
-      render json: { error: 'Please log in' }, status: :unauthorized unless signed_in?
+      render json: {ok: false, auth: false, message: 'You must be logged in to see that information.' } unless signed_in?
     end
 end
