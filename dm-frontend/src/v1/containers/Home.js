@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-// import {actions} from '../actions/_index'
 
 class Home extends Component{
   constructor(props) {
@@ -9,7 +8,7 @@ class Home extends Component{
   render(){
     return (
       <div >
-        <h1>Home-</h1>
+        <h1>Home</h1>
     </div>
     )
   }
