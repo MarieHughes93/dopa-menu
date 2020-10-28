@@ -18,9 +18,9 @@ const apilogout=()=> {
     // remove user from local storage to log user out
     localStorage.clear()
     if (localStorage.getItem("sessionID")) {
-        return Promise.reject('Error - Could not close session')
+        return Promise.reject('error')
     }
-    return Promise.resolve('Success')
+    return Promise.resolve('success')
 
 }
 const apiRegister = ( user) => {
