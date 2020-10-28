@@ -43,6 +43,20 @@ export const appReducer = (state = defaultState, action) => {
                 loggedIn: false,
                 sessionID: null
             }
+        case 'RECONNECTING_AUTH':
+            return {
+                ...state
+            }
+        case 'AUTH_FAILED':
+            return {
+                loggedIn: false,
+                sessionID: null
+            }
+        case 'SESSION_AUTHORIZED':
+            return {
+                loggedIn: true,
+                sessionID: action.token
+            }
         default: 
             return state
         }
