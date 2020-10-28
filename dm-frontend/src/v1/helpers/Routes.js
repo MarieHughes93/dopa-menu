@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Redirect} from 'react-router-dom';
-import { sessionCheck } from '../actions/appAction'
+import { activeSession } from '../actions/appAction'
 
 const PubRoute = ({component: Component, restricted, ...rest}) => {
     return (
         <Route {...rest} render={props => (
-            sessionCheck() && restricted ?
+            activeSession() && restricted ?
                 <Redirect to="/dashboard" />
             : <Component {...props} />
         )} />
@@ -15,7 +15,7 @@ const PubRoute = ({component: Component, restricted, ...rest}) => {
 const PrivRoute = ({component: Component, ...rest}) => {
     return (
         <Route {...rest} render={props => (
-            sessionCheck() ?
+            activeSession() ?
                 <Component {...props} />
             : <Redirect to="/login" />
         )} />

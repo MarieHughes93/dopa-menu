@@ -13,12 +13,14 @@ import LogIn from './v1/containers/LogIn'
 import {Navi} from './v1/helpers/Routes'
 import {actions} from './v1/actions/_index'
 import history from './v1/helpers/history'
-import {sessionCheck} from './v1/actions/appAction'
+import {sessionReconnect} from './v1/actions/appAction'
+import {activeSession} from './v1/actions/appAction'
 
 
 class App extends Component{
   constructor(props) {
     super(props)
+    sessionReconnect()
     history.listen((location, action) => {
         this.props.clearAlerts()
     })
@@ -26,7 +28,9 @@ class App extends Component{
   
   render(){
     const alert = this.props.alert
-    const links = sessionCheck() ? Navi.PrivUrls : Navi.PubUrls
+    // const links = sessionCheck() ? Navi.PrivUrls : Navi.PubUrls
+
+    const links = activeSession() ? Navi.PrivUrls : Navi.PubUrls
     return (
        <div className="wrapper">
            <NavHeader fixed="top" links={links}/>

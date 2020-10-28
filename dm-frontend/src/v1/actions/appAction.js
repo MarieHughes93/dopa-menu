@@ -3,12 +3,37 @@ import history from '../helpers/history'
 import {actionCreator} from './actionCreators'
 import {alertAction} from './alertAction'
 
-
-export const sessionCheck= () => {
+export const activeSession =() => {
     if (localStorage.getItem("sessionID")) {
         return true
     }
     return false
+}
+
+const sessionFound = () => 
+({type: actionCreator.app.SESSION_FOUND})
+const sessionLoggedIn = (token) => 
+({type: actionCreator.app.SESSION_LOGGEDIN, token})
+const sessionFailed = () => 
+({type: actionCreator.app.SESSION_FAILED})
+
+export const sessionReconnect= () => dispatch => {
+    const sessionId = localStorage.getItem("sessionID")
+    if (!sessionId) {return false
+    }else{
+    dispatch(sessionFound())
+    helpers.fetch.apiSessionAuth(sessionId)
+    .then(
+        data => {
+            dispatch(sessionLoggedIn(data))
+            history.push('/dashboard')
+            dispatch(alertAction.notification('Welcome Back'))
+        },
+        error => {
+            dispatch(sessionFailed(error))
+            dispatch(alertAction.error(error))
+        }
+    )}
 }
 
 const logInRequest = (user) => 
@@ -61,5 +86,6 @@ export const logOut = () => dispatch => {
 export const appAction = {
     logIn,
     logOut,
-    sessionCheck
+    sessionReconnect,
+    activeSession
 }
