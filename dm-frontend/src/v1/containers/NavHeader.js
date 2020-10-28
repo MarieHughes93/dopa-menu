@@ -8,43 +8,39 @@ import history from '../helpers/history'
 
 class NavHeader extends Component{
   
-  handleLogOutButton = () => {
-    this.props.logOut()
-  }
-  handleLogInButton = () => {
-    history.push('/login')
-  }
- 
+
 
   render() {
-    const links = this.props.links
-    const loggedIn = this.props.loggedIn
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="/">Dopa-Menu</Navbar.Brand>
         <Nav className="routes">
-          {links.map((route) =>
+          {this.props.links.map((route) =>
             <ActiveLink
               path={route.path}
               text={route.text}
               isActive={route.isActive}
               key={route.path} 
             />)}
-            <Button type="button" variant="outline-light" size="sm" onClick={() => this.handleLogOutButton()}>LogOut</Button>
-            
-            <Button type="button" variant="outline-light" size="sm" onClick={() => this.handleLogInButton()}>Login</Button>
-           
+            {this.props.isLoggedIn ?
+            <Button type="button" variant="outline-light" size="sm" onClick={() => this.props.logOut()}>LogOut</Button>
+            :
+            <Button type="button" variant="outline-light" size="sm" onClick={() => history.push('/login')}>Login</Button>
+            }  
         </Nav>
       </Navbar>
     )
   }
 }
+const mapStateToProps=function(state) {
+  return {
+    isLoggedIn: state.app.loggedIn
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return {
-      logOut: () => dispatch(actions.user.logOut())
+      logOut: () => dispatch(actions.app.logOut())
   }
 }
     
-export default connect(null, mapDispatchToProps)(NavHeader)
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(NavHeader)
