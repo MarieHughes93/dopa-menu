@@ -60,7 +60,7 @@ class LoginForm extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (userInfo) => dispatch(actions.user.logIn(userInfo))
+        login: (userInfo) => dispatch(actions.app.logIn(userInfo))
     }
 }
 
