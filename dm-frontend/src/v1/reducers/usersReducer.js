@@ -1,19 +1,16 @@
-import {actions} from '../actions/_index'
 
 
 export const usersReducer = (state = {}, action) => {
     switch(action.type){
-        case actions.creator.user.REGISTER_REQUEST:
+        case 'REQUESTING_REGISTRATION':
             // register signup
             return {
                 loading: true
             }
-        case actions.creator.user.REGISTER_SUCCESS:
+        case 'REGISTERED':
             // register success
-            return {
-                registered: true
-            }
-        case actions.creator.user.REGISTER_FAILURE:
+            return {}
+        case 'REGISTING_FAILURE':
             // register fail
             return {
                 registered: false
