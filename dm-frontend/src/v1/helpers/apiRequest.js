@@ -17,31 +17,43 @@ const apilogout=()=> {
         return Promise.reject('error')
     }
     return Promise.resolve('success')
-
 }
-const apiRegister = ( user) => {
+
+const apiRegister = (user) => {
     return fetch(`${apiUrl}/register`,{
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
+        headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'},
         body: JSON.stringify({user})
     }).then(res=> res.json())
     .then(errorCheck)
 }  
 
 const apiLogin=(user)=> {
-    return fetch(`http://localhost:4000/login`, {
-        method: "POST",
+    return fetch(`${apiUrl}/login`, {
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'},
         body: JSON.stringify(user)
     }).then(res=> res.json())
     .then(errorCheck)
-}  
+}
+const apiSessionAuth=(sessionId)=>{
+    return fetch(`${apiUrl}/session_auth`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${sessionId}`
+        }
+    }).then(res=> res.json())
+    .then(errorCheck)
+}
 
 export const apiRequest = {
     apiUrl,
+    apiSessionAuth,
     apilogout,
     apiRegister,
     apiLogin

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   scope module: 'api' do
     scope module: 'v1' do
       post "/login", to: "sessions#login"
+      get "/session_auth", to: "sessions#session_auth"
       post "/register", to: "users#create"
       resources :users, except: :create do
          resources :menu_items,path:'menu'

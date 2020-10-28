@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
-  before_action :authorized, only: [:auto_login]
+  before_action :authorized, only: [:session_check]
   
   def login
     @user = User.find_by(email: params[:email])
@@ -11,7 +11,7 @@ class Api::V1::SessionsController < ApplicationController
     end
   end
   
-  def auto_login
+  def session_auth
     token = scramble_tok({user_id: @user.id})
     render json: {token: token}
   end
