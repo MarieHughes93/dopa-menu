@@ -28,7 +28,7 @@ const PubUrls =[
 
 ]
 const PrivUrls =[
-    {path: "/", text: "Home", isActive: ""},
+    {path: "/", text: "About", isActive: ""},
     {path: "/dashboard", text: "Dashboard", isActive: ""},
     {path: "/profile", text: "Profile", isActive: ""},
 ]
