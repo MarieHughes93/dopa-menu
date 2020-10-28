@@ -3,11 +3,15 @@ class Api::V1::UsersController < ApplicationController
     before_action :authorized, only: [:update, :destroy,:show]
     
     def create
-      @user = User.create(user_params)
-      if @user.valid?
-        render json: {user: @user}
+      if User.exists?(email: params[:user][:email])
+        render json: {error: true, message: "That email is already in use. Please try another."}
       else
-        render json: {error: true, message: "Invalid email or password"}
+        @user = User.create(user_params)
+         if @user.valid?
+          render json: {user: @user}
+        else
+          render json: {error: true, message: "Invalid information. Please check to make sure all fields are filled and you are using a standard email format. example email 'email@email.com' "}
+        end
       end
     end
 
@@ -42,6 +46,6 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password,)
+      params.require(:user).permit(:name, :email, :password)
     end
 end

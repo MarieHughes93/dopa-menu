@@ -1,26 +1,28 @@
 import {actionCreator} from './actionCreators'
 import {helpers} from '../helpers/_index'
 import history from '../helpers/history'
+import {alertAction} from './alertAction'
 
 
-// user
-const registerRequest = () => 
-({type: actionCreator.user.REGISTER_REQUEST})
-const registerSuccess = () => 
-({type: actionCreator.user.REGISTER_SUCCESS})
-const registerFailure = () => 
-({type: actionCreator.user.REGISTER_FAILURE})
+const signUpRequest = () => 
+({type: actionCreator.user.SIGNUP_REQUEST})
+const signUpSuccess = () => 
+({type: actionCreator.user.SIGNUP_SUCCESS})
+const signUpFailure = () => 
+({type: actionCreator.user.SIGNUP_FAILURE})
 
 const register = (user) => dispatch => {
-    dispatch(registerRequest())
+    dispatch(signUpRequest())
         helpers.fetch.apiRegister(user)
             .then(
                 data => { 
-                    dispatch(registerSuccess())
+                    dispatch(signUpSuccess())
                     history.push('/login')
+                    dispatch(alertAction.notification('Please login'))
                 },
                 error => {
-                    dispatch(registerFailure())
+                    dispatch(signUpFailure())
+                    dispatch(alertAction.error(error))
                 }
             )
 }

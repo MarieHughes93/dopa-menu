@@ -23,14 +23,12 @@ export const logIn = (user) => dispatch => {
     helpers.fetch.apiLogin(user)
     .then(
         data => { 
-            console.log(data)
             localStorage.setItem("sessionID", data.token)
             dispatch(logInSuccess(data))
             history.push('/dashboard')
-            dispatch(alertAction.notification(`Welcome`))
+            dispatch(alertAction.notification('Welcome'))
         },
         error => {
-            console.log(error)
             dispatch(logInFailure(error))
             dispatch(alertAction.error(error))
         }
