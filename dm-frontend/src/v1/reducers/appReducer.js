@@ -1,63 +1,52 @@
-// import {actions} from '../actions/_index'
+// actions
+import {actions} from '../actions/_index'
+
 let sessionID = localStorage.getItem("sessionID")
-
 const defaultState = sessionID ? {
-    loggedIn: true, 
-    sessionID }
- : {loggedIn: false,
-sessionID: null}
-
+    loggedIn: true, sessionID }
+    : {loggedIn: false, sessionID: null}
 
 export const appReducer = (state = defaultState, action) => {
     switch(action.type){
-        case 'REQUESTING_LOGIN':
+        case actions.creator.app.LOGIN_REQUEST:
             return {
                 loading: true,
-                sessionID: null
-            }
-        case 'LOGIN_FAILURE':
+                sessionID: null}
+        case actions.creator.app.LOGIN_SUCCESS:
+            return {
+                loggedIn: true,
+                sessionID: action.token}
+        case actions.creator.app.LOGIN_FAILED :
             return {
                 loading: false,
                 loggedIn: false,
-                sessionID: null
-            }
-        case 'LOGIN_SUCCESSFUL':
-            return {
-                loggedIn: true,
-                sessionID: action.token
-            }
-        case 'REQUESTING_LOGOUT':
+                sessionID: null}
+        case actions.creator.app.LOGOUT_REQUEST:
             return{
                 ...state,
                 loading: true,
-                loggedIn: true
-            }
-        case 'LOGOUT_FAILURE':
+                loggedIn: true}
+        case actions.creator.app.LOGOUT_SUCCESS:
+            return {
+                loggedIn: false,
+                sessionID: null}
+        case actions.creator.app.LOGOUT_FAILED:
             return{
                 ...state,
                 loading: false,
-                loggedIn: true
-            }
-        case 'LOGOUT_SUCCESSFULL':
+                loggedIn: true}
+        case actions.creator.app.SESSION_FOUND:
             return {
-                loggedIn: false,
-                sessionID: null
-            }
-        case 'RECONNECTING_AUTH':
-            return {
-                ...state
-            }
-        case 'AUTH_FAILED':
-            return {
-                loggedIn: false,
-                sessionID: null
-            }
-        case 'SESSION_AUTHORIZED':
+                ...state}
+        case actions.creator.app.SESSION_LOGGEDIN:
             return {
                 loggedIn: true,
-                sessionID: action.token
-            }
-        default: 
-            return state
-        }
+                sessionID: action.token}
+        case actions.creator.app.SESSION_FAILED:
+            return {
+                loggedIn: false,
+                sessionID: null}
+    default: 
+        return state
     }
+}
