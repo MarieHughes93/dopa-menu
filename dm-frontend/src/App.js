@@ -22,11 +22,11 @@ class App extends Component{
   constructor(props) {
     super(props)
     sessionReconnect()
-    if(this.props.alert.length < 0 ){
-    history.listen((location, action) => {
+    history.listen((location, action)=>{
+      if(this.props.alert.message){
         this.props.clearAlerts()
-    })}
-  
+      }
+    })
   }
   
   render(){
