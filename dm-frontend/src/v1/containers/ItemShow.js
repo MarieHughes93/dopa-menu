@@ -1,13 +1,14 @@
-import React, { Component } from "react"
+// package
+import React, { Component } from 'react'
 
 class ItemShow extends Component{
   render(){
-  return (
+    return (
     <div >
-        ItemShow
+      <h1>ItemShow</h1>
     </div>
-  )
-}
+    )
+  }
 }
 
 export default ItemShow

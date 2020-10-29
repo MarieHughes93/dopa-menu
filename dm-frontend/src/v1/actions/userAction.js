@@ -1,32 +1,32 @@
-import {actionCreator} from './actionCreators'
+// helpers
 import {helpers} from '../helpers/_index'
 import history from '../helpers/history'
+// creators
+import {actionCreator} from './actionCreators'
+// actions
 import {alertAction} from './alertAction'
 
 
-const signUpRequest = () => 
+export const signUpRequest = () => 
 ({type: actionCreator.user.SIGNUP_REQUEST})
-const signUpSuccess = () => 
+export const signUpSuccess = () => 
 ({type: actionCreator.user.SIGNUP_SUCCESS})
-const signUpFailure = () => 
-({type: actionCreator.user.SIGNUP_FAILURE})
+export const signUpFailure = () => 
+({type: actionCreator.user.SIGNUP_FAILED})
 
-const register = (user) => dispatch => {
+export const register =(user)=>dispatch=>{
     dispatch(signUpRequest())
-        helpers.fetch.apiRegister(user)
-            .then(
-                data => { 
-                    dispatch(signUpSuccess())
-                    history.push('/login')
-                    dispatch(alertAction.notification('Please login'))
-                },
-                error => {
-                    dispatch(signUpFailure())
-                    dispatch(alertAction.error(error))
-                }
-            )
+    helpers.fetch.apiRegister(user)
+    .then(
+        data => {
+            dispatch(signUpSuccess())
+            history.push('/login')
+            dispatch(alertAction.notification('Please login'))},
+        error => {
+            dispatch(signUpFailure())
+            dispatch(alertAction.error(error))
+    })
 }
-
         
 export const userAction = {
     register

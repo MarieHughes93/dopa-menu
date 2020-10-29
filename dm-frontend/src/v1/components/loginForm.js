@@ -1,5 +1,7 @@
+// // package
 import React, { Component } from "react"
 import {connect} from 'react-redux'
+// actions
 import {actions} from '../actions/_index'
 
 class LoginForm extends Component {

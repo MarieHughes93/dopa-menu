@@ -1,13 +1,16 @@
 class Api::V1::MenuItemsController < ApplicationController
     before_action :find_user
+    
     def index
         @items = @user.menu_items
         render json: @items
     end
+
     def show
         @item = MenuItem.find(params[:id])
         render json: @item
     end
+
     def create
         @item = MenuItem.new(menu_params)
         if @item.save
@@ -16,6 +19,7 @@ class Api::V1::MenuItemsController < ApplicationController
             render json: {error: 'There was an issue creating your menu item. Please try again.'}
         end
     end
+    
     def update
         @item = MenuItem.find(params[:id])
         if @item.update(menu_params)
@@ -24,16 +28,15 @@ class Api::V1::MenuItemsController < ApplicationController
             render json: {error: 'There was an issue updating your menu item. Please try again.'}
         end
     end
+    
     def destroy
         @item = MenuItem.find(params[:id])
         @item.destroy
         render json: {menu_itemId: @item.id}
-      end
+    end
 
     private
-    def find_user
-        @user = User.find(params[:user_id])
-    end
+    
     def menu_params
         params.require(:menu_item).permit( :title, :category, :descripton, :user_id)
     end

@@ -1,15 +1,14 @@
-import React, { Component } from "react"
+// package
+import React, { Component } from 'react'
 
 class Profile extends Component{
   render(){
-    
-  return (
+    return (
     <div >
-        Profile
-        
+      <h1>Profile</h1>
     </div>
-  )
-}
+    )
+  }
 }
 
 export default Profile

@@ -1,17 +1,15 @@
-const apiUrl = 'http://localhost:4000'
+export const apiUrl = 'http://localhost:4000'
 
-const errorCheck=(res)=>{
+export const errorCheck=(res)=>{
     if (res.error) {
         if (res.auth) {
-            localStorage.removeItem("sessionID")
-        }
+            localStorage.removeItem("sessionID")}
         return Promise.reject(res.message)
     }
     return res   
 }
 
-
-const apilogout=()=> {
+export const apilogout=()=> {
     localStorage.removeItem("sessionID")
     if (localStorage.getItem("sessionID")){
         return Promise.reject('error')
@@ -19,10 +17,10 @@ const apilogout=()=> {
     return Promise.resolve('success')
 }
 
-const apiRegister = (user) => {
+export const apiRegister = (user) => {
     return fetch(`${apiUrl}/register`,{
         method: 'POST',
-        headers: { 
+        headers:{ 
         'Content-Type': 'application/json',
         'Accept': 'application/json'},
         body: JSON.stringify({user})
@@ -30,23 +28,23 @@ const apiRegister = (user) => {
     .then(errorCheck)
 }  
 
-const apiLogin=(user)=> {
+export const apiLogin=(user)=> {
     return fetch(`${apiUrl}/login`, {
         method: 'POST',
-        headers: {
+        headers:{
             'Content-Type': 'application/json',
             'Accept': 'application/json'},
-        body: JSON.stringify(user)
+        body: JSON.stringify({user})
     }).then(res=> res.json())
     .then(errorCheck)
 }
-const apiSessionAuth=(sessionId)=>{
+
+export const apiSessionAuth=(sessionId)=>{
     return fetch(`${apiUrl}/session_auth`, {
-        headers: {
+        headers:{
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': `Bearer ${sessionId}`
-        }
+            'Authorization': `Bearer ${sessionId}`}
     }).then(res=> res.json())
     .then(errorCheck)
 }

@@ -1,4 +1,6 @@
-import React, { Component } from "react"
+// package
+import React, { Component } from 'react'
+// components
 import SignUpForm from '../components/signUpForm'
 
 class SignUp extends Component{
@@ -9,8 +11,8 @@ class SignUp extends Component{
       
         <SignUpForm/>
     </div>
-  )
-}
+    )
+  }
 }
 
 export default SignUp
