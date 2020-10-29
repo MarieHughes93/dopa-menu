@@ -17,6 +17,7 @@ import history from './v1/helpers/history'
 import {actions} from './v1/actions/_index'
 import {sessionReconnect} from './v1/actions/appAction'
 import {activeSession} from './v1/actions/appAction'
+import AlertComponent from './v1/components/alert'
 
 class App extends Component{
   constructor(props) {
@@ -38,7 +39,7 @@ class App extends Component{
       <NavHeader fixed="top" links={links}/>
       <div className="App">
         { alert.message &&
-        <div className={`alert ${alert.type}`}>{alert.message}</div>}
+        <AlertComponent alert={alert} closeAlert={this.props.clearAlerts}/>}
         <Switch>
           <Navi.PubRoute restricted={false} component={Home} path="/" exact/>
           <Navi.PubRoute restricted={true} component={SignUp} path="/signup" exact/>
