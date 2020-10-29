@@ -32,6 +32,6 @@ class ApplicationController < ActionController::API
   end
   
   def authorized
-    render json: {ok: false, auth: false, message: 'You must be logged in to see that information.' } unless signed_in?
+    render json: {ok: false, auth: false, header: "Unauthorized", message: 'You must be logged in to see that information.' } unless signed_in?
   end
 end

@@ -7,7 +7,7 @@ class Api::V1::SessionsController < ApplicationController
       token = scramble_tok({user_id: @user.id})
       render json: {token: token}
     else
-      render json: {error: true, message:  "Invalid email or password"}
+      render json: {error: true, heading: "Invalid Info", message:  "Please check to make sure all fields are filled and you are using a standard email format. example email@email.com "}
     end
   end
   
