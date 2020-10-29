@@ -33,7 +33,7 @@ export const sessionReconnect= () => dispatch => {
             dispatch(alertAction.notification('Welcome Back'))},
         error => {
             dispatch(sessionFailed(error))
-            dispatch(alertAction.error(error))
+            dispatch(alertAction.error(error.heading, error.message))
     })}
 }
 
@@ -49,13 +49,15 @@ export const logIn = (user) => dispatch => {
     helpers.fetch.apiLogin(user)
     .then(
         data => { 
+            console.log('succces', data)
             localStorage.setItem("sessionID", data.token)
             dispatch(logInSuccess(data))
             history.push('/dashboard')
             dispatch(alertAction.notification('Welcome'))},
         error => {
+            console.log('failed',error)
             dispatch(logInFailure(error))
-            dispatch(alertAction.error(error))
+            dispatch(alertAction.error(error.heading, error.message))
     })
 }
 
@@ -76,7 +78,7 @@ export const logOut = () => dispatch => {
             history.push('/')},
         error =>{
             dispatch(logOutFailure(error))
-            dispatch(alertAction.alertError(error.toString()))
+            dispatch(alertAction.error(error.heading, error.message))
     })
 }
 

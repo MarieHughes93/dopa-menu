@@ -4,7 +4,7 @@ export const errorCheck=(res)=>{
     if (res.error) {
         if (res.auth) {
             localStorage.removeItem("sessionID")}
-        return Promise.reject(res.message)
+        return Promise.reject(res)
     }
     return res   
 }

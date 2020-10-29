@@ -24,7 +24,7 @@ export const register =(user)=>dispatch=>{
             dispatch(alertAction.notification('Please login'))},
         error => {
             dispatch(signUpFailure())
-            dispatch(alertAction.error(error))
+            dispatch(alertAction.error(error.heading, error.message))
     })
 }
         
