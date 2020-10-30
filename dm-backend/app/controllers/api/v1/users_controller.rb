@@ -1,5 +1,4 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :find_user, only: [:update, :destroy,:show]
   before_action :authorized, only: [:update, :destroy,:show]
   
   def create
@@ -40,10 +39,6 @@ class Api::V1::UsersController < ApplicationController
   end
       
   private
-
-  def find_user
-    @user = User.find(params[:user][:id])
-  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password)

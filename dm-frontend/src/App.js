@@ -22,14 +22,13 @@ import AlertComponent from './v1/components/alert'
 class App extends Component{
   constructor(props) {
     super(props)
-    sessionReconnect()
+    this.props.sessionReconnect()
     history.listen((location, action)=>{
       if(this.props.alert.message){
         this.props.clearAlerts()
       }
     })
   }
-  
   render(){
     const alert = this.props.alert
     const links = activeSession() ? Navi.PrivUrls : Navi.PubUrls
@@ -61,6 +60,7 @@ const mapStateToProps=(state)=> {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    sessionReconnect: ()=>dispatch(sessionReconnect()),
       clearAlerts: () => dispatch(actions.alert.clear())
   }
 }

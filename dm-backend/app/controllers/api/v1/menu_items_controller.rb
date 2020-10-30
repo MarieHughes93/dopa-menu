@@ -1,5 +1,5 @@
 class Api::V1::MenuItemsController < ApplicationController
-    before_action :find_user
+    before_action :authorized
     
     def index
         @items = @user.menu_items

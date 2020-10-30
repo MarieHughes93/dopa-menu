@@ -15,22 +15,23 @@ export const activeSession =() => {
 
 export const sessionFound = () => 
 ({type: actionCreator.app.SESSION_FOUND})
-export const sessionLoggedIn = (token) => 
-({type: actionCreator.app.SESSION_LOGGEDIN, token})
+export const sessionLoggedIn = (user) => 
+({type: actionCreator.app.SESSION_LOGGEDIN, user})
 export const sessionFailed = () => 
 ({type: actionCreator.app.SESSION_FAILED})
 
 export const sessionReconnect= () => dispatch => {
     const sessionId = localStorage.getItem("sessionID")
-    if (!sessionId) {return false
+    if (!sessionId) {
+        return false
     }else{
     dispatch(sessionFound())
     helpers.fetch.apiSessionAuth(sessionId)
     .then(
         data => {
-            dispatch(sessionLoggedIn(data))
+            dispatch(sessionLoggedIn(data.user))
             history.push('/dashboard')
-            dispatch(alertAction.notification('Welcome Back'))},
+            dispatch(alertAction.notification('Welcome back','You were auto signed back in.'))},
         error => {
             dispatch(sessionFailed(error))
             dispatch(alertAction.error(error.heading, error.message))
@@ -41,19 +42,19 @@ export const logInRequest = (user) =>
 ({type: actionCreator.app.LOGIN_REQUEST, user})
 export const logInFailure = () => 
 ({type: actionCreator.app.LOGIN_FAILED})
-export const logInSuccess = (token) => 
-({type: actionCreator.app.LOGIN_SUCCESS, token})
+export const logInSuccess = (token, user) => 
+({type: actionCreator.app.LOGIN_SUCCESS, token, user})
 
 export const logIn = (user) => dispatch => {
     dispatch(logInRequest(user))
     helpers.fetch.apiLogin(user)
     .then(
         data => { 
-            console.log('succces', data)
             localStorage.setItem("sessionID", data.token)
-            dispatch(logInSuccess(data))
+            localStorage.setItem("user", JSON.stringify(data.user))
+            dispatch(logInSuccess(data.token,data.user))
             history.push('/dashboard')
-            dispatch(alertAction.notification('Welcome'))},
+            dispatch(alertAction.notification('Welcome',"Successfull login"))},
         error => {
             console.log('failed',error)
             dispatch(logInFailure(error))

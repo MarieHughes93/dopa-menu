@@ -6,12 +6,13 @@ class ApplicationController < ActionController::API
   end
   
   def auth_header
-    request.headers['Authorization']
+    
   end
   
   def tokenizer
-    if auth_header
-      tok = auth_header.split(' ')[1]
+    auth = request.headers['Authorization']
+    if auth
+      tok = auth.split(' ')[1]
       begin
         JWT.decode(tok, 's3cr3t', true, algorithm: 'HS256')
       rescue JWT::DecodeError
