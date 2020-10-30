@@ -26,7 +26,7 @@ export const sessionReconnect= () => dispatch => {
         return false
     }else{
     dispatch(sessionFound())
-    helpers.fetch.apiSessionAuth(sessionId)
+    helpers.fetch.apiSessionAuth()
     .then(
         data => {
             dispatch(sessionLoggedIn(data.user))
