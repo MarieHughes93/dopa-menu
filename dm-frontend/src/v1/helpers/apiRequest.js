@@ -98,7 +98,7 @@ export const apiMenuIndex=(user=>{
 })
 
 // menu_items create (POST)
-export const apiMenuItemCreate=(user)=>{
+export const apiMenuItemCreate=(user,menu)=>{
     return fetch(`${apiUrl}/users/${user.id}/menu `, {
         method: 'POST',
         headers: authHeading(),
@@ -106,6 +106,7 @@ export const apiMenuItemCreate=(user)=>{
     }).then(res=> res.json())
     .then(errorCheck)
 }
+
 // menu_item GET     show 
 export const apiMenuItemShow=(user, menu)=>{
     return fetch(`${apiUrl}/users/${user.id}/menu/${menu.id}`, {
@@ -124,6 +125,7 @@ export const apiMenuItemUpdate=(user, menu)=>{
     }).then(res=> res.json())
     .then(errorCheck)
 }
+
 // menu_items DELETE  destroy
 export const apiMenuItemDelete=(user, menu)=>{
     return fetch(`${apiUrl}/users/${user.id}/menu/${menu.id}`, {
