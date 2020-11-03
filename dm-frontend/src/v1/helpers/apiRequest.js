@@ -60,9 +60,11 @@ export const apiSessionAuth=()=>{
     }).then(res=> res.json())
     .then(errorCheck)
 }
+
+
 // user show (GET)
-export const apiUserShow_=(user)=>{
-    return fetch(`${apiUrl}/users/${user.id}`, {
+export const apiUserShow=(user)=>{
+    return fetch(`${apiUrl}/users/${user}`, {
         method: 'GET',
         headers: authHeading()
     }).then(res=> res.json())
@@ -91,27 +93,27 @@ export const apiUserDelete=(user)=>{
 }
 
 // menu_items index (GET) 
-export const apiMenuIndex=(user=>{
+export const apiMenuIndex=(user)=>{
     return fetch(`${apiUrl}/users/${user.id}/menu`, {
         method: 'GET',
         headers: authHeading(),
     }).then(res=> res.json())
     .then(errorCheck)
-})
+}
 
 // menu_items create (POST)
-export const apiMenuItemCreate=(user,menu)=>{
-    return fetch(`${apiUrl}/users/${user.id}/menu `, {
+export const apiMenuItemCreate=(user,menuItem)=>{
+    return fetch(`${apiUrl}/users/${user.id}/menu`, {
         method: 'POST',
         headers: authHeading(),
-        body: JSON.stringify({menu})
+        body: JSON.stringify({menuItem})
     }).then(res=> res.json())
     .then(errorCheck)
 }
 
 // menu_item GET     show 
-export const apiMenuItemShow=(user, menu)=>{
-    return fetch(`${apiUrl}/users/${user.id}/menu/${menu.id}`, {
+export const apiMenuItemShow=(user, menuItem)=>{
+    return fetch(`${apiUrl}/users/${user.id}/menu/${menuItem.id}`, {
         method: 'GET',
         headers: authHeading()
     }).then(res=> res.json())
@@ -119,18 +121,18 @@ export const apiMenuItemShow=(user, menu)=>{
 }
 
 // menu_items Update     update
-export const apiMenuItemUpdate=(user, menu)=>{
-    return fetch(`${apiUrl}/users/${user.id}/menu/${menu.id}`, {
+export const apiMenuItemUpdate=(user, menuItem)=>{
+    return fetch(`${apiUrl}/users/${user.id}/menu/${menuItem.id}`, {
         method: 'PUT',
         headers: authHeading(),
-        body: JSON.stringify({menu})
+        body: JSON.stringify({menuItem})
     }).then(res=> res.json())
     .then(errorCheck)
 }
 
 // menu_items DELETE  destroy
-export const apiMenuItemDelete=(user, menu)=>{
-    return fetch(`${apiUrl}/users/${user.id}/menu/${menu.id}`, {
+export const apiMenuItemDelete=(user, menuItem)=>{
+    return fetch(`${apiUrl}/users/${user.id}/menu/${menuItem.id}`, {
         method: 'DELETE',
         headers: authHeading(),
     }).then(res=> res.json())
@@ -139,6 +141,7 @@ export const apiMenuItemDelete=(user, menu)=>{
 
 export const apiRequest = {
     apiUrl,
+    apiUserShow,
     apiSessionAuth,
     apilogout,
     apiRegister,
