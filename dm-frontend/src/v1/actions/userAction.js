@@ -30,13 +30,17 @@ export const fetchSuccess = (user) => ({type: actionCreator.user.FETCH_SUCCESS, 
 export const fetchFailure = () => ({type: actionCreator.user.FETCH_FAILED})
 
 // Show
-export const userFetch = (user) => dispatch => {
+export const userFetch = () => dispatch => {
+    const currentUser = localStorage.getItem('currentUser')
+    const user = JSON.parse(currentUser)
     console.log(user)
     dispatch(fetchRequest())
     helpers.fetch.apiUserShow(user)
     .then(
         data => { 
-            dispatch(fetchSuccess(data.user))},
+            dispatch(fetchSuccess(data.user))
+            return data.user}
+             ,
         error => {
             dispatch(fetchFailure(error))
     })

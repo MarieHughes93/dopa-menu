@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
   end
   
   def show
-    if @user = User.find_by(id: params[:user][:id])
+    if @user = User.find_by(id: params[:id])
       render json: {user: @user}
     else 
       render json: {error: true, heading: "Opps...", message: 'We ran into an error loading this profile. Pleease try again.'}

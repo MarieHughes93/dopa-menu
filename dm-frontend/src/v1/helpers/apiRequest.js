@@ -4,7 +4,7 @@ export const errorCheck=(res)=>{
     if (res.error) {
         if (res.auth) {
             localStorage.removeItem('sessionID')
-            localStorage.removeItem('user')
+            localStorage.removeItem('currentUser')
         }
         return Promise.reject(res)
     }
@@ -46,7 +46,7 @@ export const apiLogin=(user)=> {
 
 export const apilogout=()=> {
     localStorage.removeItem('sessionID')
-    localStorage.removeItem('user')
+    localStorage.removeItem('currentUser')
     if (localStorage.getItem('sessionID')){
         return Promise.reject('error')
     }
@@ -64,7 +64,7 @@ export const apiSessionAuth=()=>{
 
 // user show (GET)
 export const apiUserShow=(user)=>{
-    return fetch(`${apiUrl}/users/${user}`, {
+    return fetch(`${apiUrl}/users/${user.id}`, {
         method: 'GET',
         headers: authHeading()
     }).then(res=> res.json())

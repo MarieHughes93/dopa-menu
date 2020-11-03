@@ -26,6 +26,7 @@ export const logIn = (user) => dispatch => {
     .then(
         data => {
             localStorage.setItem('sessionID', data.token)
+            localStorage.setItem('currentUser', data.user)
             dispatch(userAction.fetchSuccess(data.user))
             history.push('/dashboard')
             dispatch(alertAction.notification('Welcome','Successfull login'))},
@@ -49,6 +50,7 @@ export const sessionReconnect= () => dispatch => {
     .then(
         data => {
             dispatch(sessionLoggedIn())
+            localStorage.setItem('currentUser', JSON.stringify(data.user))
             dispatch(userAction.fetchSuccess(data.user))
             history.push('/dashboard')
             dispatch(alertAction.notification('Welcome back','You were auto signed back in.'))},
