@@ -73,7 +73,7 @@ class SignUpForm extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        register: (userInfo) => dispatch(actions.user.register(userInfo))
+        register: (userInfo) => dispatch(actions.user.userCreate(userInfo))
     }
 }
 
