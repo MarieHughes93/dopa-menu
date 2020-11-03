@@ -3,29 +3,64 @@ import {actions} from '../actions/_index'
 
 export const usersReducer = (state = {}, action) => {
     switch(action.type){
-        case  actions.creator.user.SIGNUP_REQUEST:
-            // register signup
+        // register
+        case  actions.creator.user.CREATE_REQUEST:
             return {
+                ...state,
                 loading: true}
-        case actions.creator.user.SIGNUP_SUCCESS:
-            // register success
+        case actions.creator.user.CREATE_SUCCESS:
             return {}
-        case actions.creator.user.SIGNUP_FAILED:
-            // register fail
+        case actions.creator.user.CREATE_FAILED:
             return {
+                ...state,
+                loading: false,
                 registered: false}
+        
+        //fetch/show
+        case actions.creator.user.FETCH_REQUEST:
+            return {
+                ...state,
+                loading: true}
+        case actions.creator.user.FETCH_SUCCESS:
+            return {
+                ...state,
+                 currentUser: action.user }
+        case actions.creator.user.FETCH_FAILED:
+            return {
+                ...state,
+                loading: false}
+
+        // update
         case actions.creator.user.UPDATE_REQUEST:
-            return {}
+            return {
+                ...state,
+                loading: true
+            }
         case actions.creator.user.UPDATE_SUCCESS:
-            return {}
+            return {
+                currentUser: action.user}
         case actions.creator.user.UPDATE_FAILED:
-            return {}
+            return {
+                ...state,
+                loading: false}
+
+        // delete
         case actions.creator.user.DELETE_REQUEST:
-            return {}
-        case actions.creator.user.DELTE_SUCCESS:
+            return {
+                ...state,
+                loading: true
+            }
+        case actions.creator.user.DELETE_SUCCESS:
             return {}
         case actions.creator.user.DELETE_FAILED:
+            return {
+                ...state,
+                loading: false}
+
+        // end session
+        case actions.creator.user.SESSION_END:
             return {}
+
     default: 
         return state
     }
