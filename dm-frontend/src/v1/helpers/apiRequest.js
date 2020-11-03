@@ -3,14 +3,16 @@ export const apiUrl = 'http://localhost:4000'
 export const errorCheck=(res)=>{
     if (res.error) {
         if (res.auth) {
-            localStorage.removeItem("sessionID")}
+            localStorage.removeItem('sessionID')
+            localStorage.removeItem('user')
+        }
         return Promise.reject(res)
     }
     return res   
 }
 
 export const authHeading=()=>{
-    const sessionID = localStorage.getItem("sessionID")
+    const sessionID = localStorage.getItem('sessionID')
     if (sessionID){
         return{ 'Authorization': `Bearer ${sessionID}`}
     } else {
@@ -43,9 +45,9 @@ export const apiLogin=(user)=> {
 }
 
 export const apilogout=()=> {
-    localStorage.removeItem("sessionID")
+    localStorage.removeItem('sessionID')
     localStorage.removeItem('user')
-    if (localStorage.getItem("sessionID")){
+    if (localStorage.getItem('sessionID')){
         return Promise.reject('error')
     }
     return Promise.resolve('success')

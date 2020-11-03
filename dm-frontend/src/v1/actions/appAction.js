@@ -7,7 +7,7 @@ import {actionCreator} from './actionCreators'
 import {alertAction} from './alertAction'
 
 export const activeSession =() => {
-    if (localStorage.getItem("sessionID")){
+    if (localStorage.getItem('sessionID')){
         return true
     }
     return false
@@ -21,7 +21,7 @@ export const sessionFailed = () =>
 ({type: actionCreator.app.SESSION_FAILED})
 
 export const sessionReconnect= () => dispatch => {
-    const sessionId = localStorage.getItem("sessionID")
+    const sessionId = localStorage.getItem('sessionID')
     if (!sessionId) {
         return false
     }else{
@@ -50,13 +50,12 @@ export const logIn = (user) => dispatch => {
     helpers.fetch.apiLogin(user)
     .then(
         data => { 
-            localStorage.setItem("sessionID", data.token)
-            localStorage.setItem("user", JSON.stringify(data.user))
+            localStorage.setItem('sessionID', data.token)
+            localStorage.setItem('user', data.user)
             dispatch(logInSuccess(data.token,data.user))
             history.push('/dashboard')
-            dispatch(alertAction.notification('Welcome',"Successfull login"))},
+            dispatch(alertAction.notification('Welcome','Successfull login'))},
         error => {
-            console.log('failed',error)
             dispatch(logInFailure(error))
             dispatch(alertAction.error(error.heading, error.message))
     })
