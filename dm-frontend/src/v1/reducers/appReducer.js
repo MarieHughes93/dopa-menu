@@ -2,10 +2,10 @@
 import {actions} from '../actions/_index'
 
 let sessionID = localStorage.getItem('sessionID')
-let user = localStorage.getItem('user')
+
 const defaultState = sessionID ? {
-    loggedIn: true, sessionID , user}
-    : {loggedIn: false, sessionID: null, user: null}
+    loggedIn: true, sessionID}
+    : {loggedIn: false, sessionID: null}
 
 export const appReducer = (state = defaultState, action) => {
     switch(action.type){
@@ -16,14 +16,12 @@ export const appReducer = (state = defaultState, action) => {
         case actions.creator.app.LOGIN_SUCCESS:
             return {
                 loggedIn: true,
-                sessionID: action.token,
-                user: action.user}
+                sessionID: action.token}
         case actions.creator.app.LOGIN_FAILED :
             return {
                 loading: false,
                 loggedIn: false,
-                sessionID: null,
-                user: null}
+                sessionID: null}
         case actions.creator.app.LOGOUT_REQUEST:
             return{
                 ...state,
@@ -32,8 +30,7 @@ export const appReducer = (state = defaultState, action) => {
         case actions.creator.app.LOGOUT_SUCCESS:
             return {
                 loggedIn: false,
-                sessionID: null,
-                user: null}
+                sessionID: null}
         case actions.creator.app.LOGOUT_FAILED:
             return{
                 ...state,
@@ -45,14 +42,13 @@ export const appReducer = (state = defaultState, action) => {
         case actions.creator.app.SESSION_LOGGEDIN:
             return {
                 ...state,
-                loggedIn: true,
-                user: action.user}
+                loggedIn: true}
         case actions.creator.app.SESSION_FAILED:
             return {
                 ...state,
+                loading: false,
                 loggedIn: false,
-                sessionID: null,
-                user: null}
+                sessionID: null}
     default: 
         return state
     }
