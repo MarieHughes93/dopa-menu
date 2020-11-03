@@ -5,7 +5,10 @@ import history from '../helpers/history'
 import {actionCreator} from './actionCreators'
 // actions
 import {alertAction} from './alertAction'
+import {userAction} from './userAction'
 
+
+// check for session
 export const activeSession =() => {
     if (localStorage.getItem('sessionID')){
         return true
@@ -13,13 +16,29 @@ export const activeSession =() => {
     return false
 }
 
-export const sessionFound = () => 
-({type: actionCreator.app.SESSION_FOUND})
-export const sessionLoggedIn = (user) => 
-({type: actionCreator.app.SESSION_LOGGEDIN, user})
-export const sessionFailed = () => 
-({type: actionCreator.app.SESSION_FAILED})
+// login
+export const logInRequest = () => ({type: actionCreator.app.LOGIN_REQUEST})
+export const logInSuccess = (token) => ({type: actionCreator.app.LOGIN_SUCCESS, token})
+export const logInFailure = () => ({type: actionCreator.app.LOGIN_FAILED})
+export const logIn = (user) => dispatch => {
+    dispatch(logInRequest())
+    helpers.fetch.apiLogin(user)
+    .then(
+        data => {
+            localStorage.setItem('sessionID', data.token)
+            dispatch(userAction.fetchSuccess(data.user))
+            history.push('/dashboard')
+            dispatch(alertAction.notification('Welcome','Successfull login'))},
+        error => {
+            dispatch(logInFailure(error))
+            dispatch(alertAction.error(error.heading, error.message))
+    })
+}
 
+// session reconnect
+export const sessionFound = () => ({type: actionCreator.app.SESSION_FOUND})
+export const sessionLoggedIn = () => ({type: actionCreator.app.SESSION_LOGGEDIN})
+export const sessionFailed = () => ({type: actionCreator.app.SESSION_FAILED})
 export const sessionReconnect= () => dispatch => {
     const sessionId = localStorage.getItem('sessionID')
     if (!sessionId) {
@@ -29,7 +48,8 @@ export const sessionReconnect= () => dispatch => {
     helpers.fetch.apiSessionAuth()
     .then(
         data => {
-            dispatch(sessionLoggedIn(data.user))
+            dispatch(sessionLoggedIn())
+            dispatch(userAction.fetchSuccess(data.user))
             history.push('/dashboard')
             dispatch(alertAction.notification('Welcome back','You were auto signed back in.'))},
         error => {
@@ -38,53 +58,39 @@ export const sessionReconnect= () => dispatch => {
     })}
 }
 
-export const logInRequest = (user) => 
-({type: actionCreator.app.LOGIN_REQUEST, user})
-export const logInFailure = () => 
-({type: actionCreator.app.LOGIN_FAILED})
-export const logInSuccess = (token, user) => 
-({type: actionCreator.app.LOGIN_SUCCESS, token, user})
-
-export const logIn = (user) => dispatch => {
-    dispatch(logInRequest(user))
-    helpers.fetch.apiLogin(user)
-    .then(
-        data => { 
-            localStorage.setItem('sessionID', data.token)
-            localStorage.setItem('user', data.user)
-            dispatch(logInSuccess(data.token,data.user))
-            history.push('/dashboard')
-            dispatch(alertAction.notification('Welcome','Successfull login'))},
-        error => {
-            dispatch(logInFailure(error))
-            dispatch(alertAction.error(error.heading, error.message))
-    })
-}
-
-
-export const logOutRequest = () => 
-({type: actionCreator.app.LOGOUT_REQUEST})
-export const logOutFailure = () => 
-({type: actionCreator.app.LOGOUT_FAILED})
-export const logOutSuccess = (error) => 
-({type: actionCreator.app.LOGOUT_SUCCESS,error})
-
+// logout
+export const logOutRequest = () => ({type: actionCreator.app.LOGOUT_REQUEST})
+export const logOutSuccess = () => ({type: actionCreator.app.LOGOUT_SUCCESS})
+export const logOutFailure = () => ({type: actionCreator.app.LOGOUT_FAILED})
 export const logOut = () => dispatch => {
     dispatch(logOutRequest())
     helpers.fetch.apilogout()
     .then(
         success => {
             dispatch(logOutSuccess())
+            dispatch(userAction.userSessionEnd())
             history.push('/')},
         error =>{
-            dispatch(logOutFailure(error))
+            dispatch(logOutFailure())
             dispatch(alertAction.error(error.heading, error.message))
     })
 }
 
 export const appAction = {
+    activeSession,
+
+    logInRequest,
+    logInFailure,
+    logInSuccess,
     logIn,
-    logOut,
+
+    sessionFound,
+    sessionLoggedIn,
+    sessionFailed,
     sessionReconnect,
-    activeSession
+    
+    logOutRequest,
+    logOutSuccess,
+    logOutFailure,
+    logOut,
 }
