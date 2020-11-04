@@ -33,9 +33,8 @@ export const fetchFailure = () => ({type: actionCreator.user.FETCH_FAILED})
 export const userFetch = () => dispatch => {
     const currentUser = localStorage.getItem('currentUser')
     const user = JSON.parse(currentUser)
-    console.log(user)
     dispatch(fetchRequest())
-    helpers.fetch.apiUserShow(user)
+    return helpers.fetch.apiUserShow(user)
     .then(
         data => { 
             dispatch(fetchSuccess(data.user))
