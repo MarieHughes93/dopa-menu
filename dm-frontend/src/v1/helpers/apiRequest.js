@@ -20,17 +20,7 @@ export const authHeading=()=>{
     }
 }
 
-// register (POST)
-export const apiRegister = (user) => {
-    return fetch(`${apiUrl}/register`,{
-        method: 'POST',
-        headers:{ 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'},
-        body: JSON.stringify({user})
-    }).then(res=> res.json())
-    .then(errorCheck)
-}  
+
 
 // login (POST)
 export const apiLogin=(user)=> {
@@ -62,6 +52,18 @@ export const apiSessionAuth=()=>{
 }
 
 
+// user create (POST)
+export const apiUserCreate = (user) => {
+    return fetch(`${apiUrl}/register`,{
+        method: 'POST',
+        headers:{ 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'},
+        body: JSON.stringify({user})
+    }).then(res=> res.json())
+    .then(errorCheck)
+}  
+
 // user show (GET)
 export const apiUserShow=(user)=>{
     return fetch(`${apiUrl}/users/${user.id}`, {
@@ -78,7 +80,7 @@ export const apiUserUpdate=(user)=>{
         headers:{...authHeading(),
             'Content-Type': 'application/json',
             'Accept': 'application/json',},
-        body: JSON.stringify({user})
+        body: JSON.stringify({name: user.name})
     }).then(res=> res.json())
     .then(errorCheck)
 }
@@ -141,11 +143,23 @@ export const apiMenuItemDelete=(user, menuItem)=>{
 
 export const apiRequest = {
     apiUrl,
-    apiUserShow,
-    apiSessionAuth,
+    errorCheck,
+    authHeading,
+    
+    apiLogin,
     apilogout,
-    apiRegister,
-    apiLogin
+    apiSessionAuth,
+    
+    apiUserCreate,
+    apiUserShow,
+    apiUserUpdate,
+    apiUserDelete,
+
+    apiMenuIndex,
+    apiMenuItemCreate,
+    apiMenuItemShow,
+    apiMenuItemUpdate,
+    apiMenuItemDelete
 }
 
 

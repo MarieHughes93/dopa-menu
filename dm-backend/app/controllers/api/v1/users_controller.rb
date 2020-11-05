@@ -23,9 +23,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
+    
     if @user.update(user_params)
       render json: {user: @user}
     else
+      byebug
       render json: {error: true, heading: "Opps...", message: 'There was an issue updating your account. Please try again.'}
     end
   end

@@ -7,58 +7,77 @@ import {User} from '../components/user'
 
 // actions
 import {actions} from '../actions/_index'
-import UserForm from '../components/userForm'
+import {UserForm} from '../components/userForm'
 
 class Profile extends Component{
   constructor(props){
     super(props)
+    this.props.fetch().then((res) =>
+      this.setState(
+        {user: res })
+    )
     this.state={
-    user: this.props.fetch()}
-    this.handleEdit = this.handleEdit.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
+      user: null,
+      saving: false,
+      isEditing: false
+    }
+    this.toggleEdit = this.toggleEdit.bind(this)
+    this.deleteUser = this.deleteUser.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
-  handleEdit=()=>{
-    this.props.upDate()
+  toggleEdit=()=>{
+    this.setState(state=> 
+      ({isEditing: !state.isEditing }))
   }
-  handleDelete=()=>{
-    this.props.deRegister()
+
+  deleteUser=(user)=>{
+    this.props.deRegister(user)
   }
+
+  onChange=(e)=>{
+    e.persist()
+        this.setState((state) => ({
+          user:{
+            ...state.user,
+            [e.target.name]: e.target.value 
+          }  
+        }))
+  }
+
+  onSubmit=(e)=>{
+    e.preventDefault()
+    this.props.upDate(this.state.user)
+    this.toggleEdit()
+  }
+ 
+
   render(){
+    const user = this.state.user
+    if (user === null ){
+      return null
+    }
     if (this.state.isEditing) {
       return (
       <div>
         <h1>edit</h1>
-        <UserForm/> 
+        <UserForm
+        user={user}
+        onChange={this.onChange}
+        onSubmit={this.onSubmit}
+        /> 
       </div>
       )
     }
     return (
       <div >
-        <User />
+        <User user={this.state.user} toggleEdit={this.toggleEdit} deleteUser={this.deleteUser} />
       </div>
     );
   }
 }
     
-    
-    
-    
-    
-    
-    
-    
-//     return (
-//     <div className="Profile">
-//       <h1>Profile</h1>
-//       <User 
-//       props={this.state} 
-//       handleEdit={this.props.handleEdit} 
-//       handleDelete={this.props.handleDelete}/>
-//     </div>
-//     )
-//   }
-// }
 
 const mapStateToProps=(state)=> {
   return {
@@ -69,7 +88,7 @@ const mapStateToProps=(state)=> {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetch: ()=>dispatch(actions.user.userFetch()),
-    upDate: ()=>dispatch(actions.user.userUpdate()),
+    upDate: (user)=>dispatch(actions.user.userUpdate(user)),
     deRegister: ()=>dispatch(actions.user.userDelete())
   }
 }

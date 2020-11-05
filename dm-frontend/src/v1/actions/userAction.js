@@ -12,7 +12,7 @@ export const createFailure = () => ({type: actionCreator.user.CREATE_FAILED})
 // signup
 export const userCreate =(user)=>dispatch=>{
     dispatch(createRequest())
-    helpers.fetch.apiRegister(user)
+    helpers.fetch.apiUserCreate(user)
     .then(
         data => {
             dispatch(createSuccess())
@@ -45,21 +45,22 @@ export const userFetch = () => dispatch => {
     })
 }
 
-// export const updateRequest = () => ({type: actionCreator.user.UPDATE_REQUEST})
-// export const updateSuccess = (user) => ({type: actionCreator.user.UPDATE_SUCCESS,user})
-// export const updateFailure = () => ({type: actionCreator.user.UPDATE_FAILED})
+export const updateRequest = () => ({type: actionCreator.user.UPDATE_REQUEST})
+export const updateSuccess = (user) => ({type: actionCreator.user.UPDATE_SUCCESS,user})
+export const updateFailure = () => ({type: actionCreator.user.UPDATE_FAILED})
 
 // update
-// export const userUpdate = (user) => dispatch => {
-//     dispatch(updateRequest())
-//     helpers.fetch.apiUserUpdate(user)
-//     .then(
-//         data => {
-//             dispatch(updateSuccess())},
-//         error => {
-//             dispatch(updateFailure())
-//     })
-// }
+export const userUpdate = (user) => dispatch => {
+    dispatch(updateRequest())
+    return helpers.fetch.apiUserUpdate(user)
+    .then(
+        data => {
+            dispatch(updateSuccess())
+            return data.user},
+        error => {
+            dispatch(updateFailure())
+    })
+}
 
 // export const deleteRequest = () => ({type: actionCreator.user.DELETE_REQUEST})
 // export const deleteSuccess = () => ({type: actionCreator.user.DELETE_SUCCESS})
@@ -93,10 +94,10 @@ export const userAction = {
     userFetch,
 
     // update
-    // updateRequest,
-    // updateSuccess,
-    // updateFailure,
-    // userUpdate,
+    updateRequest,
+    updateSuccess,
+    updateFailure,
+    userUpdate,
 
     // delete
     // deleteRequest,
