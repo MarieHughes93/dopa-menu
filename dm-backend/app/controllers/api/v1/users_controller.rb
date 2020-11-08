@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
     else
       @user = User.create(user_params)
       if @user.valid?
-        render json: {user: @user}
+        render json: {user: @user, heading: "Please sign in.", message: "SignUp was successfull."}
       else
         render json: {error: true, heading: "Invalid information", message: "Please check to make sure all fields are filled and you are using a standard email format. example email 'email@email.com' "}
       end
@@ -25,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
   def update
     
     if @user.update(user_params)
-      render json: {user: @user}
+      render json: {user: @user, heading: "Updated!", message: "Your account information has been updated!"}
     else
       byebug
       render json: {error: true, heading: "Opps...", message: 'There was an issue updating your account. Please try again.'}
@@ -34,7 +34,7 @@ class Api::V1::UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      render json: {user: @user}
+      render json: {auth: false, heading: "Account Deleted", message: "We are sad to see you go but feel free to sign up again at any time."}
     else
       render json: {error: true, heading: "Opps...", message: 'We ran into an error deleting this profile. Please try again'}
     end

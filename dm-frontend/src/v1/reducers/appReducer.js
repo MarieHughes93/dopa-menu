@@ -12,7 +12,7 @@ export const appReducer = (state = defaultState, action) => {
         case actions.creator.app.LOGIN_REQUEST:
             return {
                 ...state,
-                loading: true,}
+                loading: true}
         case actions.creator.app.LOGIN_SUCCESS:
             return {
                 loggedIn: true,

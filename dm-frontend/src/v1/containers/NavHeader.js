@@ -10,7 +10,9 @@ import {actions} from '../actions/_index'
 import history from '../helpers/history'
 
 class NavHeader extends Component{
+
   render() {
+    const loggedIn = this.props.isLoggedIn
     return (
     <Navbar bg="dark" variant="dark">
       <Navbar.Brand href="/">Dopa-Menu</Navbar.Brand>
@@ -22,7 +24,7 @@ class NavHeader extends Component{
           isActive={route.isActive}
           key={route.path} 
         />)}
-        {this.props.isLoggedIn ?
+        {loggedIn ?
         <Button type="button" variant="outline-light" size="sm" onClick={() => this.props.logOut()}>LogOut</Button>
         :
         <Button type="button" variant="outline-light" size="sm" onClick={() => history.push('/login')}>Login</Button>}  

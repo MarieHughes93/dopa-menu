@@ -23,7 +23,6 @@ export const usersReducer = (state = {}, action) => {
                 loading: true}
         case actions.creator.user.FETCH_SUCCESS:
             return {
-                ...state,
                  currentUser: action.user }
         case actions.creator.user.FETCH_FAILED:
             return {
