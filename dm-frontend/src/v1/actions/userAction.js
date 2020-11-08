@@ -17,7 +17,7 @@ export const userCreate =(user)=>dispatch=>{
         data => {
             dispatch(createSuccess())
             history.push('/login')
-            dispatch(alertAction.notification('Please login'))},
+            dispatch(alertAction.notification(data.heading,data.message))},
         error => {
             dispatch(createFailure())
             dispatch(alertAction.error(error.heading, error.message))
@@ -42,6 +42,7 @@ export const userFetch = () => dispatch => {
              ,
         error => {
             dispatch(fetchFailure(error))
+            dispatch(alertAction.error(error.heading, error.message))
     })
 }
 
@@ -55,28 +56,33 @@ export const userUpdate = (user) => dispatch => {
     return helpers.fetch.apiUserUpdate(user)
     .then(
         data => {
-            dispatch(updateSuccess())
+            dispatch(updateSuccess(data.user))
+            dispatch(alertAction.notification(data.heading, data.message))
             return data.user},
         error => {
             dispatch(updateFailure())
+            dispatch(alertAction.error(error.heading, error.message))
     })
 }
 
-// export const deleteRequest = () => ({type: actionCreator.user.DELETE_REQUEST})
-// export const deleteSuccess = () => ({type: actionCreator.user.DELETE_SUCCESS})
-// export const deleteFailure = () => ({type: actionCreator.user.DELETE_FAILED})
+export const deleteRequest = () => ({type: actionCreator.user.DELETE_REQUEST})
+export const deleteSuccess = () => ({type: actionCreator.user.DELETE_SUCCESS})
+export const deleteFailure = () => ({type: actionCreator.user.DELETE_FAILED})
 
 // Delete
-// export const userDelete = (user) => dispatch => {
-//     dispatch(deleteRequest())
-//     helpers.fetch.apiUserDelete(user)
-//     .then(
-//         data => {
-//             dispatch(deleteSuccess())},
-//         error => {
-//             dispatch(deleteFailure())
-//     })
-// }
+export const userDelete = (user) => dispatch => {
+    dispatch(deleteRequest())
+    helpers.fetch.apiUserDelete(user)
+    .then(
+        data => {
+            dispatch(deleteSuccess())
+            history.push('/signup')
+            dispatch(alertAction.notification(data.heading, data.message))},
+        error => {
+            dispatch(deleteFailure())
+            dispatch(alertAction.error(error.heading, error.message))
+    })
+}
 
 export const userSessionEnd=()=>({type: actionCreator.user.SESSION_END})
         
@@ -100,10 +106,10 @@ export const userAction = {
     userUpdate,
 
     // delete
-    // deleteRequest,
-    // deleteSuccess,
-    // deleteFailure,
-    // userDelete
+    deleteRequest,
+    deleteSuccess,
+    deleteFailure,
+    userDelete,
 
     // end Session
     userSessionEnd

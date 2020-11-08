@@ -32,8 +32,9 @@ class Profile extends Component{
       ({isEditing: !state.isEditing }))
   }
 
-  deleteUser=(user)=>{
-    this.props.deRegister(user)
+  deleteUser=()=>{
+    
+    this.props.deRegister(this.state.user)
   }
 
   onChange=(e)=>{
@@ -61,7 +62,7 @@ class Profile extends Component{
     if (this.state.isEditing) {
       return (
       <div>
-        <h1>edit</h1>
+        <h1>Edit</h1>
         <UserForm
         user={user}
         onChange={this.onChange}
@@ -89,7 +90,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetch: ()=>dispatch(actions.user.userFetch()),
     upDate: (user)=>dispatch(actions.user.userUpdate(user)),
-    deRegister: ()=>dispatch(actions.user.userDelete())
+    deRegister: (user)=>dispatch(actions.user.userDelete(user))
   }
 }
 
