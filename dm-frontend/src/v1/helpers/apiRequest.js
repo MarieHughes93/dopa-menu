@@ -1,11 +1,11 @@
 export const apiUrl = 'http://localhost:4000'
 
 export const errorCheck=(res)=>{
+    if (res.auth === false ) {
+        localStorage.removeItem('sessionID')
+        localStorage.removeItem('currentUser')
+    }
     if (res.error) {
-        if (res.auth) {
-            localStorage.removeItem('sessionID')
-            localStorage.removeItem('currentUser')
-        }
         return Promise.reject(res)
     }
     return res   
