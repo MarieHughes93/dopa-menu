@@ -25,41 +25,18 @@ export const logIn = (user) => dispatch => {
     helpers.fetch.apiLogin(user)
     .then(
         data => {
+            console.log(data)
             localStorage.setItem('sessionID', data.token)
-            localStorage.setItem('currentUser', data.user)
+            localStorage.setItem('currentUser', JSON.stringify(data.user))
+            dispatch(logInSuccess(data.user))
             dispatch(userAction.fetchSuccess(data.user))
             history.push('/dashboard')
-            dispatch(alertAction.notification('Welcome','Successfull login'))},
+            dispatch(alertAction.notification(data.heading , data.message))},
         error => {
             dispatch(logInFailure(error))
             dispatch(alertAction.error(error.heading, error.message))
     })
 }
-
-// session reconnect
-export const sessionFound = () => ({type: actionCreator.app.SESSION_FOUND})
-export const sessionLoggedIn = () => ({type: actionCreator.app.SESSION_LOGGEDIN})
-export const sessionFailed = () => ({type: actionCreator.app.SESSION_FAILED})
-export const sessionReconnect= () => dispatch => {
-    const sessionId = localStorage.getItem('sessionID')
-    if (!sessionId) {
-        return false
-    }else{
-    dispatch(sessionFound())
-    helpers.fetch.apiSessionAuth()
-    .then(
-        data => {
-            dispatch(sessionLoggedIn())
-            localStorage.setItem('currentUser', JSON.stringify(data.user))
-            dispatch(userAction.fetchSuccess(data.user))
-            history.push('/dashboard')
-            dispatch(alertAction.notification('Welcome back','You were auto signed back in.'))},
-        error => {
-            dispatch(sessionFailed(error))
-            dispatch(alertAction.error(error.heading, error.message))
-    })}
-}
-
 // logout
 export const logOutRequest = () => ({type: actionCreator.app.LOGOUT_REQUEST})
 export const logOutSuccess = () => ({type: actionCreator.app.LOGOUT_SUCCESS})
@@ -77,6 +54,33 @@ export const logOut = () => dispatch => {
             dispatch(alertAction.error(error.heading, error.message))
     })
 }
+// session reconnect
+export const sessionFound = () => ({type: actionCreator.app.SESSION_FOUND})
+export const sessionLoggedIn = () => ({type: actionCreator.app.SESSION_LOGGEDIN})
+export const sessionFailed = () => ({type: actionCreator.app.SESSION_FAILED})
+export const sessionReconnect= () => dispatch => {
+    const sessionId = localStorage.getItem('sessionID')
+    if (!sessionId) {
+        dispatch(logOutSuccess())
+        dispatch(userAction.userSessionEnd())
+        }else{
+    dispatch(sessionFound())
+    helpers.fetch.apiSessionAuth()
+    .then(
+        data => {
+            dispatch(sessionLoggedIn())
+            localStorage.setItem('currentUser', JSON.stringify(data.user))
+            dispatch(userAction.fetchSuccess(data.user))
+            history.push('/dashboard')
+            dispatch(alertAction.notification(data.heading , data.message))},
+        error => {
+            logOut()
+            dispatch(sessionFailed(error))
+            dispatch(alertAction.error(error.heading, error.message))
+    })}
+}
+
+
 
 export const appAction = {
     activeSession,
