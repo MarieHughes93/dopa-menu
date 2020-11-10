@@ -1,7 +1,11 @@
 // package
 import React, { Component } from "react"
+import { connect } from "react-redux"
+// actions
+import {actions} from '../actions/_index'
 
 class Dashboard extends Component{
+  
   render(){
   return (
     <div >
@@ -11,4 +15,16 @@ class Dashboard extends Component{
 }
 }
 
-export default Dashboard
+const mapStateToProps=(state)=>{
+return{
+ 
+}
+}
+
+const mapDispatchToProps=(dispatch)=>{
+  return{
+ 
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

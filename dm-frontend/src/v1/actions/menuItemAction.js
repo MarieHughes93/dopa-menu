@@ -1,105 +1,140 @@
-// import {actionCreator} from '../actions/actionCreators'
+// helpers
+import {helpers} from '../helpers/_index'
+import history from '../helpers/history'
+// creators
+import {actionCreator} from './actionCreators'
+// actions
+import {alertAction} from './alertAction'
 
-// export const indexRequest = () => ({type: actionCreator.menuItem.INDEX_REQUEST})
-// export const indexSuccess = () => ({type: actionCreator.menuItem.INDEX_SUCCESS})
-// export const indexFailure = () => ({type: actionCreator.menuItem.INDEX_FAILED})
-// export const allItemsFetch = (user) => dispatch => {
-//     dispatch(indexRequest())
-//     helpers.fetch.apiMenuIndex(user)
-//     .then(
-//         data => {
-//             dispatch(indexSuccess())},
-//         error => {
-//             dispatch(indexFailure())
-//     })
-// }
+export const indexRequest = () => ({type: actionCreator.menuItem.INDEX_REQUEST})
+export const indexSuccess = () => ({type: actionCreator.menuItem.INDEX_SUCCESS})
+export const indexFailure = () => ({type: actionCreator.menuItem.INDEX_FAILED})
 
-// 
+// index
+export const allMenuItemsFetch = (menuItem) => dispatch => {
+    dispatch(indexRequest())
+    helpers.fetch.apiMenuItemIndex(menuItem)
+    .then(
+        data => {
+            dispatch(indexSuccess())
+            dispatch(alertAction.notification(data.heading,data.message))},
+        error => {
+            dispatch(indexFailure())
+            dispatch(alertAction.error(error.heading, error.message))
+    })
+}
 
 // export const createRequest = () => ({type: actionCreator.menuItem.CREATE_REQUEST})
 // export const createSuccess = () => ({type: actionCreator.menuItem.CREATE_SUCCESS})
 // export const createFailure = () => ({type: actionCreator.menuItem.CREATE_FAILED})
-// export const createItem = (user,menuItem) => dispatch => {
+
+// create
+// export const menuItemCreate =(menuItem)=>dispatch=>{
 //     dispatch(createRequest())
-//     helpers.fetch.apiMenuItemCreate(user,menuItem)
+//     helpers.fetch.apiMenuItemCreate(menuItem)
 //     .then(
 //         data => {
-//             dispatch(createSuccess())},
+//             dispatch(createSuccess())
+//             dispatch(alertAction.notification(data.heading,data.message))},
 //         error => {
 //             dispatch(createFailure())
+//             dispatch(alertAction.error(error.heading, error.message))
 //     })
 // }
 
+
 // export const fetchRequest = () => ({type: actionCreator.menuItem.FETCH_REQUEST})
-// export const fetchSuccess = () => ({type: actionCreator.menuItem.FETCH_SUCCESS})
+// export const fetchSuccess = (menuItem) => ({type: actionCreator.menuItem.FETCH_SUCCESS, menuItem})
 // export const fetchFailure = () => ({type: actionCreator.menuItem.FETCH_FAILED})
-// export const itemFetch = (user, menuItem) => dispatch => {
+
+// Show
+// export const menuItemFetch = () => dispatch => {
+//     const currentUser = localStorage.getItem('currentUser')
+//     const user = JSON.parse(currentUser)
 //     dispatch(fetchRequest())
-//     helpers.fetch.apiMenuItemShow(user, menuItem)
+//     return helpers.fetch.apiMenuItemShow(user)
 //     .then(
-//         data => {
-//             dispatch(fetchSuccess())},
+//         data => { 
+//             dispatch(fetchSuccess(data.menuItem))
+//             return data.menuItem}
+//              ,
 //         error => {
-//             dispatch(fetchFailure())
+//             dispatch(fetchFailure(error))
+//             dispatch(alertAction.error(error.heading, error.message))
 //     })
 // }
 
 // export const updateRequest = () => ({type: actionCreator.menuItem.UPDATE_REQUEST})
-// export const updateSuccess = () => ({type: actionCreator.menuItem.UPDATE_SUCCESS})
+// export const updateSuccess = (menuItem) => ({type: actionCreator.menuItem.UPDATE_SUCCESS,menuItem})
 // export const updateFailure = () => ({type: actionCreator.menuItem.UPDATE_FAILED})
-// export const itemUpdate = (user, menuItem) => dispatch => {
+
+// update
+// export const menuItemUpdate = (menuItem) => dispatch => {
 //     dispatch(updateRequest())
-//     helpers.fetch.apiMenuItemUpdate(user, menuItem)
+//     return helpers.fetch.apiMenuItemUpdate(menuItem)
 //     .then(
 //         data => {
-//             dispatch(updateSuccess())},
+//             dispatch(updateSuccess(data.menuItem))
+//             dispatch(alertAction.notification(data.heading, data.message))
+//             return data.menuItem},
 //         error => {
 //             dispatch(updateFailure())
+//             dispatch(alertAction.error(error.heading, error.message))
 //     })
 // }
 
 // export const deleteRequest = () => ({type: actionCreator.menuItem.DELETE_REQUEST})
 // export const deleteSuccess = () => ({type: actionCreator.menuItem.DELETE_SUCCESS})
 // export const deleteFailure = () => ({type: actionCreator.menuItem.DELETE_FAILED})
-// export const itemDelete = (user, menuItem) => dispatch => {
+
+// Delete
+// export const menuItemDelete = (menuItem) => dispatch => {
 //     dispatch(deleteRequest())
-//     helpers.fetch.apiMenuItemDelete(user, menuItem)
+//     helpers.fetch.apiMenuItemDelete(menuItem)
 //     .then(
 //         data => {
-//             dispatch(deleteSuccess())},
+//             dispatch(deleteSuccess())
+//             history.push('/signup')
+//             dispatch(alertAction.notification(data.heading, data.message))},
 //         error => {
 //             dispatch(deleteFailure())
+//             dispatch(alertAction.error(error.heading, error.message))
 //     })
 // }
 
-// export const itemSessionEnd=()=>({type: actionCreator.menuItem.SESSION_END})
+export const menuItemSessionEnd=()=>({type: actionCreator.menuItem.SESSION_END})
+        
+export const menuItemAction = {
+    // index
+    indexRequest,
+    indexSuccess,
+    indexFailure,
+    allMenuItemsFetch, 
 
-
-export const  menuItemAction = {
-    // indexRequest,
-    // indexSuccess,
-    // indexFailure,
-    // allItemsFetch,
-
+    // create
     // createRequest,
     // createSuccess,
     // createFailure,
-    // createItem,
+    // menuItemCreate,
 
+    // fetch/show
     // fetchRequest,
     // fetchSuccess,
     // fetchFailure,
-    // itemFetch,
+    // menuItemFetch,
 
+    // update
     // updateRequest,
     // updateSuccess,
     // updateFailure,
-    // itemUpdate,
+    // menuItemUpdate,
 
+    // delete
     // deleteRequest,
     // deleteSuccess,
     // deleteFailure,
-    // itemDelete,
+    // menuItemDelete,
 
-    // itemSessionEnd
+    // end Session
+    // menuItemSessionEnd
 }
