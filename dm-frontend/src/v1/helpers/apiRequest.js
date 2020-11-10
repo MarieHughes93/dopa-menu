@@ -95,7 +95,7 @@ export const apiUserDelete=(user)=>{
 }
 
 // menu_items index (GET) 
-export const apiMenuIndex=(user)=>{
+export const apiMenuItemIndex=(user)=>{
     return fetch(`${apiUrl}/users/${user.id}/menu`, {
         method: 'GET',
         headers: authHeading(),
@@ -155,7 +155,7 @@ export const apiRequest = {
     apiUserUpdate,
     apiUserDelete,
 
-    apiMenuIndex,
+    apiMenuItemIndex,
     apiMenuItemCreate,
     apiMenuItemShow,
     apiMenuItemUpdate,
