@@ -33,6 +33,6 @@ class ApplicationController < ActionController::API
   end
   
   def authorized
-    render json: {error: true, auth: false, heading: "Unauthorized", message: 'You must be logged in to see that information.' } unless signed_in?
+    render json: {user: null, auth: false, error: true, heading: "Unauthorized", message: 'You must be logged in to see that information.' } unless signed_in?
   end
 end
