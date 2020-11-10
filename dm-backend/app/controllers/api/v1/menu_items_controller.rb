@@ -10,7 +10,8 @@ class Api::V1::MenuItemsController < ApplicationController
         if @item= @user.menu_items.find(params[:id])
             render json: {menuItems: @item, user: @user, auth: true, error: false, heading: "Fetch Complete", message: "Item's info retrieved"}
         else
-            render json: {menuItems: null, user: @user, auth:true , error: true , heading: "Opps..." message: "We ran into an error loading your selection. Please try again."}
+            render json: {menuItems: null, user: @user, auth: true , error: true , heading: "Opps...", message: "We ran into an error loading your selection. Please try again."}
+        end
     end
 
     def create

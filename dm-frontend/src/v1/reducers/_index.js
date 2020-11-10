@@ -3,13 +3,13 @@ import {combineReducers} from 'redux'
 // reducers
 import {appReducer as app} from './appReducer'
 import {alertReducer as alert} from './alertReducer'
-import {menuItemReducer as menuItem} from './menuItemReducer'
+import {menuItemsReducer as menuItems} from './menuItemsReducer'
 import {usersReducer as user} from './usersReducer'
 
 const reducers = combineReducers({
     app,
     alert,
-    menuItem,
+    menuItems,
     user
 })
 

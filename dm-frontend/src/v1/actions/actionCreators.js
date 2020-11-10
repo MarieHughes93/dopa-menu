@@ -48,7 +48,7 @@ export const user = {
 
 
 
-export const menuItem={
+export const menuItems={
     // index
     INDEX_REQUEST: 'REQUESTING_ALL_ITEMS',
     INDEX_SUCCESS: 'ITEMS_INDEX_SUCCESSFUL',
@@ -82,5 +82,5 @@ export const actionCreator = {
        alert,
        app,
        user,
-       menuItem
+       menuItems
 }

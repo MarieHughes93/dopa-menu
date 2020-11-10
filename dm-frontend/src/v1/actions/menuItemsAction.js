@@ -1,32 +1,35 @@
 // helpers
 import {helpers} from '../helpers/_index'
-import history from '../helpers/history'
+// import history from '../helpers/history'
 // creators
 import {actionCreator} from './actionCreators'
 // actions
 import {alertAction} from './alertAction'
 
-export const indexRequest = () => ({type: actionCreator.menuItem.INDEX_REQUEST})
-export const indexSuccess = () => ({type: actionCreator.menuItem.INDEX_SUCCESS})
-export const indexFailure = () => ({type: actionCreator.menuItem.INDEX_FAILED})
+export const indexRequest = () => ({type: actionCreator.menuItems.INDEX_REQUEST})
+export const indexSuccess = (menuItems) => ({type: actionCreator.menuItems.INDEX_SUCCESS, menuItems})
+export const indexFailure = () => ({type: actionCreator.menuItems.INDEX_FAILED})
 
 // index
-export const allMenuItemsFetch = (menuItem) => dispatch => {
+export const menuItemsFetch = () => dispatch => {
+    const currentUser = localStorage.getItem('currentUser')
+    const user = JSON.parse(currentUser)
     dispatch(indexRequest())
-    helpers.fetch.apiMenuItemIndex(menuItem)
+    return helpers.fetch.apiMenuItemsIndex(user)
     .then(
         data => {
-            dispatch(indexSuccess())
-            dispatch(alertAction.notification(data.heading,data.message))},
+            console.log(data.menuItems)
+            dispatch(indexSuccess(data.menuItems))
+            return data.menuItems},
         error => {
             dispatch(indexFailure())
             dispatch(alertAction.error(error.heading, error.message))
     })
 }
 
-// export const createRequest = () => ({type: actionCreator.menuItem.CREATE_REQUEST})
-// export const createSuccess = () => ({type: actionCreator.menuItem.CREATE_SUCCESS})
-// export const createFailure = () => ({type: actionCreator.menuItem.CREATE_FAILED})
+// export const createRequest = () => ({type: actionCreator.menuItems.CREATE_REQUEST})
+// export const createSuccess = () => ({type: actionCreator.menuItems.CREATE_SUCCESS})
+// export const createFailure = () => ({type: actionCreator.menuItems.CREATE_FAILED})
 
 // create
 // export const menuItemCreate =(menuItem)=>dispatch=>{
@@ -43,9 +46,9 @@ export const allMenuItemsFetch = (menuItem) => dispatch => {
 // }
 
 
-// export const fetchRequest = () => ({type: actionCreator.menuItem.FETCH_REQUEST})
-// export const fetchSuccess = (menuItem) => ({type: actionCreator.menuItem.FETCH_SUCCESS, menuItem})
-// export const fetchFailure = () => ({type: actionCreator.menuItem.FETCH_FAILED})
+// export const fetchRequest = () => ({type: actionCreator.menuItems.FETCH_REQUEST})
+// export const fetchSuccess = (menuItem) => ({type: actionCreator.menuItems.FETCH_SUCCESS, menuItem})
+// export const fetchFailure = () => ({type: actionCreator.menuItems.FETCH_FAILED})
 
 // Show
 // export const menuItemFetch = () => dispatch => {
@@ -64,9 +67,9 @@ export const allMenuItemsFetch = (menuItem) => dispatch => {
 //     })
 // }
 
-// export const updateRequest = () => ({type: actionCreator.menuItem.UPDATE_REQUEST})
-// export const updateSuccess = (menuItem) => ({type: actionCreator.menuItem.UPDATE_SUCCESS,menuItem})
-// export const updateFailure = () => ({type: actionCreator.menuItem.UPDATE_FAILED})
+// export const updateRequest = () => ({type: actionCreator.menuItems.UPDATE_REQUEST})
+// export const updateSuccess = (menuItem) => ({type: actionCreator.menuItems.UPDATE_SUCCESS,menuItem})
+// export const updateFailure = () => ({type: actionCreator.menuItems.UPDATE_FAILED})
 
 // update
 // export const menuItemUpdate = (menuItem) => dispatch => {
@@ -83,9 +86,9 @@ export const allMenuItemsFetch = (menuItem) => dispatch => {
 //     })
 // }
 
-// export const deleteRequest = () => ({type: actionCreator.menuItem.DELETE_REQUEST})
-// export const deleteSuccess = () => ({type: actionCreator.menuItem.DELETE_SUCCESS})
-// export const deleteFailure = () => ({type: actionCreator.menuItem.DELETE_FAILED})
+// export const deleteRequest = () => ({type: actionCreator.menuItems.DELETE_REQUEST})
+// export const deleteSuccess = () => ({type: actionCreator.menuItems.DELETE_SUCCESS})
+// export const deleteFailure = () => ({type: actionCreator.menuItems.DELETE_FAILED})
 
 // Delete
 // export const menuItemDelete = (menuItem) => dispatch => {
@@ -102,14 +105,14 @@ export const allMenuItemsFetch = (menuItem) => dispatch => {
 //     })
 // }
 
-export const menuItemSessionEnd=()=>({type: actionCreator.menuItem.SESSION_END})
+export const menuItemsSessionEnd=()=>({type: actionCreator.menuItems.SESSION_END})
         
-export const menuItemAction = {
+export const menuItemsAction = {
     // index
     indexRequest,
     indexSuccess,
     indexFailure,
-    allMenuItemsFetch, 
+    menuItemsFetch, 
 
     // create
     // createRequest,
