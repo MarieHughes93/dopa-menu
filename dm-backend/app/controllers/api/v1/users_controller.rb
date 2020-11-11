@@ -3,13 +3,13 @@ class Api::V1::UsersController < ApplicationController
   
   def create
     if User.exists?(email: params[:user][:email])
-      render json: {user: null, auth: null, error: true, heading: "Email in use", message: "Please sign up with a new email"}
+      render json: {user: nil, auth: nil, error: true, heading: "Email in use", message: "Please sign up with a new email"}
     else
       @user = User.create(user_params)
       if @user.valid?
         render json: {user: @user, error: false, heading: "Please sign in.", message: "SignUp was successfull."}
       else
-        render json: {user: null, auth: null, error: true, heading: "Invalid information", message: "Please check to make sure all fields are filled and you are using a standard email format. example email 'email@email.com' "}
+        render json: {user: nil, auth: nil, error: true, heading: "Invalid information", message: "Please check to make sure all fields are filled and you are using a standard email format. example email 'email@email.com' "}
       end
     end
   end
@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
     if @user = User.find_by(id: params[:id])
       render json: {user: @user, auth: true, error: false, heading: "Fetch Complete", message: 'user retrieved'}
     else 
-      render json: {user: null, auth: true, error: true, heading: "Opps...", message: 'We ran into an error loading this profile. Pleease try again.'}
+      render json: {user: nil, auth: true, error: true, heading: "Opps...", message: 'We ran into an error loading this profile. Pleease try again.'}
     end
   end
 
@@ -34,7 +34,7 @@ class Api::V1::UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      render json: {user: null, auth: false, error: false, heading: "Account Deleted", message: "We are sad to see you go but feel free to sign up again at any time."}
+      render json: {user: nil, auth: false, error: false, heading: "Account Deleted", message: "We are sad to see you go but feel free to sign up again at any time."}
     else
       render json: {user: @user, auth: true, error: true, heading: "Opps...", message: 'We ran into an error deleting this profile. Please try again'}
     end
