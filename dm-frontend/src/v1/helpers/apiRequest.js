@@ -114,8 +114,8 @@ export const apiMenuItemCreate=(user,menuItem)=>{
 }
 
 // menu_item GET     show 
-export const apiMenuItemShow=(user, menuItem)=>{
-    return fetch(`${apiUrl}/users/${user.id}/menu/${menuItem.id}`, {
+export const apiMenuItemShow=(user, menuItemId)=>{
+    return fetch(`${apiUrl}/users/${user.id}/menu/${menuItemId}`, {
         method: 'GET',
         headers: authHeading()
     }).then(res=> res.json())

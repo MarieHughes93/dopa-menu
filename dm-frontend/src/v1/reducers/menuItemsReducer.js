@@ -37,7 +37,9 @@ export const menuItemsReducer = (state = {}, action) => {
                 ...state,
                 loading: true}
         case actions.creator.menuItems.FETCH_SUCCESS:
-            return {}
+            return {
+                item: action.menuItem
+            }
         case actions.creator.menuItems.FETCH_FAILED:
             return {
                 ...state,
