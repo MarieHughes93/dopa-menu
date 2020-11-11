@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { actions } from '../actions/_index'
 import {Item} from '../components/item'
+import {ItemUpdateForm} from '../components/itemUpdateForm'
 
 class ItemShow extends Component{
   constructor(props){
@@ -20,8 +21,8 @@ class ItemShow extends Component{
     }
     this.toggleEdit = this.toggleEdit.bind(this)
     // this.deleteMenuItem = this.deleteMenuItem.bind(this)
-    // this.onChange = this.onChange.bind(this)
-    // this.onSubmit = this.onSubmit.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   toggleEdit=()=>{
@@ -33,16 +34,21 @@ class ItemShow extends Component{
   //   this.props.deleteItem
   // }
 
-  // onChange=(e)=>{
-  //   e.persist()
-  //       this.setState()
-  // }
+  onChange=(e)=>{
+    e.persist()
+        this.setState((state) => ({
+          menuItem:{
+            ...state.menuItem,
+            [e.target.name]: e.target.value 
+          }  
+        }))
+  }
 
-  // onSubmit=(e)=>{
-  //   e.preventDefault()
-  //   this.props.upDate(this.state.menuItem)
-  //   this.toggleEdit()
-  // }
+  onSubmit=(e)=>{
+    e.preventDefault()
+    this.props.upDate(this.state.menuItem)
+    this.toggleEdit()
+  }
 
   render(){
     const menuItem = this.state.menuItem
@@ -53,23 +59,23 @@ class ItemShow extends Component{
         </div>
       )
     }
-    // if (this.state.isEditing) {
-    //   return (
-    //   <div>
-    //     <h1>Edit</h1>
-    //     <MenuItemForm
-    //     menuItem={menuItem}
-    //     onChange={this.onChange}
-    //     onSubmit={this.onSubmit}
-    //     /> 
-    //   </div>
-    //   )
-    // }
+    if (this.state.isEditing) {
+      return (
+      <div>
+        <h1>Edit</h1>
+        <ItemUpdateForm
+        menuItem={menuItem}
+        onChange={this.onChange}
+        onSubmit={this.onSubmit}
+        /> 
+      </div>
+      )
+    }
     return (
     <div >
       <Item 
         item={menuItem}
-        // toggleEdit={}
+        toggleEdit={this.toggleEdit}
         // deleteMenuItem={}
       />
     </div>
@@ -80,8 +86,8 @@ class ItemShow extends Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetch:(menuItemId)=>dispatch(actions.menuItems.menuItemFetch(menuItemId))
-    // update: (menuItem)=>dispatch(actions.user.userUpdate(menuItem)),
+    fetch:(menuItemId)=>dispatch(actions.menuItems.menuItemFetch(menuItemId)),
+    upDate: (menuItem)=>dispatch(actions.menuItems.menuItemUpdate(menuItem)),
     // deleteItem: (menuItem)=>dispatch(actions.menuItems.menuItemDelete(menuItem))
   }
 }

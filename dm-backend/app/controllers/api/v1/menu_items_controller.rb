@@ -24,7 +24,8 @@ class Api::V1::MenuItemsController < ApplicationController
     end
     
     def update
-        @item = MenuItem.find(params[:id])
+        @item = MenuItem.find_by(id: params[:id])
+        
         if @item.update(menu_params)
             render json: {menuItem: @item, user: @user, auth: true, error: false, heading:"Updated!", message: "The menu option was successfully updates!"}
         else
@@ -33,7 +34,7 @@ class Api::V1::MenuItemsController < ApplicationController
     end
     
     def destroy
-        @item = MenuItem.find(params[:id])
+        @item = MenuItem.find(menu_params)
         if @item.destroy
             render json: {menuItem: nil, user: @user, auth: true, error: false, heading: "MenuItem Deleted!", message: "The item yo requested deleted was successfully removed."}
         else
@@ -44,6 +45,6 @@ class Api::V1::MenuItemsController < ApplicationController
     private
     
     def menu_params
-        params.require(:menu_item).permit( :title, :category, :description, :user_id)
+        params.require(:menu_item).permit(:title, :category, :description, :user_id)
     end
 end

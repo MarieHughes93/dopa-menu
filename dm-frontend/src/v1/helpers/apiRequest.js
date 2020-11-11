@@ -123,18 +123,20 @@ export const apiMenuItemShow=(user, menuItemId)=>{
 }
 
 // menu_items Update     update
-export const apiMenuItemUpdate=(user, menuItem)=>{
-    return fetch(`${apiUrl}/users/${user.id}/menu/${menuItem.id}`, {
+export const apiMenuItemUpdate=(menu_item)=>{
+    return fetch(`${apiUrl}/users/${menu_item.user_id}/menu/${menu_item.id}`,{
         method: 'PUT',
-        headers: authHeading(),
-        body: JSON.stringify({menuItem})
+        headers:{...authHeading(),
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',},
+        body: JSON.stringify({menu_item})
     }).then(res=> res.json())
     .then(errorCheck)
 }
 
 // menu_items DELETE  destroy
-export const apiMenuItemDelete=(user, menuItem)=>{
-    return fetch(`${apiUrl}/users/${user.id}/menu/${menuItem.id}`, {
+export const apiMenuItemDelete=(menu_item)=>{
+    return fetch(`${apiUrl}/users/${menu_item.user_id}/menu/${menu_item.id}`, {
         method: 'DELETE',
         headers: authHeading(),
     }).then(res=> res.json())

@@ -8,7 +8,6 @@ class SignUp extends Component{
   return (
     <div >
       Sign Up
-      
         <SignUpForm/>
     </div>
     )

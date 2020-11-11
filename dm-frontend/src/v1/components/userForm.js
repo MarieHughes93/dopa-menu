@@ -17,7 +17,7 @@ export const UserForm = (props)=>{
 
           <input
             type="submit"
-            value='update'/>
+            value='Update'/>
         </form>
       </div>
     )

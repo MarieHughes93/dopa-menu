@@ -72,24 +72,24 @@ export const menuItemFetch = (menuItemId) => dispatch => {
     })
 }
 
-// export const updateRequest = () => ({type: actionCreator.menuItems.UPDATE_REQUEST})
-// export const updateSuccess = (menuItem) => ({type: actionCreator.menuItems.UPDATE_SUCCESS,menuItem})
-// export const updateFailure = () => ({type: actionCreator.menuItems.UPDATE_FAILED})
+export const updateRequest = () => ({type: actionCreator.menuItems.UPDATE_REQUEST})
+export const updateSuccess = (menuItem) => ({type: actionCreator.menuItems.UPDATE_SUCCESS,menuItem})
+export const updateFailure = () => ({type: actionCreator.menuItems.UPDATE_FAILED})
 
 // update
-// export const menuItemUpdate = (menuItem) => dispatch => {
-//     const user = findUser() dispatch(updateRequest())
-//     return helpers.fetch.apiMenuItemUpdate(user,menuItem)
-//     .then(
-//         data => {
-//             dispatch(updateSuccess(data.menuItem))
-//             dispatch(alertAction.notification(data.heading, data.message))
-//             return data.menuItem},
-//         error => {
-//             dispatch(updateFailure())
-//             dispatch(alertAction.error(error.heading, error.message))
-//     })
-// }
+export const menuItemUpdate = (menuItem) => dispatch => {
+    dispatch(updateRequest())
+    return helpers.fetch.apiMenuItemUpdate(menuItem)
+    .then(
+        data => {
+            dispatch(updateSuccess(data.menuItem))
+            dispatch(alertAction.notification(data.heading, data.message))
+            return data.menuItem},
+        error => {
+            dispatch(updateFailure())
+            dispatch(alertAction.error(error.heading, error.message))
+    })
+}
 
 // export const deleteRequest = () => ({type: actionCreator.menuItems.DELETE_REQUEST})
 // export const deleteSuccess = () => ({type: actionCreator.menuItems.DELETE_SUCCESS})
@@ -132,10 +132,10 @@ export const menuItemsAction = {
     menuItemFetch,
 
     // update
-    // updateRequest,
-    // updateSuccess,
-    // updateFailure,
-    // menuItemUpdate,
+    updateRequest,
+    updateSuccess,
+    updateFailure,
+    menuItemUpdate,
 
     // delete
     // deleteRequest,
