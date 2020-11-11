@@ -11,6 +11,7 @@ import Profile from './v1/containers/Profile'
 import SignUp from './v1/containers/SignUp'
 import LogIn from './v1/containers/LogIn'
 import ItemShow from './v1/containers/ItemShow'
+import NewItem from './v1/containers/newItem'
 // helpers
 import {Navi} from './v1/helpers/Routes'
 import history from './v1/helpers/history'
@@ -46,6 +47,7 @@ class App extends Component{
           <Navi.PubRoute restricted={true} component={LogIn} path="/login" exact/>
           <Navi.PrivRoute component={Dashboard} path="/dashboard" exact/>
           <Navi.PrivRoute component={Profile} path="/profile" exact/>
+          <Navi.PrivRoute component={NewItem} path='/item/create' exact/>
           <Navi.PrivRoute component={ItemShow} path='/item/:id' exact/>
           <Redirect from="*" to="/"/>
         </Switch>

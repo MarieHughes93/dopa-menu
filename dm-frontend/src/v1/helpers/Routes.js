@@ -31,6 +31,7 @@ const PrivUrls =[
     {path: '/', text: 'About', isActive: ''},
     {path: '/dashboard', text: 'Dashboard', isActive: ''},
     {path: '/profile', text: 'Profile', isActive: ''},
+    {path: 'item/create', text:'Add Item', isActive: ''}
 ]
 
 export const Navi ={

@@ -6,14 +6,19 @@ import {actionCreator} from './actionCreators'
 // actions
 import {alertAction} from './alertAction'
 
+const findUser=()=>{
+    const currentUser = localStorage.getItem('currentUser')
+    const user = JSON.parse(currentUser)
+    return user
+}
+
 export const indexRequest = () => ({type: actionCreator.menuItems.INDEX_REQUEST})
 export const indexSuccess = (menuItems) => ({type: actionCreator.menuItems.INDEX_SUCCESS, menuItems})
 export const indexFailure = () => ({type: actionCreator.menuItems.INDEX_FAILED})
 
 // index
 export const menuItemsFetch = () => dispatch => {
-    const currentUser = localStorage.getItem('currentUser')
-    const user = JSON.parse(currentUser)
+    const user = findUser()
     dispatch(indexRequest())
     return helpers.fetch.apiMenuItemsIndex(user)
     .then(
@@ -26,23 +31,24 @@ export const menuItemsFetch = () => dispatch => {
     })
 }
 
-// export const createRequest = () => ({type: actionCreator.menuItems.CREATE_REQUEST})
-// export const createSuccess = () => ({type: actionCreator.menuItems.CREATE_SUCCESS})
-// export const createFailure = () => ({type: actionCreator.menuItems.CREATE_FAILED})
+export const createRequest = () => ({type: actionCreator.menuItems.CREATE_REQUEST})
+export const createSuccess = () => ({type: actionCreator.menuItems.CREATE_SUCCESS})
+export const createFailure = () => ({type: actionCreator.menuItems.CREATE_FAILED})
 
 // create
-// export const menuItemCreate =(menuItem)=>dispatch=>{
-//     dispatch(createRequest())
-//     helpers.fetch.apiMenuItemCreate(menuItem)
-//     .then(
-//         data => {
-//             dispatch(createSuccess())
-//             dispatch(alertAction.notification(data.heading,data.message))},
-//         error => {
-//             dispatch(createFailure())
-//             dispatch(alertAction.error(error.heading, error.message))
-//     })
-// }
+export const menuItemCreate =(menuItem)=>dispatch=>{
+    const user = findUser()
+    dispatch(createRequest())
+    helpers.fetch.apiMenuItemCreate(user, menuItem)
+    .then(
+        data => {
+            dispatch(createSuccess())
+            dispatch(alertAction.notification(data.heading,data.message))},
+        error => {
+            dispatch(createFailure())
+            dispatch(alertAction.error(error.heading, error.message))
+    })
+}
 
 
 export const fetchRequest = () => ({type: actionCreator.menuItems.FETCH_REQUEST})
@@ -51,9 +57,7 @@ export const fetchFailure = () => ({type: actionCreator.menuItems.FETCH_FAILED})
 
 // Show
 export const menuItemFetch = (menuItemId) => dispatch => {
-    const currentUser = localStorage.getItem('currentUser')
-    const user = JSON.parse(currentUser)
-    console.log(menuItemId)
+    const user = findUser()
     dispatch(fetchRequest())
     return helpers.fetch.apiMenuItemShow(user,menuItemId)
     .then(
@@ -74,8 +78,8 @@ export const menuItemFetch = (menuItemId) => dispatch => {
 
 // update
 // export const menuItemUpdate = (menuItem) => dispatch => {
-//     dispatch(updateRequest())
-//     return helpers.fetch.apiMenuItemUpdate(menuItem)
+//     const user = findUser() dispatch(updateRequest())
+//     return helpers.fetch.apiMenuItemUpdate(user,menuItem)
 //     .then(
 //         data => {
 //             dispatch(updateSuccess(data.menuItem))
@@ -93,8 +97,8 @@ export const menuItemFetch = (menuItemId) => dispatch => {
 
 // Delete
 // export const menuItemDelete = (menuItem) => dispatch => {
-//     dispatch(deleteRequest())
-//     helpers.fetch.apiMenuItemDelete(menuItem)
+//     const user = findUser() dispatch(deleteRequest())
+//     helpers.fetch.apiMenuItemDelete(user,menuItem)
 //     .then(
 //         data => {
 //             dispatch(deleteSuccess())
@@ -116,10 +120,10 @@ export const menuItemsAction = {
     menuItemsFetch, 
 
     // create
-    // createRequest,
-    // createSuccess,
-    // createFailure,
-    // menuItemCreate,
+    createRequest,
+    createSuccess,
+    createFailure,
+    menuItemCreate,
 
     // fetch/show
     fetchRequest,
