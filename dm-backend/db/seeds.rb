@@ -30,4 +30,5 @@ end
 end
 
 tester = User.create(name: "Test", email: "test@test.com",  password: "test")
-test_item1 = MenuItem.create(title: "Test Menu", category: item_types.sample,description: " test test test test test test test", user: tester)
+test_item1 = MenuItem.create(title: "Test Menu", category: 'Appetizer' ,description: " test test test test test test test", user: tester)
+test_item2 = MenuItem.create(title: "Test ", category: 'Side',description: " test test test ", user: tester)
