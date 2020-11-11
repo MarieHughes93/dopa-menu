@@ -20,8 +20,6 @@ export const authHeading=()=>{
     }
 }
 
-
-
 // login (POST)
 export const apiLogin=(user)=> {
     return fetch(`${apiUrl}/login`, {
@@ -113,7 +111,7 @@ export const apiMenuItemCreate=(user,menuItem)=>{
     .then(errorCheck)
 }
 
-// menu_item GET     show 
+// menu_item GET show 
 export const apiMenuItemShow=(user, menuItemId)=>{
     return fetch(`${apiUrl}/users/${user.id}/menu/${menuItemId}`, {
         method: 'GET',
@@ -136,9 +134,12 @@ export const apiMenuItemUpdate=(menu_item)=>{
 
 // menu_items DELETE  destroy
 export const apiMenuItemDelete=(menu_item)=>{
+    
     return fetch(`${apiUrl}/users/${menu_item.user_id}/menu/${menu_item.id}`, {
         method: 'DELETE',
-        headers: authHeading(),
+        headers:{...authHeading(),
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',},
     }).then(res=> res.json())
     .then(errorCheck)
 }

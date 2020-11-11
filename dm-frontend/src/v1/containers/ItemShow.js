@@ -20,7 +20,7 @@ class ItemShow extends Component{
       isEditing: false
     }
     this.toggleEdit = this.toggleEdit.bind(this)
-    // this.deleteMenuItem = this.deleteMenuItem.bind(this)
+    this.deleteMenuItem = this.deleteMenuItem.bind(this)
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
   }
@@ -30,9 +30,9 @@ class ItemShow extends Component{
       ({isEditing: !state.isEditing }))
   }
 
-  // deleteMenuItem=()=>{
-  //   this.props.deleteItem
-  // }
+  deleteMenuItem=()=>{
+    this.props.deleteItem(this.state.menuItem)
+  }
 
   onChange=(e)=>{
     e.persist()
@@ -76,7 +76,7 @@ class ItemShow extends Component{
       <Item 
         item={menuItem}
         toggleEdit={this.toggleEdit}
-        // deleteMenuItem={}
+        deleteMenuItem={this.deleteMenuItem}
       />
     </div>
     )
@@ -86,9 +86,9 @@ class ItemShow extends Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetch:(menuItemId)=>dispatch(actions.menuItems.menuItemFetch(menuItemId)),
-    upDate: (menuItem)=>dispatch(actions.menuItems.menuItemUpdate(menuItem)),
-    // deleteItem: (menuItem)=>dispatch(actions.menuItems.menuItemDelete(menuItem))
+    fetch:(menuItemId) => dispatch(actions.menuItems.menuItemFetch(menuItemId)),
+    upDate: (menuItem) => dispatch(actions.menuItems.menuItemUpdate(menuItem)),
+    deleteItem: (menuItem) => dispatch(actions.menuItems.menuItemDelete(menuItem))
   }
 }
 
