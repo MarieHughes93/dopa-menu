@@ -33,7 +33,6 @@ class Profile extends Component{
   }
 
   deleteUser=()=>{
-    
     this.props.deRegister(this.state.user)
   }
 
@@ -57,7 +56,11 @@ class Profile extends Component{
   render(){
     const user = this.state.user
     if (user === null ){
-      return null
+      return (
+        <div>
+          <h1>Loading....</h1>
+        </div>
+      )
     }
     if (this.state.isEditing) {
       return (

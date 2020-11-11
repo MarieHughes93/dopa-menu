@@ -2,7 +2,7 @@ import React  from 'react'
 
 export const User =({user, toggleEdit, deleteUser }) =>(
     
-    <div className="userContainer" key={user.id}>
+    <div className="userComponent" key={user.id}>
         <h1>Hello, {user.name}</h1>
         <p><strong>Email:</strong>{user.email}</p>
         <button onClick={toggleEdit} className="btn btn-default  ">edit</button>
