@@ -18,7 +18,6 @@ export const menuItemsFetch = () => dispatch => {
     return helpers.fetch.apiMenuItemsIndex(user)
     .then(
         data => {
-            console.log(data.menuItems)
             dispatch(indexSuccess(data.menuItems))
             return data.menuItems},
         error => {
@@ -46,26 +45,28 @@ export const menuItemsFetch = () => dispatch => {
 // }
 
 
-// export const fetchRequest = () => ({type: actionCreator.menuItems.FETCH_REQUEST})
-// export const fetchSuccess = (menuItem) => ({type: actionCreator.menuItems.FETCH_SUCCESS, menuItem})
-// export const fetchFailure = () => ({type: actionCreator.menuItems.FETCH_FAILED})
+export const fetchRequest = () => ({type: actionCreator.menuItems.FETCH_REQUEST})
+export const fetchSuccess = (menuItem) => ({type: actionCreator.menuItems.FETCH_SUCCESS, menuItem})
+export const fetchFailure = () => ({type: actionCreator.menuItems.FETCH_FAILED})
 
 // Show
-// export const menuItemFetch = () => dispatch => {
-//     const currentUser = localStorage.getItem('currentUser')
-//     const user = JSON.parse(currentUser)
-//     dispatch(fetchRequest())
-//     return helpers.fetch.apiMenuItemShow(user)
-//     .then(
-//         data => { 
-//             dispatch(fetchSuccess(data.menuItem))
-//             return data.menuItem}
-//              ,
-//         error => {
-//             dispatch(fetchFailure(error))
-//             dispatch(alertAction.error(error.heading, error.message))
-//     })
-// }
+export const menuItemFetch = (menuItemId) => dispatch => {
+    const currentUser = localStorage.getItem('currentUser')
+    const user = JSON.parse(currentUser)
+    console.log(menuItemId)
+    dispatch(fetchRequest())
+    return helpers.fetch.apiMenuItemShow(user,menuItemId)
+    .then(
+        data => { 
+            console.log(data.menuItem)
+            dispatch(fetchSuccess(data.menuItem))
+            return data.menuItem}
+             ,
+        error => {
+            dispatch(fetchFailure(error))
+            dispatch(alertAction.error(error.heading, error.message))
+    })
+}
 
 // export const updateRequest = () => ({type: actionCreator.menuItems.UPDATE_REQUEST})
 // export const updateSuccess = (menuItem) => ({type: actionCreator.menuItems.UPDATE_SUCCESS,menuItem})
@@ -121,10 +122,10 @@ export const menuItemsAction = {
     // menuItemCreate,
 
     // fetch/show
-    // fetchRequest,
-    // fetchSuccess,
-    // fetchFailure,
-    // menuItemFetch,
+    fetchRequest,
+    fetchSuccess,
+    fetchFailure,
+    menuItemFetch,
 
     // update
     // updateRequest,
