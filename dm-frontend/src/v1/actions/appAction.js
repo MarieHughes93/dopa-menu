@@ -25,7 +25,6 @@ export const logIn = (user) => dispatch => {
     helpers.fetch.apiLogin(user)
     .then(
         data => {
-            console.log(data)
             localStorage.setItem('sessionID', data.token)
             localStorage.setItem('currentUser', JSON.stringify(data.user))
             dispatch(logInSuccess(data.user))
