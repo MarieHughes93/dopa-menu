@@ -1,86 +1,69 @@
-export const alert= {
+export const alert={
     GOOD: 'ALERT_NOTIFICATION',
     BAD: 'ALERT_ERROR',
     CLEAR: 'ALERT_CLEAR'
 }
-
-export const app ={
+export const app={
     // login
     LOGIN_REQUEST: 'REQUESTING_LOGIN',
     LOGIN_SUCCESS: 'LOGIN_SUCCESSFUL',
     LOGIN_FAILED: 'LOGIN_FAILURE',
-
     // session reconnet
     SESSION_FOUND: 'RECONNECTING_AUTH',
     SESSION_LOGGEDIN: 'SESSION_AUTHORIZED',
     SESSION_FAILED: 'AUTH_FAILED',
-
     // logout
     LOGOUT_REQUEST: 'REQUESTING_LOGOUT',
     LOGOUT_SUCCESS: 'LOGOUT_SUCCESSFULL',
     LOGOUT_FAILED: 'LOGOUT_FAILURE'
 }
-
-export const user = {
+export const user={
     // Create
     CREATE_REQUEST: 'REQUESTING_REGISTRATION',
     CREATE_SUCCESS: 'REGISTERED',
     CREATE_FAILED: 'REGISTING_FAILURE',
-
     // fetch/show
     FETCH_REQUEST: 'REQUESTING_USER_FETCH',
     FETCH_SUCCESS: 'USER_FETCH_SUCCESSFUL',
     FETCH_FAILED: 'USER_FETCH_FAILED',
-
     // update
     UPDATE_REQUEST: 'REQUESTING_UPDATE',
     UPDATE_SUCCESS: 'UPDATE_SUCCESSFUL',
     UPDATE_FAILED: 'UPDATE_FAILURE',
-
     // delete
     DELETE_REQUEST: 'REQUESTING_ACCOUNT_DELETE',
     DELETE_SUCCESS: 'ACCOUNT_DELETE_SUCCESSFULL',
     DELETE_FAILED: 'ACCOUNT_DELETE_FAILURE',
-
     // signout/clear
     SESSION_END: 'CLEAR_SESSION_USER'
 }
-
-
-
 export const menuItems={
     // index
     INDEX_REQUEST: 'REQUESTING_ALL_ITEMS',
     INDEX_SUCCESS: 'ITEMS_INDEX_SUCCESSFUL',
     INDEX_FAILED: 'ITEMS_INDEX_FAILURE',
- 
     // create
     CREATE_REQUEST: 'CREATE_ITEM_REQUESTED',
     CREATE_SUCCESS: 'ITEM_CREATED',
     CREATE_FAILED: 'ITEM_CREATION_FAILURE',
-    
     // fetch/chow
     FETCH_REQUEST: 'REQUESTING_ITEM_FETCH',
     FETCH_SUCCESS: 'ITEM_FETCH_SUCCESSFUL',
     FETCH_FAILED: 'ITEM_FETCH_FAILED',
- 
     // update
     UPDATE_REQUEST: 'REQUESTING_ITEM_UPDATE',
     UPDATE_SUCCESS: 'ITEM_UPDATED',
     UPDATE_FAILED: 'ITEM_UPDATE_FAILURE',
- 
     // delete
     DELETE_REQUEST: 'ITEM_DELETE_REQUEST',
     DELETE_SUCCESS: 'ITEM_DELETE_SUCCESSFUL',
     DELETE_FAILED: 'ITEM_DELETE_FAILURE',
-
     // signout/clear
     SESSION_END: 'CLEAR_SESSION_ITEMS'
 } 
-
-export const actionCreator = {
-       alert,
-       app,
-       user,
-       menuItems
+export const actionCreator={
+    alert,
+    app,
+    user,
+    menuItems
 }

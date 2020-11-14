@@ -1,103 +1,98 @@
 // package
 import React, { Component } from 'react'
-
 import {connect} from 'react-redux'
+// actions
 import { actions } from '../actions/_index'
+// component
 import {Item} from '../components/item'
 import {ItemUpdateForm} from '../components/itemUpdateForm'
 
 class ItemShow extends Component{
   constructor(props){
     super(props)
-    
-    const itemId = props.match.params.itemId
-    this.props.fetch(itemId).then((res) =>
-    this.setState(
-      {menuItem: res })
-  )
     this.state={
-      menuItem: null,
+      menuItem: 'loading',
       saving: false,
       isEditing: false
     }
-    this.handleBack = this.handleBack.bind(this)
-    this.toggleEdit = this.toggleEdit.bind(this)
-    this.deleteMenuItem = this.deleteMenuItem.bind(this)
-    this.onChange = this.onChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
+    this.toggleItemEdit = this.toggleItemEdit.bind(this)
+    this.handleBackButton = this.handleBackButton.bind(this)
+    this.handleDeleteItem = this.handleDeleteItem.bind(this)
+    this.handleOnChange = this.handleOnChange.bind(this)
+    this.handleOnSubmit = this.handleOnSubmit.bind(this)
   }
-
-  toggleEdit=()=>{
-    this.setState(state=> 
-      ({isEditing: !state.isEditing }))
+  toggleItemEdit=()=>{
+    this.setState(state=>({
+      isEditing: !state.isEditing
+    }))
   }
-
-  deleteMenuItem=()=>{
-    this.props.deleteItem(this.state.menuItem)
-  }
-
-  onChange=(e)=>{
-    e.persist()
-        this.setState((state) => ({
-          menuItem:{
-            ...state.menuItem,
-            [e.target.name]: e.target.value 
-          }  
-        }))
-  }
-
-  onSubmit=(e)=>{
-    e.preventDefault()
-    this.props.upDate(this.state.menuItem)
-    this.toggleEdit()
-  }
-
-  handleBack=()=>{
+  handleBackButton=()=>{
     this.props.history.goBack()
   }
-  
+  handleDeleteItem=()=>{
+    this.props.deleteItem(this.state.menuItem)
+  }
+  handleOnChange=(e)=>{
+    e.persist()
+    this.setState((state)=>({
+      menuItem:{
+        ...state.menuItem,
+        [e.target.name]: e.target.value 
+      }  
+    }))
+  }
+  handleOnSubmit=(e)=>{
+    e.preventDefault()
+    this.props.upDate(this.state.menuItem)
+    this.toggleItemEdit()
+  }
+  componentDidMount=()=>{
+    const itemId = this.props.match.params.itemId
+    this.props.fetch(itemId).then((res)=>
+      this.setState({
+        menuItem: res
+      })
+    )
+  }
   render(){
     const menuItem = this.state.menuItem
-    if (menuItem === null ){
-      return (
+    if (menuItem === 'loading'){
+      return(
         <div>
           <h1>Loading....</h1>
         </div>
       )
     }
-    if (this.state.isEditing) {
-      return (
-      <div>
-        <h1>Edit</h1>
-        <ItemUpdateForm
-        menuItem={menuItem}
-        onChange={this.onChange}
-        onSubmit={this.onSubmit}
-        handleCancel={this.toggleEdit}
-        /> 
-      </div>
+    if (this.state.isEditing){
+      return(
+        <div>
+          <h1>Edit</h1>
+          <ItemUpdateForm
+          menuItem={menuItem}
+          onChange={this.handleOnChange}
+          onSubmit={this.handleOnSubmit}
+          cancelButton={this.toggleItemEdit}
+          /> 
+        </div>
       )
     }
-    return (
-    <div >
-      <Item 
+    return(
+      <div>
+        <Item 
         item={menuItem}
-        toggleEdit={this.toggleEdit}
-        deleteMenuItem={this.deleteMenuItem}
-        handleBack={this.handleBack}
-      />
-    </div>
+        toggleItemEdit={this.toggleItemEdit}
+        deleteMenuItem={this.handleDeleteItem}
+        backButton={this.handleBackButton}
+        />
+      </div>
     )
   }
 }
-
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetch:(menuItemId) => dispatch(actions.menuItems.menuItemFetch(menuItemId)),
-    upDate: (menuItem) => dispatch(actions.menuItems.menuItemUpdate(menuItem)),
-    deleteItem: (menuItem) => dispatch(actions.menuItems.menuItemDelete(menuItem))
+const mapDispatchToProps=(dispatch)=>{
+  return{
+    fetch: (menuItemId)=>dispatch(actions.menuItems.menuItemFetch(menuItemId)),
+    upDate: (menuItem)=>dispatch(actions.menuItems.menuItemUpdate(menuItem)),
+    deleteItem: (menuItem)=>dispatch(actions.menuItems.menuItemDelete(menuItem))
   }
 }
-
 export default connect(null, mapDispatchToProps)(ItemShow)

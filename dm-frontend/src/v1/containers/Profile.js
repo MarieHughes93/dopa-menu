@@ -1,12 +1,10 @@
 // package
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
-// component
-import {User} from '../components/user'
-
 // actions
 import {actions} from '../actions/_index'
+// component
+import {User} from '../components/user'
 import {UserForm} from '../components/userForm'
 
 class Profile extends Component{
@@ -17,88 +15,82 @@ class Profile extends Component{
       saving: false,
       isEditing: false
     }
-    this.toggleEdit = this.toggleEdit.bind(this)
-    this.deleteUser = this.deleteUser.bind(this)
-    this.onChange = this.onChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
+    this.toggleUserEdit = this.toggleUserEdit.bind(this)
+    this.handleDeleteUser = this.handleDeleteUser.bind(this)
+    this.handleOnChange = this.handleOnChange.bind(this)
+    this.handleOnSubmit = this.handleOnSubmit.bind(this)
   }
-  toggleEdit=()=>{
-    this.setState(state=> 
-      ({isEditing: !state.isEditing }))
+  toggleUserEdit=()=>{
+    this.setState(state=> ({
+      isEditing: !state.isEditing
+    }))
   }
-
-  deleteUser=()=>{
+  handleDeleteUser=()=>{
     this.props.deRegister(this.state.user)
   }
-
-  onChange=(e)=>{
+  handleOnChange=(e)=>{
     e.persist()
-        this.setState((state) => ({
-          user:{
-            ...state.user,
-            [e.target.name]: e.target.value 
-          }  
-        }))
+    this.setState((state)=>({
+      user:{
+        ...state.user,
+        [e.target.name]: e.target.value 
+      }  
+    }))
   }
-
-  onSubmit=(e)=>{
+  handleOnSubmit=(e)=>{
     e.preventDefault()
     this.props.upDate(this.state.user)
-    this.toggleEdit()
+    this.toggleUserEdit()
   }
- 
-componentDidMount(){
-  this.props.fetch().then((res) =>
+  componentDidMount=()=>{
+    this.props.fetch().then((res)=>
       this.setState(
-        {user: res })
+        {user: res})
     )
-
-}
+  }
   render(){
     const user = this.state.user
     if (user === null ){
-      return (
+      return(
         <div>
           <h1>Loading....</h1>
         </div>
       )
     }
     if (this.state.isEditing) {
-      return (
-      <div>
-        <h1>Edit</h1>
-        <UserForm
-        user={user}
-        onChange={this.onChange}
-        onSubmit={this.onSubmit}
-        handleCancel={this.toggleEdit}
-        /> 
-      </div>
+      return(
+        <div>
+          <h1>Edit</h1>
+          <UserForm
+          user={user}
+          onChange={this.handleOnChange}
+          onSubmit={this.handleOnSubmit}
+          cancelButton={this.toggleUserEdit}
+          /> 
+        </div>
       )
     }
-    return (
-      <div >
-        <User user={this.state.user} toggleEdit={this.toggleEdit} deleteUser={this.deleteUser} />
+    return(
+      <div>
+        <User
+        user={this.state.user}
+        toggleUserEdit={this.toggleUserEdit}
+        deleteUserButton={this.handleDeleteUser}
+        />
       </div>
-    );
+    )
   }
 }
-
-
-    
-
-const mapStateToProps=(state)=> {
-  return {
+const mapStateToProps=(state)=>{
+  return{
     user: state.user.currentUser
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return {
+const mapDispatchToProps=(dispatch)=>{
+  return{
     fetch: ()=>dispatch(actions.user.userFetch()),
     upDate: (user)=>dispatch(actions.user.userUpdate(user)),
     deRegister: (user)=>dispatch(actions.user.userDelete(user))
   }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
