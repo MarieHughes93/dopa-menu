@@ -5,7 +5,7 @@ import {alertAction as alert} from './alertAction'
 import {menuItemsAction as menuItems} from './menuItemsAction'
 import {userAction as user} from './userAction'
 
-export const actions ={
+export const actions={
     creator,
     app,
     alert,
