@@ -1,6 +1,6 @@
 // helpers
 import {helpers} from '../helpers/_index'
-// import history from '../helpers/history'
+import history from '../helpers/history'
 // creators
 import {actionCreator} from './actionCreators'
 // actions
@@ -91,24 +91,24 @@ export const menuItemUpdate = (menuItem) => dispatch => {
     })
 }
 
-// export const deleteRequest = () => ({type: actionCreator.menuItems.DELETE_REQUEST})
-// export const deleteSuccess = () => ({type: actionCreator.menuItems.DELETE_SUCCESS})
-// export const deleteFailure = () => ({type: actionCreator.menuItems.DELETE_FAILED})
+export const deleteRequest = () => ({type: actionCreator.menuItems.DELETE_REQUEST})
+export const deleteSuccess = () => ({type: actionCreator.menuItems.DELETE_SUCCESS})
+export const deleteFailure = () => ({type: actionCreator.menuItems.DELETE_FAILED})
 
 // Delete
-// export const menuItemDelete = (menuItem) => dispatch => {
-//     const user = findUser() dispatch(deleteRequest())
-//     helpers.fetch.apiMenuItemDelete(user,menuItem)
-//     .then(
-//         data => {
-//             dispatch(deleteSuccess())
-//             history.push('/signup')
-//             dispatch(alertAction.notification(data.heading, data.message))},
-//         error => {
-//             dispatch(deleteFailure())
-//             dispatch(alertAction.error(error.heading, error.message))
-//     })
-// }
+export const menuItemDelete = (menuItem) => dispatch => {
+    dispatch(deleteRequest())
+    helpers.fetch.apiMenuItemDelete(menuItem)
+    .then(
+        data => {
+            dispatch(deleteSuccess())
+            history.push('/dashboard')
+            dispatch(alertAction.notification(data.heading, data.message))},
+        error => {
+            dispatch(deleteFailure())
+            dispatch(alertAction.error(error.heading, error.message))
+    })
+}
 
 export const menuItemsSessionEnd=()=>({type: actionCreator.menuItems.SESSION_END})
         
@@ -138,10 +138,10 @@ export const menuItemsAction = {
     menuItemUpdate,
 
     // delete
-    // deleteRequest,
-    // deleteSuccess,
-    // deleteFailure,
-    // menuItemDelete,
+    deleteRequest,
+    deleteSuccess,
+    deleteFailure,
+    menuItemDelete,
 
     // end Session
     // menuItemSessionEnd
