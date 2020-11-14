@@ -37,7 +37,7 @@ class Api::V1::MenuItemsController < ApplicationController
     def destroy
         @item = @user.menu_items.find_by(id: params[:id])
         if @item.destroy
-            render json: {menuItem: nil, user: @user, auth: true, error: false, heading: "MenuItem Deleted!", message: "The item yo requested deleted was successfully removed."}
+            render json: {menuItem: nil, user: @user, auth: true, error: false, heading: "Item Deleted!", message: "The item you requested deleted was successfully removed."}
         else
             render json: {menuItem: @item, user: @user, auth: true, error: true ,heading: "Opps...", message: "We can into an issue deleting your menu item."}
         end
