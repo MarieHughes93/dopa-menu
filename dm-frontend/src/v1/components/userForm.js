@@ -19,6 +19,7 @@ export const UserForm = (props)=>{
             type="submit"
             value='Update'/>
         </form>
+        <button onClick={()=>props.handleCancel()} className="btn btn-default ">cancel</button>
       </div>
     )
 }

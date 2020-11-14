@@ -29,7 +29,7 @@ export const logIn = (user) => dispatch => {
             localStorage.setItem('currentUser', JSON.stringify(data.user))
             dispatch(logInSuccess(data.user))
             dispatch(userAction.fetchSuccess(data.user))
-            history.push('/dashboard')
+            history.push(`/dopa-menu/${data.user.id}`)
             dispatch(alertAction.notification(data.heading , data.message))},
         error => {
             dispatch(logInFailure(error))
@@ -47,7 +47,7 @@ export const logOut = () => dispatch => {
         success => {
             dispatch(logOutSuccess())
             dispatch(userAction.userSessionEnd())
-            history.push('/')},
+            history.push('/dopa-menu')},
         error =>{
             dispatch(logOutFailure())
             dispatch(alertAction.error(error.heading, error.message))
@@ -70,7 +70,7 @@ export const sessionReconnect= () => dispatch => {
             dispatch(sessionLoggedIn())
             localStorage.setItem('currentUser', JSON.stringify(data.user))
             dispatch(userAction.fetchSuccess(data.user))
-            history.push('/dashboard')
+            history.push(`/dopa-menu/${data.user.id}`)
             dispatch(alertAction.notification(data.heading , data.message))},
         error => {
             logOut()

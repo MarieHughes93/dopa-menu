@@ -43,6 +43,7 @@ export const menuItemCreate =(menuItem)=>dispatch=>{
     .then(
         data => {
             dispatch(createSuccess())
+            history.push(`/dopa-menu/${data.user.id}`)
             dispatch(alertAction.notification(data.heading,data.message))},
         error => {
             dispatch(createFailure())
@@ -61,8 +62,7 @@ export const menuItemFetch = (menuItemId) => dispatch => {
     dispatch(fetchRequest())
     return helpers.fetch.apiMenuItemShow(user,menuItemId)
     .then(
-        data => { 
-            console.log(data.menuItem)
+        data => {
             dispatch(fetchSuccess(data.menuItem))
             return data.menuItem}
              ,
@@ -102,7 +102,7 @@ export const menuItemDelete = (menuItem) => dispatch => {
     .then(
         data => {
             dispatch(deleteSuccess())
-            history.push('/dashboard')
+            history.push(`/dopa-menu/${data.user.id}`)
             dispatch(alertAction.notification(data.heading, data.message))},
         error => {
             dispatch(deleteFailure())

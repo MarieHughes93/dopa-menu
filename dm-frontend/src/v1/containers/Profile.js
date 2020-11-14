@@ -12,10 +12,6 @@ import {UserForm} from '../components/userForm'
 class Profile extends Component{
   constructor(props){
     super(props)
-    this.props.fetch().then((res) =>
-      this.setState(
-        {user: res })
-    )
     this.state={
       user: null,
       saving: false,
@@ -26,7 +22,6 @@ class Profile extends Component{
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
   }
-
   toggleEdit=()=>{
     this.setState(state=> 
       ({isEditing: !state.isEditing }))
@@ -52,7 +47,13 @@ class Profile extends Component{
     this.toggleEdit()
   }
  
+componentDidMount(){
+  this.props.fetch().then((res) =>
+      this.setState(
+        {user: res })
+    )
 
+}
   render(){
     const user = this.state.user
     if (user === null ){
@@ -70,6 +71,7 @@ class Profile extends Component{
         user={user}
         onChange={this.onChange}
         onSubmit={this.onSubmit}
+        handleCancel={this.toggleEdit}
         /> 
       </div>
       )
@@ -81,6 +83,8 @@ class Profile extends Component{
     );
   }
 }
+
+
     
 
 const mapStateToProps=(state)=> {

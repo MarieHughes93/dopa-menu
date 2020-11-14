@@ -42,14 +42,14 @@ class App extends Component{
         { alert.message &&
         <AlertComponent alert={alert} closeAlert={this.props.clearAlerts}/>}
         <Switch>
-          <Navi.PubRoute restricted={false} component={Home} path="/" exact/>
-          <Navi.PubRoute restricted={true} component={SignUp} path="/signup" exact/>
-          <Navi.PubRoute restricted={true} component={LogIn} path="/login" exact/>
-          <Navi.PrivRoute component={Dashboard} path="/dashboard" exact/>
-          <Navi.PrivRoute component={Profile} path="/profile" exact/>
-          <Navi.PrivRoute component={NewItem} path='/item/create' exact/>
-          <Navi.PrivRoute component={ItemShow} path='/item/:id' exact/>
-          <Redirect from="*" to="/"/>
+          <Navi.PubRoute restricted={false} component={Home} path="/dopa-menu" exact/>
+          <Navi.PubRoute restricted={true} component={SignUp} path="/dopa-menu/signup" exact/>
+          <Navi.PubRoute restricted={true} component={LogIn} path="/dopa-menu/login" exact/>
+          <Navi.PrivRoute component={Dashboard} path="/dopa-menu/:id" exact/>
+          <Navi.PrivRoute component={Profile} path="/dopa-menu/:id/profile" exact/>
+          <Navi.PrivRoute component={NewItem} path='/dopa-menu/:id/menuItems/create' exact/>
+          <Navi.PrivRoute component={ItemShow} path='/dopa-menu/:id/menuItems/:itemId' exact/>
+          <Redirect from="*" to="/dopa-menu"/>
         </Switch>
       </div>
     </div>

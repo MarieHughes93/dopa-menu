@@ -9,8 +9,9 @@ import {ItemUpdateForm} from '../components/itemUpdateForm'
 class ItemShow extends Component{
   constructor(props){
     super(props)
-    const menuItemId = props.match.params.id
-    this.props.fetch(menuItemId).then((res) =>
+    
+    const itemId = props.match.params.itemId
+    this.props.fetch(itemId).then((res) =>
     this.setState(
       {menuItem: res })
   )
@@ -19,6 +20,7 @@ class ItemShow extends Component{
       saving: false,
       isEditing: false
     }
+    this.handleBack = this.handleBack.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
     this.deleteMenuItem = this.deleteMenuItem.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -50,6 +52,10 @@ class ItemShow extends Component{
     this.toggleEdit()
   }
 
+  handleBack=()=>{
+    this.props.history.goBack()
+  }
+  
   render(){
     const menuItem = this.state.menuItem
     if (menuItem === null ){
@@ -67,6 +73,7 @@ class ItemShow extends Component{
         menuItem={menuItem}
         onChange={this.onChange}
         onSubmit={this.onSubmit}
+        handleCancel={this.toggleEdit}
         /> 
       </div>
       )
@@ -77,6 +84,7 @@ class ItemShow extends Component{
         item={menuItem}
         toggleEdit={this.toggleEdit}
         deleteMenuItem={this.deleteMenuItem}
+        handleBack={this.handleBack}
       />
     </div>
     )

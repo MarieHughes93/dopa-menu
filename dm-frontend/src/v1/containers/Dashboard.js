@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 // actions
 import {actions} from '../actions/_index'
 import ItemsList from '../components/itemsList'
+import history from '../helpers/history'
 
 class Dashboard extends Component{
   constructor(props){
@@ -18,6 +19,7 @@ class Dashboard extends Component{
   }
   
   render(){
+    const userId = this.props.match.params.id
     const items = this.state.menuItems
     if (items === 'loading' ){
       return(
@@ -28,8 +30,9 @@ class Dashboard extends Component{
     return (
     <div >
         <h1>Dashboard</h1>
-        {categorgies.map((category)=>
-        <ItemsList items={items} category={category}/>)
+        <button onClick={() => history.push(`/dopa-menu/${userId}/menuItems/create`)} className="btn btn-default ">Create New</button>
+        {categorgies.map((category,indx)=>
+        <ItemsList key={indx} items={items} category={category}/>)
         }
     </div>
     )

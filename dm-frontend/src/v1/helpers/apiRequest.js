@@ -54,8 +54,7 @@ export const apiSessionAuth=()=>{
 export const apiUserCreate = (user) => {
     return fetch(`${apiUrl}/register`,{
         method: 'POST',
-        headers:{ 
-        'Content-Type': 'application/json',
+        headers:{ 'Content-Type': 'application/json',
         'Accept': 'application/json'},
         body: JSON.stringify({user})
     }).then(res=> res.json())
@@ -105,8 +104,10 @@ export const apiMenuItemsIndex=(user)=>{
 export const apiMenuItemCreate=(user,menuItem)=>{
     return fetch(`${apiUrl}/users/${user.id}/menu`, {
         method: 'POST',
-        headers: authHeading(),
-        body: JSON.stringify({menuItem})
+        headers: {...authHeading(),
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',},
+        body: JSON.stringify(menuItem)
     }).then(res=> res.json())
     .then(errorCheck)
 }

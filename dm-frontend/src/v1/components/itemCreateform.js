@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 // actions
 import {actions} from '../actions/_index'
 
+
 class ItemCreateForm extends Component{
     constructor(props){
         super(props)
@@ -12,10 +13,10 @@ class ItemCreateForm extends Component{
             title: '',
             description: ''
         }
+        
         this.handleOnChange = this.handleOnChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
-        
     handleOnChange = (e) => {
         e.persist()
         this.setState(() => ({
@@ -37,7 +38,7 @@ class ItemCreateForm extends Component{
             <div>
                 <form onSubmit={this.onSubmit}>
                     <select value={this.state.category} name='category' onChange={this.handleOnChange}>
-                    <option value="" disabled selected>Select your option</option>
+                    <option defaultValue={this.state.category}>Select your option</option>
                         <option value='Appetizer'>Appetizer</option>
                         <option value='Entree'>Entree</option>
                         <option value='Side'>Side</option>
@@ -67,6 +68,8 @@ class ItemCreateForm extends Component{
                         value="Create"
                     />
                 </form>
+                <button onClick={()=>this.props.handleBack()} className="btn btn-default ">Cancel</button>
+
             </div>
         )
     }

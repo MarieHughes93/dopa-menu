@@ -16,7 +16,7 @@ export const userCreate =(user)=>dispatch=>{
     .then(
         data => {
             dispatch(createSuccess())
-            history.push('/login')
+            history.push('/dopa-menu/login')
             dispatch(alertAction.notification(data.heading,data.message))},
         error => {
             dispatch(createFailure())
@@ -76,7 +76,7 @@ export const userDelete = (user) => dispatch => {
     .then(
         data => {
             dispatch(deleteSuccess())
-            history.push('/signup')
+            history.push('/dopa-menu/signup')
             dispatch(alertAction.notification(data.heading, data.message))},
         error => {
             dispatch(deleteFailure())

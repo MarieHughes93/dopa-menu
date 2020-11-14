@@ -12,8 +12,8 @@ class ItemsList  extends Component{
         this.handleView = this.handleView.bind(this)
     }
 
-    handleView=(id)=>{
-        history.push(`/item/${id}`)
+    handleView=(id, itemId)=>{
+        history.push(`/dopa-menu/${id}/menuItems/${itemId}`)
     }
 
   render(){
@@ -31,6 +31,7 @@ class ItemsList  extends Component{
         {items.map((item)=>
         
             <ListItem
+            key={item.id}
             item={item}
             handleView={this.handleView}
             />)
