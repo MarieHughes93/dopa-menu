@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import history from '../helpers/history'
 
 import {ListItem} from '../components/ListItem'
+import {Card} from 'react-bootstrap'
 
 class ItemsList  extends Component{
     constructor(props){
@@ -26,8 +27,14 @@ class ItemsList  extends Component{
       items = items.filter(item => item.category === this.props.category)
 
     return (
-        <div className="itemsContainer">
-            <h4> {this.props.category} </h4>
+        <div className={`${this.props.category}-itemsContainer`} >
+            <Card
+            bg={'dark'}
+            text={'white'}
+            style={{ width: '18rem' }}
+            >
+            <Card.Header bg={'dark'}>{this.props.category}</Card.Header>
+            <Card.Body>
         {items.map((item)=>
         
             <ListItem
@@ -36,6 +43,8 @@ class ItemsList  extends Component{
             handleView={this.handleView}
             />)
         }
+        </Card.Body>
+        </Card>
     </div>)
   }
 }

@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import {connect} from 'react-redux'
 // actions
 import {actions} from '../actions/_index'
+import {Form, Row, Col, Button} from 'react-bootstrap'
 
 
 class ItemCreateForm extends Component{
@@ -35,40 +36,63 @@ class ItemCreateForm extends Component{
 
     render(){
         return(
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <select value={this.state.category} name='category' onChange={this.handleOnChange}>
-                    <option defaultValue={this.state.category}>Select your option</option>
-                        <option value='Appetizer'>Appetizer</option>
-                        <option value='Entree'>Entree</option>
-                        <option value='Side'>Side</option>
-                        <option value='Dessert'>Dessert</option>
-                        <option value='Special'>Special</option>
-                    </select>
-                    <br/>
-                    <input
+            <div class="mx-auto " style={{width : '400px'}} >
+                
+                <Form onSubmit={this.onSubmit}>
+                    <Form.Group as={Row} controlId="formSelectCategory">
+                        <Form.Label>Category:</Form.Label>
+                        <Col>
+                            <Form.Control as="select" defaultValue={this.state.category} name='category' onChange={this.handleOnChange}>
+                                <option value=''>Select a category...</option>
+                                <option value='Appetizer'>Appetizer</option>
+                                <option value='Entree'>Entree</option>
+                                <option value='Side'>Side</option>
+                                <option value='Dessert'>Dessert</option>
+                                <option value='Special'>Special</option>
+                            </Form.Control>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formBasicTitle">
+                    <Form.Label>Title:</Form.Label>
+                    <Col>
+                        <Form.Control
                         type="text" 
                         name="title" 
                         value={this.state.title}
                         onChange={this.handleOnChange}
-                        placeholder="Title"
-                    />
-                    <br/>
-                    <input
-                        type="text"
-                        name="description"
-                        value={this.state.description}
-                        onChange={this.handleOnChange}
-                        placeholder="Description"
-                    />
+                        placeholder="Title"/>
+                    </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formBasicDescription">
+                    <Form.Label>Description:</Form.Label>
+                    <Col>
+                        <Form.Control 
+                            as="textarea"
+                            name="description"
+                            value={this.state.description}
+                            onChange={this.handleOnChange}
+                            placeholder="Description"/>
+                    </Col>
+                    </Form.Group>
+                    
                     
                     <br/>
-                    <input
-                        type="submit"
-                        value="Create"
-                    />
-                </form>
-                <button onClick={()=>this.props.handleBack()} className="btn btn-default ">Cancel</button>
+                
+                    <Form.Group as={Row}>
+                        <Col sm={{ span: 10, offset: 1 }}>
+                            <Form.Text className="text-muted">
+                            We'll never share ANY of your information with anyone else for ANY reason.
+                        </Form.Text>
+                        <br/>
+                            <Button variant="dark" type="submit">Create!</Button>
+                        </Col>
+                    </Form.Group>
+
+                </Form>
+
+                <Button variant="outline-info" type='button' onClick={()=>this.props.handleBack()}>Cancel</Button>
 
             </div>
         )

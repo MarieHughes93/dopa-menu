@@ -25,9 +25,9 @@ class NavHeader extends Component{
           key={route.path} 
         />)}
         {loggedIn ?
-        <Button type="button" variant="outline-light" size="sm" onClick={() => this.props.logOut()}>LogOut</Button>
+        <Button variant="outline-info" type="button"  size="sm" onClick={() => this.props.logOut()}>Log Out</Button>
         :
-        <Button type="button" variant="outline-light" size="sm" onClick={() => history.push('/dopa-menu/login')}>Login</Button>}  
+        <Button tvariant="outline-info" ype="button" size="sm" onClick={() => history.push('/dopa-menu/login')}>Log In</Button>}  
       </Nav>
     </Navbar>
     )

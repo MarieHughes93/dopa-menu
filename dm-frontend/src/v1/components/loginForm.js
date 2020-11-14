@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 // actions
 import {actions} from '../actions/_index'
 
+import {Form, Row, Col, Button} from 'react-bootstrap'
+
 class LoginForm extends Component {
     constructor(props){
         super(props)
@@ -32,29 +34,35 @@ class LoginForm extends Component {
 
     render(){
         return(
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <input 
-                        type="text" 
-                        name="email" 
-                        value={this.state.email}
-                        onChange={this.handleOnChange}
-                        placeholder="Email" 
-                    />
-                    <br/>
-                    <input
-                        type="password"
-                        name="password"
-                        value={this.state.password}
-                        onChange={this.handleOnChange}
-                        placeholder="Password"
-                    />
-                    <br/>
-                    <input
-                        type="submit"
-                        value="Login"
-                    />
-                </form>
+            <div class="mx-auto" style={{width : '400px'}} >
+                <Form onSubmit={this.onSubmit}>
+
+                    <Form.Group  as={Row} controlId="formBasicEmail">
+                        <Form.Label>Email:</Form.Label>
+                        <Col>
+                            <Form.Control size="lg" type="text" name="email" placeholder="Email"  value={this.state.email} onChange={this.handleOnChange} />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formBasicPassword">
+                        <Form.Label>Password:</Form.Label>
+                        <Col>
+                            <Form.Control 
+                                size="lg" 
+                                type="password" 
+                                name="password" 
+                                placeholder="Password" 
+                                value={this.state.password} 
+                                onChange={this.handleOnChange}/>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row}>
+                        <Col sm={{ span: 10, offset: 1 }}>
+                            <Button type="submit">Log In</Button>
+                        </Col>
+                    </Form.Group>
+                </Form>
             </div>
         )
     }

@@ -7,7 +7,7 @@ class SignUp extends Component{
   render(){
   return (
     <div >
-      Sign Up
+      <h1>Sign Up</h1>
         <SignUpForm/>
     </div>
     )

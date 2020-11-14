@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import {actions} from '../actions/_index'
 import ItemsList from '../components/itemsList'
 import history from '../helpers/history'
+import {CardColumns, Button} from 'react-bootstrap'
 
 class Dashboard extends Component{
   constructor(props){
@@ -30,10 +31,12 @@ class Dashboard extends Component{
     return (
     <div >
         <h1>Dashboard</h1>
-        <button onClick={() => history.push(`/dopa-menu/${userId}/menuItems/create`)} className="btn btn-default ">Create New</button>
+        <Button variant="outline-info" type='button' onClick={() => history.push(`/dopa-menu/${userId}/menuItems/create`)} className="btn btn-default ">Create New</Button>
+        <CardColumns>
         {categorgies.map((category,indx)=>
         <ItemsList key={indx} items={items} category={category}/>)
         }
+        </CardColumns>
     </div>
     )
   }

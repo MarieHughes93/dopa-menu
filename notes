@@ -1,0 +1,7 @@
+{this.props.links.map((route) =>
+  <ActiveLink
+    path={route.path}
+    text={route.text}
+    isActive={route.isActive}
+    key={route.path} 
+  />)}
