@@ -15,7 +15,8 @@ class Api::V1::MenuItemsController < ApplicationController
     end
 
     def create
-        @item = MenuItem.create(menu_params)
+        @item =  @user.menu_items.create(menu_params)
+        
         if @item.valid?
             render json: {menuItem: @item, user: @user, auth: true, error: false, heading: "New Item!", message: "A new item has been added to your collection."}
         else
@@ -24,7 +25,7 @@ class Api::V1::MenuItemsController < ApplicationController
     end
     
     def update
-        @item = MenuItem.find_by(id: params[:id])
+        @item = @user.menu_items.find_by(id: params[:id])
         
         if @item.update(menu_params)
             render json: {menuItem: @item, user: @user, auth: true, error: false, heading:"Updated!", message: "The menu option was successfully updates!"}
@@ -34,7 +35,7 @@ class Api::V1::MenuItemsController < ApplicationController
     end
     
     def destroy
-        @item = MenuItem.find_by(id: params[:id])
+        @item = @user.menu_items.find_by(id: params[:id])
         if @item.destroy
             render json: {menuItem: nil, user: @user, auth: true, error: false, heading: "MenuItem Deleted!", message: "The item yo requested deleted was successfully removed."}
         else
