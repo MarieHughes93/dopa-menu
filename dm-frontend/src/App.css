@@ -16,3 +16,22 @@
 .Category{
   text-align: left;
 }
+
+.createItemComponent{
+  text-align: center;
+  vertical-align: top;
+}
+
+.createItemForm {
+  padding: 5%;
+  padding-left: 10%;
+  display: inline-block;
+  width: 50%;
+  height: auto;
+  margin: 10px auto;
+  overflow: auto;
+  -moz-box-shadow: #555 0 0 8px;
+  -webkit-box-shadow: #555 0 0 8px;
+  -o-box-shadow: #555 0 0 8px;
+  box-shadow: #555 0 0 8px;
+}

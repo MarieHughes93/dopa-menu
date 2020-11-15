@@ -31,7 +31,7 @@ class App extends Component{
   }
   render(){
     const alert = this.props.alert
-    const links = activeSession() ? Navi.PrivUrls(activeUserId()) : Navi.PubUrls()
+    const links = activeSession() ? Navi.PrivUrls(activeUserId()) : Navi.PubUrls
     return(
       <div className="wrapper">
         <NavHeader fixed="top" links={links}/>

@@ -4,8 +4,8 @@ import {Form, Row, Col, Button} from 'react-bootstrap'
 
 
 export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
-    return(
-        <div className="mx-auto" style={{width : '400px',position: 'relative'}}>
+  return(
+        <div style={{width : '400px'}}>
             <Form
             onSubmit={onSubmit}
             >

@@ -2,7 +2,7 @@
 import React  from 'react'
 import {Button, Card} from 'react-bootstrap'
 
-export const Item=({item,toggleItemEdit,deleteItemButton,backButton})=>{
+export const Item=({item,toggleItemEdit,deleteMenuItem,backButton})=>{
     return(
         <div className="itemComponent" key={item.id}>
             <Card
@@ -28,7 +28,7 @@ export const Item=({item,toggleItemEdit,deleteItemButton,backButton})=>{
                         Edit
                     </Button>
                     <Button
-                    onClick={()=>deleteItemButton(item)}
+                    onClick={()=>deleteMenuItem(item)}
                     className="btn btn-deleteMenuItem"
                     type='button'
                     variant="outline-info"
