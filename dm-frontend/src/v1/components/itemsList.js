@@ -18,7 +18,7 @@ class ItemsList  extends Component{
       let items = this.props.items
       if (items === null || typeof items === 'undefined'){
           return(
-           <h1>You currently have no menu items.</h1>
+           <h1>Loading.</h1>
           )
       }
       items = items.filter(item => item.category === this.props.category)
