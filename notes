@@ -1,7 +1,42 @@
-{this.props.links.map((route) =>
-  <ActiveLink
-    path={route.path}
-    text={route.text}
-    isActive={route.isActive}
-    key={route.path} 
-  />)}
+users
+has_many :menu_items
+t.string "name"
+t.string "email"
+t.string "password_digest" - has_secure_password
+
+menu_item
+belongs_to :user 
+t.string "title"
+t.string "category" (Appetizer, Entree, Sides, Dessert, Specials default Entree) 
+t.text "description" (active,deactivated default active)
+t.belongs_to :user, foreign_key: {on_delete: :cascade}
+
+Dopa Menu welcome
+Sometimes the hardest challenge of having an attention disorder is finding something to stimulate you when you need stimulations.
+We can create a dopamine menu or a Dopa-Menu(How to ADHD) for things that excite you. Fill it out now to have 
+ready for the next time you are bored. Add to your menu to expand your options. Pause Activities 
+because you are not able to do the currently maybe you are just burnt out on it for now) to remove them from random selection.
+
+Select one of the 5 the levels of fulfilment you get:
+Appetizer,Entree,Side,Dessert,Special
+
+<p>Appetizer (Things that will give you a quick burst without eating up your time)</p>
+<p>Ex: Quick set of jumping jacks. 5 minutes social media check. Stretch outside.)</p>
+
+<p>Entree (Regular day activities that excite you and make you feel alive. </p>
+<p>Ex: walking the dog, going to the gym, reading a book)</p>
+
+<p>Side(Things you can do to enhance your experience of that activity.</p>
+<p>Ex Listen to music, set a personal challenge:do it while practicing another language, )</p>
+
+<p>Dessert (Thing you tend to over do it on... maybe binge? but you don't feel satisfied from but in large quantities </p>
+<p>Ex: Meme's, social media, video games, mindless anything (eating,watching tv, all that while still being bored))</p>
+
+<p>Special (Things you can do only so often. Once in a blue moon</p>
+<p>Ex Go ice skating. Go to a concert. Buying something new. Get a hair cut. Go on vacation/or weekend/stay-cation.  Get a new tattoo. </p>
+                        
+Views:
+Home/about, SignIn, SignOut
+ menu index, menu type index, 
+ menu item show, create/edit
+ random selector

@@ -13,7 +13,7 @@ class Home extends Component{
             <p> Join and fill it out menu options now to have ready for the next time you are bored.</p>
             <p> Add to your menu to expand your options.</p> <p>Check out the video bellow for a detailed explination by one of my favorite youtuber!</p>
             <div className='video'>
-              <iframe width="560" title="How To ADHD - How To Stimulate Your Brain"height="315" src="https://www.youtube.com/embed/-6WCkTwW6xg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="560" title="How To ADHD - How To Stimulate Your Brain" height="315" src="https://www.youtube.com/embed/-6WCkTwW6xg" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
       </div>
     )

@@ -1,14 +1,20 @@
 import React from 'react'
+import {Button} from 'react-bootstrap'
 
-const AlertComponent = (props)=>{
-    const alert = props.alert
+const AlertComponent = ({alert, closeAlert})=>{
     return(
         <div className={`alert ${alert.type} alert-dismissible fade show`} role="alert">
             <h4 className="alert-heading">{`${alert.heading}`}</h4>
             <p>{`${alert.message}`}</p>
-            <button type="button"  className="close" onClick={() => props.closeAlert()}>
+            <Button
+            onClick={() => closeAlert()}
+            className="close"
+            type="button"
+            variant="dark"
+            size="sm"
+            >
                 x
-            </button>
+            </Button>
         </div>
     )
 }

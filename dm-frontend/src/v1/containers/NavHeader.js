@@ -34,19 +34,19 @@ class NavHeader extends Component{
           />)}
           {loggedIn ?
             <Button
-            variant="outline-info"
-            type="button"
-            size="sm"
             onClick={()=>this.props.logOut()}
+            type="button"
+            variant="outline-info"
+            size="sm"
             >
               Log Out
             </Button>
             :
             <Button
-            variant="outline-info"
-            type="button"
-            size="sm"
             onClick={()=>history.push('/dopa-menu/login')}
+            type="button"
+            variant="outline-info"
+            size="sm"
             >
               Log In
             </Button>

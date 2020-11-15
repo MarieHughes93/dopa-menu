@@ -111,7 +111,7 @@ export const apiMenuItemShow=(user, menuItemId)=>{
 }
 // menu_items Update     update
 export const apiMenuItemUpdate=(menu_item)=>{
-    return fetch(`${apiUrl}/users/${menu_item.user_id}/menu/${menu_item.id}`,{
+    return fetch(`${apiUrl}/users/${menu_item.id}/menu/${menu_item.id}`,{
         method: 'PUT',
         headers:{...authHeading(),
             'Content-Type': 'application/json',

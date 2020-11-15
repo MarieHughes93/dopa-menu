@@ -11,6 +11,8 @@ export const menuItemsReducer = (state = {}, action) => {
                 loading: true}
         case actions.creator.menuItems.INDEX_SUCCESS:
             return {
+                ...state,
+                loading: false,
                 items: action.menuItems
             }
         case actions.creator.menuItems.INDEX_FAILED:
@@ -25,6 +27,11 @@ export const menuItemsReducer = (state = {}, action) => {
                 loading: true}
         case actions.creator.menuItems.CREATE_SUCCESS:
             return { 
+                ...state,
+                loading: false,
+                items:[
+                    ...state.items, action.menuItem
+                ]
             }
         case actions.creator.menuItems.CREATE_FAILED:
             return {
@@ -38,6 +45,7 @@ export const menuItemsReducer = (state = {}, action) => {
                 loading: true}
         case actions.creator.menuItems.FETCH_SUCCESS:
             return {
+                ...state,
                 item: action.menuItem
             }
         case actions.creator.menuItems.FETCH_FAILED:
@@ -51,7 +59,16 @@ export const menuItemsReducer = (state = {}, action) => {
                 ...state,
                 loading: true}
         case actions.creator.menuItems.UPDATE_SUCCESS:
-            return {}
+            console.log('reducer', action.menuItem)
+            const indx = state.items.findIndex((item)=> item.id === action.menuItem.id )
+            return {
+                ...state,
+                items:[
+                    ...state.items.slice(0, indx),
+                    action.menuItem,
+                    ...state.items.slice(indx + 1)
+                ]
+            }
         case actions.creator.menuItems.UPDATE_FAILED:
             return {
                 ...state,

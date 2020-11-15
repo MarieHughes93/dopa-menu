@@ -15,10 +15,13 @@ export const appReducer = (state = defaultState, action) => {
                 loading: true}
         case actions.creator.app.LOGIN_SUCCESS:
             return {
+                ...state,
+                loading: false,
                 loggedIn: true,
                 sessionID: action.token}
         case actions.creator.app.LOGIN_FAILED :
             return {
+                ...state,
                 loading: false,
                 loggedIn: false,
                 sessionID: null}
@@ -38,10 +41,12 @@ export const appReducer = (state = defaultState, action) => {
                 loggedIn: true}
         case actions.creator.app.SESSION_FOUND:
             return {
-                ...state}
+                ...state,
+                loading: true}
         case actions.creator.app.SESSION_LOGGEDIN:
             return {
                 ...state,
+                loading: false,
                 loggedIn: true}
         case actions.creator.app.SESSION_FAILED:
             return {

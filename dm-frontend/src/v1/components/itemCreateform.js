@@ -5,7 +5,7 @@ import {Form, Row, Col, Button} from 'react-bootstrap'
 
 export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
     return(
-        <div class="mx-auto" style={{width : '400px'}}>
+        <div className="mx-auto" style={{width : '400px',position: 'relative'}}>
             <Form
             onSubmit={onSubmit}
             >
@@ -35,6 +35,7 @@ export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
                             <option value='Dessert'> Dessert </option>
                             <option value='Special'> Special </option>
                         </Form.Control>
+                        <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
                     </Col>
                 </Form.Group>
 
@@ -94,9 +95,9 @@ export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
                 </Form.Group>
             </Form>
             <Button
-            variant="outline-info"
-            type='button'
             onClick={()=>backButton()}
+            type='button'
+            variant="outline-info"
             >
                 Cancel
             </Button>

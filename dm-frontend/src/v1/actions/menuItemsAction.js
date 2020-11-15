@@ -29,7 +29,7 @@ export const menuItemsFetch=()=>dispatch=>{
     )
 }
 export const createRequest=()=>({type: actionCreator.menuItems.CREATE_REQUEST})
-export const createSuccess=()=>({type: actionCreator.menuItems.CREATE_SUCCESS})
+export const createSuccess=(menuItem)=>({type: actionCreator.menuItems.CREATE_SUCCESS,menuItem})
 export const createFailure=()=>({type: actionCreator.menuItems.CREATE_FAILED})
 // create
 export const menuItemCreate=(menuItem)=>dispatch=>{
@@ -38,7 +38,7 @@ export const menuItemCreate=(menuItem)=>dispatch=>{
     helpers.fetch.apiMenuItemCreate(user, menuItem)
     .then(
         data=>{
-            dispatch(createSuccess())
+            dispatch(createSuccess(data.menuItem))
             helpers.history.push(`/dopa-menu/${data.user.id}`)
             dispatch(alertAction.notification(data.heading,data.message))
         },
@@ -76,6 +76,7 @@ export const menuItemUpdate=(menuItem)=>dispatch=>{
     return helpers.fetch.apiMenuItemUpdate(menuItem)
     .then(
         data=>{
+            console.log('action',data.menuItem)
             dispatch(updateSuccess(data.menuItem))
             dispatch(alertAction.notification(data.heading, data.message))
             return data.menuItem

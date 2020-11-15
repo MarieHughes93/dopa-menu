@@ -9,7 +9,11 @@ export const usersReducer = (state = {}, action) => {
                 ...state,
                 loading: true}
         case actions.creator.user.CREATE_SUCCESS:
-            return {}
+            return {
+                ...state,
+                loading: false,
+                registered: true
+            }
         case actions.creator.user.CREATE_FAILED:
             return {
                 ...state,
@@ -23,6 +27,8 @@ export const usersReducer = (state = {}, action) => {
                 loading: true}
         case actions.creator.user.FETCH_SUCCESS:
             return {
+                ...state,
+                loading:false,
                  currentUser: action.user }
         case actions.creator.user.FETCH_FAILED:
             return {
@@ -37,6 +43,8 @@ export const usersReducer = (state = {}, action) => {
             }
         case actions.creator.user.UPDATE_SUCCESS:
             return {
+                ...state,
+                loading:false,
                 currentUser: action.user}
         case actions.creator.user.UPDATE_FAILED:
             return {

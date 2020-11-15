@@ -10,23 +10,14 @@ import history from '../helpers/history'
 import ItemsList from '../components/itemsList'
 
 class Dashboard extends Component{
-  constructor(props){
-    super(props)
-    this.state={
-      menuItems: 'loading'
-    }
-  }
   componentDidMount=()=>{
-   this.props.fetch().then((res)=>
-    this.setState({
-      menuItems: res
-    }))
+   this.props.fetch()
   }
   render(){
     const userId = this.props.match.params.id
-    const items = this.state.menuItems
+    const items = this.props.menuItems
     const categorgies = ['Appetizer', 'Entree', 'Side', 'Dessert', 'Special']
-    if (items === 'loading'){
+    if (items === null){
       return(
         <h1>loading</h1>
       )

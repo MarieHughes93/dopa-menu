@@ -4,7 +4,7 @@ import {Form, Row, Col, Button} from 'react-bootstrap'
 
 export const ItemUpdateForm = ({menuItem, onChange, onSubmit, cancelButton}) => {
     return(
-        <div class="mx-auto" style={{width: '400px'}}>
+        <div className="mx-auto" style={{width: '400px'}}>
             <Form
             onSubmit={onSubmit}
             >
@@ -70,9 +70,9 @@ export const ItemUpdateForm = ({menuItem, onChange, onSubmit, cancelButton}) => 
                     <Col
                     sm={{span: 10, offset: 1}}
                     >
-                        <Button 
-                        variant="dark"
+                        <Button
                         type="submit"
+                        variant="dark"
                         >
                             Update!
                         </Button>
@@ -80,9 +80,9 @@ export const ItemUpdateForm = ({menuItem, onChange, onSubmit, cancelButton}) => 
                 </Form.Group>
             </Form>
             <Button
-            variant="outline-info"
-            type='button'
             onClick={()=>cancelButton()}
+            type='button'
+            variant="outline-info"
             >
                 Cancel
             </Button>

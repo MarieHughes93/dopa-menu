@@ -4,7 +4,7 @@ import {Form,Col,Button, Row} from 'react-bootstrap'
 
 export const UserForm=({user,onChange,onSubmit,cancelButton})=>{
   return(
-    <div class="mx-auto" style={{width : '400px'}}>
+    <div className="mx-auto" style={{width : '400px'}}>
       <Form
       onSubmit={onSubmit}
       >

@@ -4,7 +4,7 @@ import {Form, Row, Col, Button, Card} from 'react-bootstrap'
 
 export const SignUpForm=({user,onChange,onSubmit})=>{
     return(
-        <div class="mx-auto" style={{width : '50%'}}>
+        <div className="mx-auto" style={{width : '50%'}}>
             <Card
             bg={'dark'}
             text={'white'}

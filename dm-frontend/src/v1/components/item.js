@@ -20,28 +20,28 @@ export const Item=({item,toggleItemEdit,deleteItemButton,backButton})=>{
                         {item.description}
                     </Card.Text>
                     <Button
-                    variant="outline-info"
-                    type='button'
                     onClick={toggleItemEdit}
                     className="btn btn-toogleEdit"
+                    type='button'
+                    variant="outline-info"
                     >
                         Edit
                     </Button>
                     <Button
-                    variant="outline-info"
-                    type='button'
                     onClick={()=>deleteItemButton(item)}
                     className="btn btn-deleteMenuItem"
+                    type='button'
+                    variant="outline-info"
                     >
                         Delete
                     </Button>
                 </Card.Body>
             </Card>
             <Button
-            variant="outline-info"
-            type='button'
             onClick={()=>backButton()}
             className="btn btn-handleBack"
+            type='button'
+            variant="outline-info"
             >
                 Back
             </Button>
