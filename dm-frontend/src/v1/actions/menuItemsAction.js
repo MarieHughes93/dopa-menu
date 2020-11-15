@@ -76,7 +76,6 @@ export const menuItemUpdate=(menuItem)=>dispatch=>{
     return helpers.fetch.apiMenuItemUpdate(menuItem)
     .then(
         data=>{
-            console.log('action',data.menuItem)
             dispatch(updateSuccess(data.menuItem))
             dispatch(alertAction.notification(data.heading, data.message))
             return data.menuItem

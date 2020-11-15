@@ -59,7 +59,6 @@ export const menuItemsReducer = (state = {}, action) => {
                 ...state,
                 loading: true}
         case actions.creator.menuItems.UPDATE_SUCCESS:
-            console.log('reducer', action.menuItem)
             const indx = state.items.findIndex((item)=> item.id === action.menuItem.id )
             return {
                 ...state,
