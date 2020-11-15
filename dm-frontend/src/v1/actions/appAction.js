@@ -12,6 +12,10 @@ export const activeSession =() => {
     }
     return false
 }
+export const activeUserId=()=>{
+    const user =  localStorage.getItem('currentUser')
+    return (user) ? JSON.parse(user).id : null
+}
 // login
 export const logInRequest=()=>({type: actionCreator.app.LOGIN_REQUEST})
 export const logInSuccess=(token)=>({type: actionCreator.app.LOGIN_SUCCESS, token})
@@ -70,7 +74,7 @@ export const sessionReconnect=()=>dispatch=>{
                 dispatch(sessionLoggedIn())
                 localStorage.setItem('currentUser', JSON.stringify(data.user))
                 dispatch(userAction.fetchSuccess(data.user))
-                // helpers.history.push(`/dopa-menu/${data.user.id}`)
+                helpers.history.push(`/dopa-menu/${data.user.id}`)
                 dispatch(alertAction.notification(data.heading , data.message))
             },
             error=>{

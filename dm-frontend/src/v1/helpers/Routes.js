@@ -27,12 +27,12 @@ const PubUrls =[
     {path: '/dopa-menu/signup', text: 'Join',isActive: ''},
 
 ]
-const PrivUrls =[
-    {path: '/dopa-menu/:id/about', text: 'About', isActive: ''},
-    {path: '/dopa-menu/:id', text: 'Dashboard', isActive: ''},
-    {path: '/dopa-menu/:id/profile', text: 'Profile', isActive: ''},
-    {path: '/dopa-menu/:id/menuItems/create', text:'Add Item', isActive: ''}
-]
+const PrivUrls= (userId)=>([
+    {path: `/dopa-menu/${userId}/about`, text: 'About', isActive: ''},
+    {path: `/dopa-menu/${userId}`, text: 'Dashboard', isActive: ''},
+    {path: `/dopa-menu/${userId}/profile`, text: 'Profile', isActive: ''},
+    {path: `/dopa-menu/${userId}/menuItems/create`, text:'Add Item', isActive: ''}
+])
 
 export const Navi ={
     PubRoute,
