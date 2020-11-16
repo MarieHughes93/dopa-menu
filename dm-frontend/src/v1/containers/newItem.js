@@ -26,7 +26,6 @@ class NewItem extends Component{
 
   handleOnChange=(e)=>{
     e.persist()
-    console.log(e.target.name, e.target.value)
     this.setState((state)=>({
       menuItem:{
         ...state.menuItem,
