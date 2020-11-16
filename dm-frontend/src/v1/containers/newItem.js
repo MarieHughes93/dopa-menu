@@ -1,53 +1,83 @@
 // package
 import React, { Component } from "react"
+import { Container } from "react-bootstrap"
 import {connect} from 'react-redux'
 // actions
 import {actions} from '../actions/_index'
 // components
 import {ItemCreateForm} from '../components/itemCreateform'
 
+import {helpers} from '../helpers/_index'
+
 class NewItem extends Component{
   constructor(props){
   super(props)
   this.state={
+    menuItem: {
       category: '',
       title: '',
-      description: ''
+      description: ''},
+      toolTip: null
   }
   this.handleOnChange = this.handleOnChange.bind(this)
   this.handleOnSubmit = this.handleOnSubmit.bind(this)
   this.handleBackButton = this.handleBackButton.bind(this)
   }
+
   handleOnChange=(e)=>{
     e.persist()
-    this.setState(()=>({
-      [e.target.name]: e.target.value 
+    console.log(e.target.name, e.target.value)
+    this.setState((state)=>({
+      menuItem:{
+        ...state.menuItem,
+        [e.target.name]: e.target.value 
+      }  
     }))
+    if(e.target.name === 'category' && e.target.value === ''){
+      this.setState(state=>({
+          ...state,
+          toolTip: false
+      }))
+    }
+    if(e.target.name === 'category' && e.target.value ){
+      const categoryExamples = helpers.util.catgegoryExample
+      const example =  categoryExamples.find(cate =>cate.category === e.target.value)
+      this.setState(state=>({
+          ...state,
+          toolTip: example
+      }
+      ))
+    }
+  
   }
   handleOnSubmit=(e)=>{
     e.preventDefault()
-    this.props.create(this.state)   
+    this.props.create(this.state.menuItem)   
     this.setState({
+      menuItem: {
         category: '',
         title: '',
-        description: ''
+        description: ''}
     })
   }
   handleBackButton=()=>{
     this.props.history.goBack()
   }  
   render(){
+    const {toolTip, menuItem} = this.state
     return (
-      <div className="createItem container">
+      <Container className="createItem container">
         <h1>Create your item below:</h1>
   
         <ItemCreateForm
-        menuItem={this.state}
+        toolTip={toolTip}
+        menuItem={menuItem}
+        handleOnChangeSelect={this.handleOnChangeSelect}
         onChange={this.handleOnChange}
         onSubmit={this.handleOnSubmit}
         backButton={this.handleBackButton}
         />
-        </div>
+        </Container>
     )
   }
 }

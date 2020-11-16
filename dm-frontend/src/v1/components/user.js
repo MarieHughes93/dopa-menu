@@ -6,7 +6,7 @@ export const User=({user, toggleUserEdit, deleteUserButton})=>{
     return(
         <div className="userComponent" key={user.id}>
             <Card
-            className={`${user.id} show`}
+            className={`${user.id} showCard`}
             bg={'dark'}
             text={'white'}
             >
@@ -15,10 +15,12 @@ export const User=({user, toggleUserEdit, deleteUserButton})=>{
                 </Card.Header>
                 <Card.Body className={`${user.id} show`}>
                     <Card.Title className={`${user.id} show`}>
-                        {user.name}
+                        Thank you for using Dopa-Menu
                     </Card.Title>
                     <Card.Text className={`${user.id} show`}>
-                        <strong>Email:</strong>{user.email}
+                    <strong>Name: </strong> {user.name}
+                    <br/>
+                        <strong>Email: </strong> {user.email}
                     </Card.Text>
                     <Button
                     variant="outline-info"

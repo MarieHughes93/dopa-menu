@@ -25,7 +25,7 @@ class Api::V1::MenuItemsController < ApplicationController
     end
     
     def update
-        @item = @user.menu_items.find_by_id(params[:id])
+        @item = @user.menu_items.find_by(id: params[:id])
         if @item.update(menu_params)
             render json: {menuItem: @item, user: @user, auth: true, error: false, heading:"Updated!", message: "The menu option was successfully updates!"}
         else

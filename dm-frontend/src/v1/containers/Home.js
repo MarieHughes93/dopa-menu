@@ -1,6 +1,5 @@
 // package
 import React, { Component } from "react"
-import {Card} from 'react-bootstrap'
 
 class Home extends Component{
   render(){

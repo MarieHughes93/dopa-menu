@@ -5,7 +5,7 @@ import {Button, Card} from 'react-bootstrap'
 export const ListItem  = ({item, handleView}) =>{
   return(
     <div className={`${item.title} listItemComponent`} key={item.id}>
-        <Card.Text className={`${item.id}`}>
+        <Card.Text className={`${item.id} listItem`}>
           {item.title}&nbsp;&nbsp;&nbsp;&nbsp;
           <Button
           variant="outline-info"

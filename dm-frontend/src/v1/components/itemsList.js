@@ -43,7 +43,7 @@ class ItemsList  extends Component{
                         This category does not have any options currently.
                     </Card.Text>
                     :
-                    items.map((item)=>
+                    cateItems.map((item)=>
                             <ListItem
                             key={item.id}
                             item={item}

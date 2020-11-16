@@ -1,13 +1,16 @@
 // package
 import React from "react"
-import {Form, Row, Col, Button} from 'react-bootstrap'
+import {Form, Row, Col, Button, Card} from 'react-bootstrap'
 
 
-export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
+export const ItemCreateForm=({toolTip, menuItem,onChange, onSubmit, backButton})=>{
   return(
         <div className='createItemComponent'>
+                <Row>
+                <Col md={{ span: 6, offset: 2 }}>
+            <Card>
             <Form
-            className='createItem'
+            className='createItemForm'
             onSubmit={onSubmit}
             >
                 <Form.Group
@@ -107,6 +110,28 @@ export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
             >
                 Cancel
             </Button>
+            </Card>
+            </Col>
+            <Col>
+            {toolTip ?
+                <Card>
+                    <Card.Body>
+                        <Card.Title>{`${toolTip.category}`}</Card.Title>
+                        <Card.Text>{`${toolTip.explanation}`}</Card.Text>
+                        <Card.Subtitle>{`${toolTip.example}`}</Card.Subtitle>
+                    </Card.Body>
+                </Card> 
+            :
+            <Card>
+            <Card.Body>
+                <Card.Title>Select a Category option for an explination</Card.Title>
+                <Card.Text>The info will apper here</Card.Text>
+                <Card.Subtitle>With helpful examples</Card.Subtitle>
+            </Card.Body>
+        </Card> 
+            }
+                </Col>
+                </Row>
         </div>
     )
 }
