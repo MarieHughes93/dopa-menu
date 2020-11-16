@@ -4,11 +4,13 @@ import {Form, Row, Col, Button} from 'react-bootstrap'
 
 export const ItemUpdateForm = ({menuItem, onChange, onSubmit, cancelButton}) => {
     return(
-        <div className="mx-auto" style={{width: '400px'}}>
+        <div className='itemUpdateComponent'>
             <Form
+            className={`${menuItem.id} update`}
             onSubmit={onSubmit}
             >
                 <Form.Group
+                className={`${menuItem.id} select item category`}
                 as={Row}
                 controlId="formSelectCategory"
                 >
@@ -32,6 +34,7 @@ export const ItemUpdateForm = ({menuItem, onChange, onSubmit, cancelButton}) => 
                     </Col>
                 </Form.Group>
                 <Form.Group
+                className={`${menuItem.id} item Title`}
                 as={Row}
                 controlId="formBasicTitle"
                 >
@@ -49,6 +52,7 @@ export const ItemUpdateForm = ({menuItem, onChange, onSubmit, cancelButton}) => 
                     </Col>
                 </Form.Group>
                 <Form.Group
+                className={`${menuItem.id} item description`}
                 as={Row}
                 controlId="formBasicDescription"
                 >
@@ -66,11 +70,13 @@ export const ItemUpdateForm = ({menuItem, onChange, onSubmit, cancelButton}) => 
                     </Col>
                 </Form.Group>
                 <Form.Group
+                className={`${menuItem.id} form submit`}
                 as={Row}>
                     <Col
                     sm={{span: 10, offset: 1}}
                     >
                         <Button
+                        className={`btn ${menuItem.id} btn-UpdateSubmit`}
                         type="submit"
                         variant="dark"
                         >
@@ -80,6 +86,7 @@ export const ItemUpdateForm = ({menuItem, onChange, onSubmit, cancelButton}) => 
                 </Form.Group>
             </Form>
             <Button
+            className={`btn ${menuItem.id} btn-HistoryBack`}
             onClick={()=>cancelButton()}
             type='button'
             variant="outline-info"

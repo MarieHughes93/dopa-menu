@@ -1,11 +1,11 @@
 // package
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import {CardColumns, Button} from 'react-bootstrap'
+import {Container, Button, Row,} from 'react-bootstrap'
 // actions
 import {actions} from '../actions/_index'
 // helpers
-import history from '../helpers/history'
+import {helpers} from '../helpers/_index'
 // component
 import ItemsList from '../components/itemsList'
 
@@ -16,32 +16,37 @@ class Dashboard extends Component{
   render(){
     const userId = this.props.match.params.id
     const items = this.props.menuItems
-    const categorgies = ['Appetizer', 'Entree', 'Side', 'Dessert', 'Special']
-    if (items === null){
+    if (items === null || typeof items === 'undefined'){
       return(
         <h1>loading</h1>
       )
     }
+    const categories = helpers.util.categoriesColums
     return(
-      <div>
+      <Container className='Dashboard'>
         <h1>Dashboard</h1>
+        <br/>
         <Button
         variant="outline-info"
         type='button'
-        onClick={() => history.push(`/dopa-menu/${userId}/menuItems/create`)} className="btn btn-default"
+        className="btn btn-CreateItem"
+        onClick={() => helpers.history.push(`/dopa-menu/${userId}/menuItems/create`)}
         >
           Create New
         </Button>
-        <CardColumns>
-          {categorgies.map((category,indx)=>
+        <br/>
+        <br/>
+          <Row
+          className='menuItems'>
+            {categories.map(([category,column],indx)=>
             <ItemsList
             key={indx}
+            column={column}
             items={items}
             category={category}
-            />)
-          }
-        </CardColumns>
-      </div>
+            />)}
+          </Row>
+        </Container>
     )
   }
 }
@@ -56,3 +61,5 @@ const mapDispatchToProps=(dispatch)=>{
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+
+

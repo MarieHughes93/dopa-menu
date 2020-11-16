@@ -5,12 +5,14 @@ import {Form, Row, Col, Button} from 'react-bootstrap'
 
 export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
   return(
-        <div style={{width : '400px'}}>
+        <div className='createItemComponent'>
             <Form
+            className='createItem'
             onSubmit={onSubmit}
             >
                 <Form.Group
                 as={Row}
+                className='select item category'
                 controlId="formSelectCategory"
                 >
                     <Form.Label>
@@ -24,8 +26,8 @@ export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
                         </Form.Text>
                         <Form.Control
                         as="select"
-                        defaultValue={menuItem.category}
                         name='category'
+                        defaultValue={menuItem.category}
                         onChange={(e)=>onChange(e)}
                         >
                             <option value=''> Select a category... </option>
@@ -38,9 +40,9 @@ export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
                         <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
                     </Col>
                 </Form.Group>
-
                 <Form.Group
                 as={Row}
+                className='item Title'
                 controlId="formBasicTitle"
                 >
                     <Form.Label>
@@ -58,6 +60,7 @@ export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
                 </Form.Group>
                 <Form.Group
                 as={Row}
+                className='item description'
                 controlId="formBasicDescription"
                 >
                     <Form.Label>
@@ -75,6 +78,7 @@ export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
                 </Form.Group>
                 <Form.Group
                 as={Row}
+                className='form sbumit'
                 >
                     <Col
                     sm={{span: 10, offset: 1}}
@@ -86,6 +90,7 @@ export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
                         </Form.Text>
                         <br/>
                         <Button
+                        className='btn btn-submitCreate'
                         variant="dark"
                         type="submit"
                         >
@@ -95,6 +100,7 @@ export const ItemCreateForm=({menuItem,onChange, onSubmit, backButton})=>{
                 </Form.Group>
             </Form>
             <Button
+            className='btn btn-HistoryBack'
             onClick={()=>backButton()}
             type='button'
             variant="outline-info"

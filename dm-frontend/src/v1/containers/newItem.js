@@ -38,19 +38,15 @@ class NewItem extends Component{
   }  
   render(){
     return (
-      <div className="createItemComponent">
+      <div className="createItem container">
         <h1>Create your item below:</h1>
-        
-
-
-  <div className='createItemForm'>
+  
         <ItemCreateForm
         menuItem={this.state}
         onChange={this.handleOnChange}
         onSubmit={this.handleOnSubmit}
         backButton={this.handleBackButton}
         />
-        </div>
         </div>
     )
   }

@@ -1,37 +1,26 @@
 .wrapper {
-  display: grid;
-  grid-template-rows: 70px auto;
-  grid-template-columns: 1fr;
-  grid-template-areas: "navbar"
-                       "content";
+  width: 100vw;
   height: 100vh;
   overflow: auto;
+  background-color: rgb(107, 107, 107);
 }
-.App {
+.App{
   text-align: center;
-  grid-area: content;
-  padding: 48px;
+  margin: 1vh auto;
+  width: 90%;
+  height: 90%;
+  padding: 1%;
+  background-color:rgb(107, 107, 107);
 }
-
-.Category{
-  text-align: left;
-}
-
-.createItemComponent{
+.container {
+  border: 5px solid #17a2b8;
+  border-radius: 16px;
+  background-color: rgb(206, 206, 206);
   text-align: center;
-  vertical-align: top;
-}
-
-.createItemForm {
-  padding: 5%;
-  padding-left: 10%;
-  display: inline-block;
-  width: 50%;
-  height: auto;
-  margin: 10px auto;
-  overflow: auto;
-  -moz-box-shadow: #555 0 0 8px;
-  -webkit-box-shadow: #555 0 0 8px;
-  -o-box-shadow: #555 0 0 8px;
-  box-shadow: #555 0 0 8px;
+  margin: 1vh auto;
+  width: auto;
+  height:90%;
+  padding: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
 }

@@ -5,6 +5,17 @@ export const catgegoryExample=[
     {category: 'Dessert', explanation: "Activaties you tend to over do it on... maybe even binge? These are activaties that require more time than any regular activity to achieve a feeling of satisfaction. This activaties are also not productive.", example: "Scrolling through meme's. Play video games. Watch TV. Drawing. Recording tiktok video. "},
     {category: 'Special', explanation: "Things you can do only so often. These have no time frame as they are not always availble to do or if they are they should be sparingly. These should bring the largest amount of satifatction. As well as these are activaties that should leave a lingering effect of feeling satisfied.", example: 'Go ice skating. Go to a concert. Buying something new. Get a hair cut. Go on vacation/or weekend/stay-cation.  Get a new tattoo.'}
 ]
+export const categories = ['Appetizer', 'Dessert', 'Entree', 'Special', 'Side']
+export const categoriesColums = [
+    ['Appetizer', 1],
+    ['Entree', 2],
+    ['Side', 3],
+    ['Dessert', 4],
+    ['Special', 5]
+]
+
 export const util={
-    catgegoryExample
+    catgegoryExample,
+    categories,
+    categoriesColums
 }

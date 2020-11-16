@@ -39,7 +39,7 @@ export const menuItemCreate=(menuItem)=>dispatch=>{
     .then(
         data=>{
             dispatch(createSuccess(data.menuItem))
-            helpers.history.push(`/dopa-menu/${data.user.id}`)
+            helpers.history.push(`/dopa-menu/${data.user.id}/menuItems`)
             dispatch(alertAction.notification(data.heading,data.message))
         },
         error=>{
@@ -96,7 +96,7 @@ export const menuItemDelete=(menuItem)=>dispatch=>{
     .then(
         data=>{
             dispatch(deleteSuccess())
-            helpers.history.push(`/dopa-menu/${data.user.id}`)
+            helpers.history.push(`/dopa-menu/${data.user.id}/menuItems`)
             dispatch(alertAction.notification(data.heading, data.message))
         },
         error=>{

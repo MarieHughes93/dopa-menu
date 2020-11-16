@@ -5,13 +5,15 @@ import {Form, Row, Col, Button} from 'react-bootstrap'
 
 export const LoginForm=({user,onChange,onSubmit})=>{
     return(
-        <div className="mx-auto" style={{width : '400px'}}>
+        <div className="userLoginComponent">
             <Form
+            className='user login'
             onSubmit={onSubmit}
             >
                 <Form.Group
+                className='login email'
                 as={Row}
-                controlId="formBasicEmail"
+                controlId="formEmail"
                 >
                     <Form.Label>
                         Email:
@@ -28,8 +30,9 @@ export const LoginForm=({user,onChange,onSubmit})=>{
                     </Col>
                 </Form.Group>
                 <Form.Group
+                className='login Password'
                 as={Row}
-                controlId="formBasicPassword"
+                controlId="formPassword"
                 >
                     <Form.Label>
                         Password:
@@ -46,12 +49,14 @@ export const LoginForm=({user,onChange,onSubmit})=>{
                     </Col>
                 </Form.Group>
                 <Form.Group
+                className='login submit'
                 as={Row}
                 >
                     <Col
                     sm={{span: 10, offset: 1}}
                     >
                         <Button
+                        className={`btn btn-LoginSubmit`}
                         type="submit"
                         >
                             Log In

@@ -30,19 +30,19 @@ class App extends Component{
     })
   }
   render(){
-    const alert = this.props.alert
+    const {alert, clearAlerts} = this.props
     const links = activeSession() ? Navi.PrivUrls(activeUserId()) : Navi.PubUrls
     return(
       <div className="wrapper">
         <NavHeader fixed="top" links={links}/>
         <div className="App">
           {alert.message &&
-          <AlertComponent alert={alert} closeAlert={this.props.clearAlerts}/>}
+          <AlertComponent alert={alert} closeAlert={clearAlerts}/>}
           <Switch>
             <Navi.PubRoute restricted={false} component={Home} path="/dopa-menu" exact/>
             <Navi.PubRoute restricted={true} component={SignUp} path="/dopa-menu/signup" exact/>
             <Navi.PubRoute restricted={true} component={LogIn} path="/dopa-menu/login" exact/>
-            <Navi.PrivRoute component={Dashboard} path="/dopa-menu/:id" exact/>
+            <Navi.PrivRoute component={Dashboard} path="/dopa-menu/:id/menuItems" exact/>
             <Navi.PrivRoute component={Profile} path="/dopa-menu/:id/profile" exact/>
             <Navi.PrivRoute component={NewItem} path='/dopa-menu/:id/menuItems/create' exact/>
             <Navi.PrivRoute component={ItemShow} path='/dopa-menu/:id/menuItems/:itemId' exact/>

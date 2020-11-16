@@ -4,24 +4,25 @@ import {Button, Card} from 'react-bootstrap'
 
 export const Item=({item,toggleItemEdit,deleteMenuItem,backButton})=>{
     return(
-        <div className="itemComponent" key={item.id}>
+        <div className="itemShowComponent" key={item.id}>
             <Card
+            className={`${item.id} showCard`}
             bg={'dark'}
             text={'white'}
             >
-                <Card.Header>
+                <Card.Header className={item.id}>
                     {item.category}
                 </Card.Header>
-                <Card.Body>
-                    <Card.Title>
+                <Card.Body className={item.id}>
+                    <Card.Title className={item.id}>
                         {item.title}
                     </Card.Title>
-                    <Card.Text>
+                    <Card.Text className={item.id}>
                         {item.description}
                     </Card.Text>
                     <Button
                     onClick={toggleItemEdit}
-                    className="btn btn-toogleEdit"
+                    className={`btn ${item.id} btn-toogleItemEdit`}
                     type='button'
                     variant="outline-info"
                     >
@@ -29,7 +30,7 @@ export const Item=({item,toggleItemEdit,deleteMenuItem,backButton})=>{
                     </Button>
                     <Button
                     onClick={()=>deleteMenuItem(item)}
-                    className="btn btn-deleteMenuItem"
+                    className={`btn ${item.id} btn-deleteMenuItem`}
                     type='button'
                     variant="outline-info"
                     >
@@ -39,7 +40,7 @@ export const Item=({item,toggleItemEdit,deleteMenuItem,backButton})=>{
             </Card>
             <Button
             onClick={()=>backButton()}
-            className="btn btn-handleBack"
+            className={`btn ${item.id} btn-handleItemShowBack`}
             type='button'
             variant="outline-info"
             >

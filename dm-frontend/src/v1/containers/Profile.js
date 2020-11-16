@@ -52,14 +52,14 @@ class Profile extends Component{
     const user = this.state.user
     if (user === null ){
       return(
-        <div>
+        <div className='loading'>
           <h1>Loading....</h1>
         </div>
       )
     }
     if (this.state.isEditing) {
       return(
-        <div>
+        <div className='userProfile container'>
           <h1>Edit</h1>
           <UserForm
           user={user}
@@ -71,7 +71,7 @@ class Profile extends Component{
       )
     }
     return(
-      <div>
+      <div className='userProfile container'>
         <User
         user={this.state.user}
         toggleUserEdit={this.toggleUserEdit}

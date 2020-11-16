@@ -4,15 +4,18 @@ import {Form,Col,Button, Row} from 'react-bootstrap'
 
 export const UserForm=({user,onChange,onSubmit,cancelButton})=>{
   return(
-    <div className="mx-auto" style={{width : '400px'}}>
+    <div className="userFormComponent">
       <Form
+      className={`${user.id} update`}
       onSubmit={onSubmit}
       >
         <Form.Group
+        className={`${user.id} update name`}
         as={Row}
-        controlId="formBasicTitle"
+        controlId="formNameUpdate"
         >
-          <Form.Label>
+          <Form.Label 
+          className={`${user.name} update`}>
             Name:
           </Form.Label>
           <Col>
@@ -26,11 +29,13 @@ export const UserForm=({user,onChange,onSubmit,cancelButton})=>{
           </Col>
         </Form.Group>
         <Form.Group
+        className={`${user.id} update submit`}
         as={Row}
         >
           <Col
           sm={{span: 10, offset: 1}}>
             <Button
+            className={`btn ${user.id} btn-UpdateSubmit`}
             variant="dark"
             type="submit"
             >
@@ -42,8 +47,10 @@ export const UserForm=({user,onChange,onSubmit,cancelButton})=>{
       <Button
       type='button'
       onClick={()=>cancelButton()}
-      className="btn btn-HistoryBack"
+      className={`btn ${user.id} btn-HistoryBack`}
       >
+
+
         cancel
       </Button>
     </div>

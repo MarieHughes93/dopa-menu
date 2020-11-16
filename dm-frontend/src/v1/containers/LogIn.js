@@ -32,7 +32,7 @@ class LogIn extends Component{
   }
   render(){
     return(
-      <div>
+      <div className='userLoginContainer'>
         <h1>LogIn</h1>
         <LoginForm
         user={this.state}

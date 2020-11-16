@@ -4,18 +4,21 @@ import {Form, Row, Col, Button, Card} from 'react-bootstrap'
 
 export const SignUpForm=({user,onChange,onSubmit})=>{
     return(
-        <div className="mx-auto" style={{width : '50%'}}>
+        <div className="userSignUpComponent">
             <Card
+            className='signUpCard'
             bg={'dark'}
             text={'white'}
             >
                 <Form
+                className='user signup'
                 style={{width : '90%', padding: '10%'}}
                 onSubmit={onSubmit}
                 >
                     <Form.Group
+                    className='signup name'
                     as={Row}
-                    controlId="formBasicName"
+                    controlId="formName"
                     >
                         <Form.Label>
                             Name:
@@ -32,8 +35,9 @@ export const SignUpForm=({user,onChange,onSubmit})=>{
                         </Col>
                     </Form.Group> 
                     <Form.Group
+                    className='signup email'
                     as={Row}
-                    controlId="formBasicEmail"
+                    controlId="formEmail"
                     >
                         <Form.Label>
                             Email:
@@ -55,8 +59,9 @@ export const SignUpForm=({user,onChange,onSubmit})=>{
                         </Col>
                     </Form.Group>    
                     <Form.Group
+                    className='signup password'
                     as={Row}
-                    controlId="formBasicPassword"
+                    controlId="formPassword"
                     >
                         <Form.Label>
                             Password:
@@ -73,6 +78,7 @@ export const SignUpForm=({user,onChange,onSubmit})=>{
                         </Col>
                     </Form.Group>
                     <Form.Group
+                    className='signup submit'
                     as={Row}
                     >
                         <Col
@@ -85,6 +91,7 @@ export const SignUpForm=({user,onChange,onSubmit})=>{
                             </Form.Text>
                             <br/>
                             <Button
+                            className='btn btn-signUpSubmit'
                             type="submit"
                             >
                                 Sign Up

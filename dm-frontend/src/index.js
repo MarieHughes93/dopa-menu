@@ -14,7 +14,7 @@ import history from './v1/helpers/history'
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-    <App />
+    <App/>
     </Router>
   </Provider>
   ,

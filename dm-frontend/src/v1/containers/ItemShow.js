@@ -58,14 +58,14 @@ class ItemShow extends Component{
     const menuItem = this.state.menuItem
     if (menuItem === 'loading'){
       return(
-        <div>
+        <div className='loading'>
           <h1>Loading....</h1>
         </div>
       )
     }
     if (this.state.isEditing){
       return(
-        <div>
+        <div className='itemsShow container'>
           <h1>Edit</h1>
           <ItemUpdateForm
           menuItem={menuItem}
@@ -77,7 +77,7 @@ class ItemShow extends Component{
       )
     }
     return(
-      <div>
+      <div className='itemsShow container'>
         <Item 
         item={menuItem}
         toggleItemEdit={this.toggleItemEdit}

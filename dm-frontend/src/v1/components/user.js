@@ -6,33 +6,36 @@ export const User=({user, toggleUserEdit, deleteUserButton})=>{
     return(
         <div className="userComponent" key={user.id}>
             <Card
+            className={`${user.id} show`}
             bg={'dark'}
             text={'white'}
             >
-                <Card.Header>
+                <Card.Header className={`${user.id} show`}>
                     Profile
                 </Card.Header>
-                <Card.Body>
-                    <Card.Title>
+                <Card.Body className={`${user.id} show`}>
+                    <Card.Title className={`${user.id} show`}>
                         {user.name}
                     </Card.Title>
-                    <Card.Text>
+                    <Card.Text className={`${user.id} show`}>
                         <strong>Email:</strong>{user.email}
                     </Card.Text>
                     <Button
                     variant="outline-info"
                     type='button'
                     onClick={toggleUserEdit}
-                    className="btn btn-userEdit"
+                    className={`btn ${user.id} btn-toogleuserEdit`}
                     >
+                        
                         Edit
                     </Button>
                     <Button
                     variant="outline-info"
                     type='button'
                     onClick={()=>deleteUserButton(user)}
-                    className="btn btn-userDelete"
+                    className={`btn ${user.id} btn-userDelete`}
                     >
+                        
                         Delete
                     </Button>
                 </Card.Body>

@@ -7,8 +7,8 @@ const AlertComponent = ({alert, closeAlert})=>{
             <h4 className="alert-heading">{`${alert.heading}`}</h4>
             <p>{`${alert.message}`}</p>
             <Button
+            className={`close btn ${alert.type} btn-closeAlert`}
             onClick={() => closeAlert()}
-            className="close"
             type="button"
             variant="dark"
             size="sm"

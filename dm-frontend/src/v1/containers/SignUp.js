@@ -35,7 +35,7 @@ class SignUp extends Component{
 
   render(){
     return(
-        <div>
+        <div className='userSignUpContainer'>
           <h1>Sign Up</h1>
           <SignUpForm
           user={this.state}

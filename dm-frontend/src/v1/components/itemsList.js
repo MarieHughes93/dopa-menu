@@ -1,6 +1,6 @@
 // package
 import React, { Component } from 'react'
-import {Card} from 'react-bootstrap'
+import {Card,Col} from 'react-bootstrap'
 // helpers
 import history from '../helpers/history'
 // components
@@ -15,37 +15,46 @@ class ItemsList  extends Component{
         history.push(`/dopa-menu/${id}/menuItems/${itemId}`)
     }
     render(){
-      let items = this.props.items
-      if (items === null || typeof items === 'undefined'){
-          return(
-           <h1>Loading.</h1>
-          )
+        const {column, items ,category} = this.props
+        if (items === null || typeof items === 'undefined'){
+            return(
+                <h1>Loading.</h1>
+            )
       }
-      items = items.filter(item => item.category === this.props.category)
-        return(
-            <div className={`${this.props.category}-itemsContainer`} >
-                <Card
+      const cateItems = items.filter(item => item.category === category)
+      return(
+        <Col className={`${category}-itemsContainer`} xs={{ order: column }}>
+            <Card
+            className={`${category} listCard`}
+            bg={'dark'}
+            text={'white'}
+            >
+                <Card.Header
+                className={`${category}`}
                 bg={'dark'}
-                text={'white'}
-                style={{ width: '18rem' }}
                 >
-                    <Card.Header
-                    bg={'dark'}
-                    >
-                        {this.props.category}
-                    </Card.Header>
-                    <Card.Body>
-                        {items.map((item)=>
+                    {category}
+                </Card.Header>
+                <Card.Body
+                className={`${category}`}
+                >
+                    {!cateItems.length > 0 ?
+                    <Card.Text className="text-muted">
+                        This category does not have any options currently.
+                    </Card.Text>
+                    :
+                    items.map((item)=>
                             <ListItem
                             key={item.id}
                             item={item}
                             handleView={this.handleView}
                             />)
                         }
-                    </Card.Body>
-                </Card>
-            </div>
-        )
+                   
+                </Card.Body>
+            </Card>
+        </Col>
+       )
     }
 }
 export default ItemsList

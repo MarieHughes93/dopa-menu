@@ -8,7 +8,7 @@ export const PubRoute = ({component: Component, restricted, ...rest}) => {
     return (
     <Route {...rest} render={props => (
         activeSession() && restricted ?
-        <Redirect to="/dopa-menu/:id"/>
+        <Redirect to="/dopa-menu/:id/menuItems"/>
         : <Component {...props}/>
     )}/>)
 }
@@ -28,8 +28,8 @@ const PubUrls =[
 
 ]
 const PrivUrls= (userId)=>([
-    {path: `/dopa-menu/${userId}/about`, text: 'About', isActive: ''},
-    {path: `/dopa-menu/${userId}`, text: 'Dashboard', isActive: ''},
+    {path: `/dopa-menu`, text: 'About', isActive: ''},
+    {path: `/dopa-menu/${userId}/menuItems`, text: 'Dashboard', isActive: ''},
     {path: `/dopa-menu/${userId}/profile`, text: 'Profile', isActive: ''},
     {path: `/dopa-menu/${userId}/menuItems/create`, text:'Add Item', isActive: ''}
 ])
