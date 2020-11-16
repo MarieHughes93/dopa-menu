@@ -72,7 +72,6 @@ class NewItem extends Component{
         <ItemCreateForm
         toolTip={toolTip}
         menuItem={menuItem}
-        handleOnChangeSelect={this.handleOnChangeSelect}
         onChange={this.handleOnChange}
         onSubmit={this.handleOnSubmit}
         backButton={this.handleBackButton}

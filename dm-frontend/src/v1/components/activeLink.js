@@ -4,13 +4,14 @@ import {Link} from 'react-router-dom'
 
 class ActiveLink extends Component {
   render() {
+    const {path, text, isActive} = this.props
     return (
-      <li className={"nav-item " + (this.props.isActive ? "active": "")}>
+      <li className={"nav-item " + (isActive ? "active": "")}>
         <Link
         className="nav-link"
-        to={this.props.path}
+        to={path}
         >
-          {this.props.text}
+          {text}
         </Link>
       </li>
     )

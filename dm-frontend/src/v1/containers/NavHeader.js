@@ -11,7 +11,7 @@ import history from '../helpers/history'
 
 class NavHeader extends Component{
   render(){
-    const loggedIn = this.props.isLoggedIn
+    const {isLoggedIn, links, logOut} = this.props
     return(
       <Navbar
       bg="dark"
@@ -25,16 +25,16 @@ class NavHeader extends Component{
         <Nav
         className="routes"
         >
-          {this.props.links.map((route)=>
+          {links.map((route)=>
             <ActiveLink
             path={route.path}
             text={route.text}
             isActive={route.isActive}
             key={route.path} 
           />)}
-          {loggedIn ?
+          {isLoggedIn ?
             <Button
-            onClick={()=>this.props.logOut()}
+            onClick={()=>logOut()}
             type="button"
             variant="outline-info"
             size="sm"
