@@ -12,8 +12,8 @@ t.text "description" (active,deactivated default active)
 t.belongs_to :user, foreign_key: {on_delete: :cascade}
 
 Dopa Menu welcome
-Sometimes the hardest challenge of having an attention disorder is finding something to stimulate you when you need stimulations.
-We can create a dopamine menu or a Dopa-Menu(How to ADHD) for things that excite you. Fill it out now to have 
+Sometimes the hardest challenge of having an attention disorder is finding something to stimulate you when you need youtubers.
+We can create a dopamine menu or a Dopa-Menu(How to ADHD) for things that excite you. fill out your now to have 
 ready for the next time you are bored. Add to your menu to expand your options. Pause Activities 
 because you are not able to do the currently maybe you are just burnt out on it for now) to remove them from random selection.
 
@@ -29,7 +29,7 @@ Appetizer,Entree,Side,Dessert,Special
 <p>Side(Things you can do to enhance your experience of that activity.</p>
 <p>Ex Listen to music, set a personal challenge:do it while practicing another language, )</p>
 
-<p>Dessert (Thing you tend to over do it on... maybe binge? but you don't feel satisfied from but in large quantities </p>
+<p>Dessert (Thing you tend to overdo it on... maybe binge? but you don't feel satisfied from but in large quantities </p>
 <p>Ex: Meme's, social media, video games, mindless anything (eating,watching tv, all that while still being bored))</p>
 
 <p>Special (Things you can do only so often. Once in a blue moon</p>

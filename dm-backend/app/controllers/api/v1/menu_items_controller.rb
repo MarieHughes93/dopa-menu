@@ -10,7 +10,7 @@ class Api::V1::MenuItemsController < ApplicationController
         if @item= @user.menu_items.find(params[:id])
             render json: {menuItem: @item, user: @user, auth: true, error: false, heading: "Fetch Complete", message: "Item's info retrieved"}
         else
-            render json: {menuItem: nil, user: @user, auth: true , error: true , heading: "Opps...", message: "We ran into an error loading your selection. Please try again."}
+            render json: {menuItem: nil, user: @user, auth: true , error: true , heading: "Oops...", message: "We ran into an error loading your selection. Please try again."}
         end
     end
 
@@ -27,7 +27,7 @@ class Api::V1::MenuItemsController < ApplicationController
     def update
         @item = @user.menu_items.find_by(id: params[:id])
         if @item.update(menu_params)
-            render json: {menuItem: @item, user: @user, auth: true, error: false, heading:"Updated!", message: "The menu option was successfully updates!"}
+            render json: {menuItem: @item, user: @user, auth: true, error: false, heading:"Updated!", message: "The menu option was successfully updated!"}
         else
             render json: {menuItem: @item , user: @user, auth: true, error: true, heading:"Opps..", message: "There was an issue updating your menu item. Please try again."}
         end
@@ -36,9 +36,9 @@ class Api::V1::MenuItemsController < ApplicationController
     def destroy
         @item = @user.menu_items.find_by(id: params[:id])
         if @item.destroy
-            render json: {menuItem: nil, user: @user, auth: true, error: false, heading: "Item Deleted!", message: "The item you requested deleted was successfully removed."}
+            render json: {menuItem: nil, user: @user, auth: true, error: false, heading: "Item Deleted!", message: "The item you requested to be deleted was successfully removed."}
         else
-            render json: {menuItem: @item, user: @user, auth: true, error: true ,heading: "Opps...", message: "We can into an issue deleting your menu item."}
+            render json: {menuItem: @item, user: @user, auth: true, error: true ,heading: "Opps...", message: "We ran into an issue while deleting your menu item."}
         end
     end
 

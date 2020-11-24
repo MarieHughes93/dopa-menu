@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
     else
       @user = User.create(user_params)
       if @user.valid?
-        render json: {user: @user, error: false, heading: "Please sign in.", message: "SignUp was successfull."}
+        render json: {user: @user, error: false, heading: "Please sign in.", message: "Sign Up successful."}
       else
         render json: {user: nil, auth: nil, error: true, heading: "Invalid information", message: "Please check to make sure all fields are filled and you are using a standard email format. example email 'email@email.com' "}
       end

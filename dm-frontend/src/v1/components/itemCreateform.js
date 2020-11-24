@@ -124,7 +124,7 @@ export const ItemCreateForm=({toolTip, menuItem,onChange, onSubmit, backButton})
             :
             <Card>
             <Card.Body>
-                <Card.Title>Select a Category option for an explination</Card.Title>
+                <Card.Title>Select a Category option for an explanation</Card.Title>
                 <Card.Text>The info will apper here</Card.Text>
                 <Card.Subtitle>With helpful examples</Card.Subtitle>
             </Card.Body>

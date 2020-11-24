@@ -4,11 +4,7 @@ class ApplicationController < ActionController::API
   def scramble_tok(payload)
     JWT.encode(payload, 's3cr3t')
   end
-  
-  def auth_header
-    
-  end
-  
+ 
   def tokenizer
     auth = request.headers['Authorization']
     if auth
