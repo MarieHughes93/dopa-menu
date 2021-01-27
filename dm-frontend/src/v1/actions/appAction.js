@@ -42,6 +42,7 @@ export const logIn=(user)=>dispatch=>{
 export const logOutRequest=()=>({type: actionCreator.app.LOGOUT_REQUEST})
 export const logOutSuccess=()=>({type: actionCreator.app.LOGOUT_SUCCESS})
 export const logOutFailure=()=>({type: actionCreator.app.LOGOUT_FAILED})
+
 export const logOut=()=>dispatch=>{
     dispatch(logOutRequest())
     helpers.fetch.apilogout()
