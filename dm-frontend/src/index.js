@@ -1,5 +1,5 @@
 import './index.css'
-import './App.css'
+import './App.scss'
 // package
 import { Router } from 'react-router-dom'
 import React from 'react'

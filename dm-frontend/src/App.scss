@@ -1,8 +1,10 @@
+@import './variables.scss';
+
 .wrapper {
   width: 100vw;
   height: 100vh;
   overflow: auto;
-  background-color: rgb(107, 107, 107);
+  background-color: $bg-color;
 }
 .App{
   text-align: center;
@@ -10,19 +12,17 @@
   width: 90%;
   height: 90%;
   padding: 1%;
-  background-color:rgb(107, 107, 107);
+  background-color:$bg-color;
 }
 .container {
-  border: 5px solid #17a2b8;
+  border: 5px solid $border-color;
   border-radius: 16px;
-  background-color: rgb(206, 206, 206);
+  background-color: $body-bg-color;
   text-align: center;
   margin: 1vh auto;
   width: auto;
   height:90%;
-  padding: 2%;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: $padding;
 }
 .createItemForm {
   border-radius: 16px;
@@ -30,9 +30,7 @@
   margin: 1vh auto;
   width: auto;
   height:90%;
-  padding: 2%;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: $padding;
 }
 .showCard{
   margin: 10vh auto;
