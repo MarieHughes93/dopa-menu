@@ -7,6 +7,7 @@ import { Switch,withRouter, Redirect} from 'react-router-dom'
 import NavHeader from './v1/containers/NavHeader'
 import Home from './v1/containers/Home'
 import Dashboard from './v1/containers/Dashboard'
+import Category from './v1/containers/Category'
 import Profile from './v1/containers/Profile'
 import SignUp from './v1/containers/SignUp'
 import LogIn from './v1/containers/LogIn'
@@ -42,10 +43,11 @@ class App extends Component{
             <Navi.PubRoute restricted={false} component={Home} path="/dopa-menu" exact/>
             <Navi.PubRoute restricted={true} component={SignUp} path="/dopa-menu/signup" exact/>
             <Navi.PubRoute restricted={true} component={LogIn} path="/dopa-menu/login" exact/>
-            <Navi.PrivRoute component={Dashboard} path="/dopa-menu/:id/menuItems" exact/>
             <Navi.PrivRoute component={Profile} path="/dopa-menu/:id/profile" exact/>
-            <Navi.PrivRoute component={NewItem} path='/dopa-menu/:id/menuItems/create' exact/>
-            <Navi.PrivRoute component={ItemShow} path='/dopa-menu/:id/menuItems/:itemId' exact/>
+            <Navi.PrivRoute component={Dashboard} path="/dopa-menu/:id/dashboard" exact/>
+            <Navi.PrivRoute component={NewItem} path="/dopa-menu/:id/create" exact/>
+            <Navi.PrivRoute component={Category} path="/dopa-menu/:id/:category" exact/>
+            <Navi.PrivRoute component={ItemShow} path="/dopa-menu/:id/:category/:itemId" exact/>
             <Redirect from="*" to="/dopa-menu"/>
           </Switch>
         </div>
