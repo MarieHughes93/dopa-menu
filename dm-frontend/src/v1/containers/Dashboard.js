@@ -40,6 +40,7 @@ class Dashboard extends Component{
           className='menuItems'>
             {categories.map(([category,column],indx)=>
             <ItemsList
+            user= {userId}
             key={indx}
             column={column}
             items={items}
