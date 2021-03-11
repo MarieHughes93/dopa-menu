@@ -1,6 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
   before_action :authorized, only: [:session_auth]
-
   def login
     @user = User.find_by(email: params[:user][:email])
     if @user
