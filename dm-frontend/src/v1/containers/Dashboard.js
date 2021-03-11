@@ -30,7 +30,7 @@ class Dashboard extends Component{
         variant="outline-info"
         type='button'
         className="btn btn-CreateItem"
-        onClick={() => helpers.history.push(`/dopa-menu/${userId}/menuItems/create`)}
+        onClick={() => helpers.history.push(`/dopa-menu/${userId}/create`)}
         >
           Create New
         </Button>
