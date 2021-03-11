@@ -1,6 +1,6 @@
 // package
 import React, { Component } from 'react'
-import {Card,Col} from 'react-bootstrap'
+import {Card,Col, Button} from 'react-bootstrap'
 // helpers
 import history from '../helpers/history'
 // components
@@ -15,10 +15,10 @@ class ItemsList  extends Component{
         history.push(`/dopa-menu/${id}/${category}/${itemId}`)
     }
     handleCate=(id, category)=>{
-        history.push(`/dopa-menu/${id}/${category}/`)
+        history.push(`/dopa-menu/${id}/${category}`)
     }
     render(){
-        const {column, items ,category} = this.props
+        const {user, column, items ,category} = this.props
         if (items === null || typeof items === 'undefined'){
             return(
                 <h1>Loading.</h1>
@@ -55,11 +55,14 @@ class ItemsList  extends Component{
                             handleView={this.handleView}
                             />)
                     }
-                    <Card.Link className={`${category} listCate`}
-                        href="#"
-                        onClick={()=>this.handleCate(`${category.user_id}, ${category}`)}
-                        >{category}
-                    </Card.Link>
+                    <Button variant="secondary" 
+                        className={`${category} listCate`}
+                        size="sm"
+                        user={user}
+                        items= {cateItems}
+                        onClick={()=>this.handleCate(user, category)}
+                        > View
+                    </Button>
                 </Card.Body>
             </Card>
         </Col>

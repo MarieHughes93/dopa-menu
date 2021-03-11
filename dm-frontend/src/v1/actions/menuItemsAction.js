@@ -16,12 +16,9 @@ export const indexFailure=()=>({type: actionCreator.menuItems.INDEX_FAILED})
 export const menuItemsFetch=()=>dispatch=>{
     const user = findUser()
     dispatch(indexRequest())
-    
-    console.log('c')
     helpers.fetch.apiMenuItemsIndex(user)
     .then(
         data=>{
-            console.log('d')
             dispatch(indexSuccess(data.menuItems))
             return data.menuItems
         },
