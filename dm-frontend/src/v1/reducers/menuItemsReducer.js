@@ -19,6 +19,22 @@ export const menuItemsReducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: false}
+
+        // by cate
+        case actions.creator.menuItems.CATEGORY_REQUEST:
+            return {
+                ...state,
+                loading: true}
+        case actions.creator.menuItems.CATEGORY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                categoryItems: action.menuItems
+            }
+        case actions.creator.menuItems.CATEGORY_FAILED:
+            return {
+                ...state,
+                loading: false}
         
         // create
         case actions.creator.menuItems.CREATE_REQUEST:

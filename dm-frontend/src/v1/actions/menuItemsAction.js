@@ -28,6 +28,27 @@ export const menuItemsFetch=()=>dispatch=>{
         }
     )
 }
+
+export const categoryRequest=()=>({type: actionCreator.menuItems.CATEGORY_REQUEST})
+export const categorySuccess=(menuItems)=>({type: actionCreator.menuItems.CATEGORY_SUCCESS, menuItems})
+export const categoryFailure=()=>({type: actionCreator.menuItems.CATEGORY_FAILED})
+
+export const categoryMenuItems=(category)=>dispatch=>{
+    const user = findUser()
+    dispatch(categoryRequest())
+    helpers.fetch.apiCategoryMenuItems(user,category)
+    .then(
+        data=>{
+            dispatch(categorySuccess(data.menuItems))
+            return data.menuItems
+        },
+        error=>{
+            dispatch(categoryFailure())
+            dispatch(alertAction.error(error.heading, error.message))
+        }
+    )
+}
+
 export const createRequest=()=>({type: actionCreator.menuItems.CREATE_REQUEST})
 export const createSuccess=(menuItem)=>({type: actionCreator.menuItems.CREATE_SUCCESS,menuItem})
 export const createFailure=()=>({type: actionCreator.menuItems.CREATE_FAILED})
@@ -111,7 +132,9 @@ export const menuItemsAction={
     indexRequest,
     indexSuccess,
     indexFailure,
-    menuItemsFetch, 
+    menuItemsFetch,
+    // by cate
+    categoryMenuItems,
     // create
     createRequest,
     createSuccess,

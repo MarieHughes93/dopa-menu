@@ -1,3 +1,5 @@
+import { categories } from "./util";
+
 export const apiUrl = typeof process.env.REACT_APP_API_HOST !== 'undefined' ? process.env.REACT_APP_API_HOST : 'http://localhost:3000';
 export const errorCheck=(res)=>{
     if (res.auth === false ){
@@ -90,6 +92,15 @@ export const apiMenuItemsIndex=(user)=>{
     .then(errorCheck)
 }
 
+// menut_items by Category (get)
+export const apiCategoryMenuItems=(user, category)=>{
+    return fetch(`${apiUrl}/users/${user.id}/category/${category}`,{
+        method: 'GET',
+        headers: authHeading()
+    }).then(res=> res.json())
+    .then(errorCheck)
+}
+
 // menu_items create (POST)
 export const apiMenuItemCreate=(user,menuItem)=>{
     return fetch(`${apiUrl}/users/${user.id}/menu`,{
@@ -146,6 +157,7 @@ export const apiRequest={
     apiUserDelete,
     // menuItems
     apiMenuItemsIndex,
+    apiCategoryMenuItems,
     apiMenuItemCreate,
     apiMenuItemShow,
     apiMenuItemUpdate,

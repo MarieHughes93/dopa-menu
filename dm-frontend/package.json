@@ -21,6 +21,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "move": "mkdir -p ../dm-backend/public/static && cp -r build/static/* ../dm-backend/public/static/ && cp build/index.html ../dm-backend/app/views/app/index.html.erb",
     "start": "react-scripts start",
     "build": "env-cmd react-scripts build",
     "test": "react-scripts test",

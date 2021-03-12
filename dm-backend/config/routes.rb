@@ -9,7 +9,8 @@ Rails.application.routes.draw do
       get "/session_auth", to: "sessions#session_auth"
       post "/register", to: "users#create"
       resources :users, except: :create do
-         resources :menu_items,path:'menu'
+         resources :menu_items, path:'menu'
+         get '/category/:category', to: 'menu_items#category_items'
       end
     end
   end

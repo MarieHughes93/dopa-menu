@@ -6,6 +6,14 @@ class Api::V1::MenuItemsController < ApplicationController
         render json: {menuItems: @menu_items, user: @user, auth: true, error: false, heading: "Fetch Complete", message: "Menu items were all collected"}
     end
 
+    def category_items()
+        if @category_items = @user.menu_items.find_by(category: params[:category])
+            render json: {menuItems: @category_items, user: @user, auth: true, error: false, heading: "Fetch Complete", message: "All items were gathered"}
+        else
+            render json: {menuItem: nil, user: @user, auth: true , error: true , heading: "Oops...", message: "We ran into an error loading this selection. Please try again."}
+        end
+    end
+
     def show
         if @item= @user.menu_items.find(params[:id])
             render json: {menuItem: @item, user: @user, auth: true, error: false, heading: "Fetch Complete", message: "Item's info retrieved"}
