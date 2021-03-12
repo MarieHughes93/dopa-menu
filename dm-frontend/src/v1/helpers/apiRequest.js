@@ -1,4 +1,4 @@
-export const apiUrl = typeof process.env.REACT_API_HOST !== 'undefined' ? process.env.REACT_API_HOST : 'http://localhost:4000';
+export const apiUrl = typeof process.env.REACT_APP_API_HOST !== 'undefined' ? process.env.REACT_APP_API_HOST : 'http://localhost:4000';
 export const errorCheck=(res)=>{
     if (res.auth === false ){
         localStorage.removeItem('sessionID')
