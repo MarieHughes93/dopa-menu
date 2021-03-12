@@ -22,3 +22,5 @@ RUN mkdir -p /dm-backend/public/static/ && cp -r ../dm-frontend/build/static/* /
 
 WORKDIR /dm-backend
 EXPOSE 3000
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
