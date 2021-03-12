@@ -65,8 +65,10 @@ class NewItem extends Component{
   render(){
     const {toolTip, menuItem} = this.state
     return (
-      <Container className="createItem container">
-        <h1>Create your item below:</h1>
+      <Container className="newItem container">
+        <div className='newItemHeader'>
+          <h1>Create your item below:</h1>
+        </div>
   
         <ItemCreateForm
         toolTip={toolTip}

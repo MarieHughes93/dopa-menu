@@ -75,7 +75,6 @@ export const sessionReconnect=()=>dispatch=>{
                 dispatch(sessionLoggedIn())
                 localStorage.setItem('currentUser', JSON.stringify(data.user))
                 dispatch(userAction.fetchSuccess(data.user))
-                helpers.history.push(`/dopa-menu/${data.user.id}/dashboard`)
                 dispatch(alertAction.notification(data.heading , data.message))
             },
             error=>{

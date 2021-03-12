@@ -55,8 +55,9 @@ class ItemsList  extends Component{
                             handleView={this.handleView}
                             />)
                     }
+
                     <Button variant="secondary" 
-                        className={`${category} listCate`}
+                        className={`${category} listCateButton`}
                         size="sm"
                         user={user}
                         items= {cateItems}

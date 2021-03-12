@@ -24,6 +24,7 @@ import {sessionReconnect,activeSession, activeUserId} from './v1/actions/appActi
 class App extends Component{
   componentDidMount=()=>{
     this.props.sessionReconnect()
+    setTimeout(this.props.clearAlerts, 5000) 
     history.listen((location, action)=>{
       if(this.props.alert.message){
         this.props.clearAlerts()

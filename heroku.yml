@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 release:
   command:
     - ./deployment-tasks.sh
+=======
+build:
+  docker:
+    web: Dockerfile
+>>>>>>> 854fb0af58193aac82994f2d3d63bab14172e135

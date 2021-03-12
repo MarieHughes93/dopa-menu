@@ -6,27 +6,25 @@ import {Form, Row, Col, Button, Card} from 'react-bootstrap'
 export const ItemCreateForm=({toolTip, menuItem,onChange, onSubmit, backButton})=>{
   return(
         <div className='createItemComponent'>
-                <Row>
-                <Col md={{ span: 6, offset: 2 }}>
+            <Row>
+            <Col>
             <Card>
             <Form
             className='createItemForm'
             onSubmit={onSubmit}
             >
+                <Form.Text className="text-muted">
+                        Select one of the 5 the levels of fulfilment you get:
+                </Form.Text>
                 <Form.Group
                 as={Row}
                 className='select item category'
                 controlId="formSelectCategory"
                 >
-                    <Form.Label>
+                    <Form.Label column sm="3">
                         Category:
                     </Form.Label>
-                    <Col>
-                        <Form.Text 
-                        className="text-muted"
-                        >
-                            Select one of the 5 the levels of fulfilment you get:
-                        </Form.Text>
+                    <Col>       
                         <Form.Control
                         as="select"
                         name='category'
@@ -40,7 +38,7 @@ export const ItemCreateForm=({toolTip, menuItem,onChange, onSubmit, backButton})
                             <option value='Dessert'> Dessert </option>
                             <option value='Special'> Special </option>
                         </Form.Control>
-                        <Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
+                        
                     </Col>
                 </Form.Group>
                 <Form.Group
@@ -48,7 +46,7 @@ export const ItemCreateForm=({toolTip, menuItem,onChange, onSubmit, backButton})
                 className='item Title'
                 controlId="formBasicTitle"
                 >
-                    <Form.Label>
+                    <Form.Label column sm="3">
                         Title:
                     </Form.Label>
                     <Col>
@@ -66,7 +64,7 @@ export const ItemCreateForm=({toolTip, menuItem,onChange, onSubmit, backButton})
                 className='item description'
                 controlId="formBasicDescription"
                 >
-                    <Form.Label>
+                    <Form.Label column sm="3">
                         Description:
                     </Form.Label>
                     <Col>
