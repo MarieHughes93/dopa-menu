@@ -4,6 +4,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get update && apt-get install -y nodejs
 
 WORKDIR /dm-frontend
+
 COPY ./dm-frontend/src /dm-frontend/src
 COPY ./dm-frontend/public /dm-frontend/public
 COPY ./dm-frontend/package.json /dm-frontend/package.json
