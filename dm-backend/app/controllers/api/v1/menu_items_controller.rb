@@ -7,7 +7,7 @@ class Api::V1::MenuItemsController < ApplicationController
     end
 
     def category_items()
-        if @category_items = @user.menu_items.find_by(category: params[:category])
+        if @category_items = @user.menu_items.where(category: params[:category])
             render json: {menuItems: @category_items, user: @user, auth: true, error: false, heading: "Fetch Complete", message: "All items were gathered"}
         else
             render json: {menuItem: nil, user: @user, auth: true , error: true , heading: "Oops...", message: "We ran into an error loading this selection. Please try again."}
