@@ -9,7 +9,7 @@ COPY ./dm-frontend/src /dm-frontend/src
 COPY ./dm-frontend/public /dm-frontend/public
 COPY ./dm-frontend/package.json /dm-frontend/package.json
 COPY ./dm-frontend/package-lock.json /dm-frontend/package-lock.json
-RUN npm install && npm run build
+RUN npm install && npm run build -p
 
 WORKDIR /
 COPY ./deployment-tasks.sh /deployment-tasks.sh
